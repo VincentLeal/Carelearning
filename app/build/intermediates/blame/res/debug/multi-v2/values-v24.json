@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Vince\\Desktop\\Carelearning\\Carelearning\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
+            "outputFile": "C:\\Users\\shino\\Documents\\ESGI\\Projet Annuel\\mobile\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Vince\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\398d0a41144c467bf285ac75c75c1aa6\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\shino\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\23f9a69589a34e4d9c2932008a671deb\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Vince\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\317a9db1e839e1022654b0d6ec22f402\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\shino\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\c86e23199a28ac826cb70d8f69dae4cc\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
