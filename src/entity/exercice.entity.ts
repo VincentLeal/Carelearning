@@ -1,4 +1,6 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Score} from "./score.entity";
+import {type} from "os";
 
 @Entity()
 export class Exercice {
@@ -19,4 +21,7 @@ export class Exercice {
 
     @Column('boolean')
     isValidated: boolean;
+
+    @OneToMany(type => Score, score => score.exercice)
+    scores: Score[];
 }

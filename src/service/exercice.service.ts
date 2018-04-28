@@ -1,7 +1,7 @@
 import {Component} from '@nestjs/common';
-import {Repository} from 'typeorm';
 import {Exercice} from '../entity/exercice.entity';
 import {InjectRepository} from '@nestjs/typeorm';
+import {Repository} from "typeorm";
 
 @Component()
 export class ExerciceService {

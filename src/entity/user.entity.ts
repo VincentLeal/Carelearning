@@ -1,4 +1,6 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Exercice} from "./exercice.entity";
+import {Score} from "./score.entity";
 
 @Entity()
 export class User {
@@ -22,4 +24,7 @@ export class User {
 
     @Column('timestamp')
     register_date: string;
+
+    @OneToMany(type => Score, score => score.user)
+    score: Score[];
 }
