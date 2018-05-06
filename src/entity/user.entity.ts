@@ -1,6 +1,8 @@
 import {Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {Exercice} from "./exercice.entity";
 import {Score} from "./score.entity";
+import {RevisionSheet} from "./revision_sheet.entity";
+import {Revision_user} from "./revision_user.entity";
 
 @Entity()
 export class User {
@@ -27,4 +29,7 @@ export class User {
 
     @OneToMany(type => Score, score => score.user)
     score: Score[];
+
+    @OneToMany(type => Revision_user, revision_user => revision_user.user)
+    revision_user: Revision_user[];
 }

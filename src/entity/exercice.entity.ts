@@ -1,6 +1,5 @@
 import {Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {Score} from "./score.entity";
-import {type} from "os";
 
 @Entity()
 export class Exercice {

@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Revision_user} from "./revision_user.entity";
 
 @Entity()
 export class RevisionSheet{
@@ -16,4 +17,7 @@ export class RevisionSheet{
 
     @Column('boolean')
     isDone: boolean;
+
+    @OneToMany(type => Revision_user, revision_user => revision_user.revision_sheet)
+    revision_user: Revision_user;
 }
