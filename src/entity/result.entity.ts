@@ -1,5 +1,5 @@
-import {Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
-import {User} from "./user.entity";
+import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
+import {Student} from "./student.entity";
 import {Exercise} from "./exercise.entity";
 
 @Entity()
@@ -17,7 +17,7 @@ export class Result {
     @JoinColumn({name: 'exerciseId'})
     exercise: Exercise;
 
-    @ManyToOne(type => User)
-    @JoinColumn({name: 'userId'})
-    user: User;
+    @ManyToOne(type => Student)
+    @JoinColumn({name: 'studentId'})
+    student: Student;
 }

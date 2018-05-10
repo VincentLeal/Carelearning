@@ -1,17 +1,20 @@
-import {Column, Entity, JoinColumn, ManyToOne} from "typeorm";
-import {User} from "./user.entity";
+import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Student} from "./student.entity";
 import {Lesson} from "./lesson";
 
 @Entity()
 export class Revision_sheet {
+    @PrimaryGeneratedColumn()
+    id:number;
+
     @Column()
     favorite: boolean;
 
-    @ManyToOne(type => User, { primary: true })
-    @JoinColumn({name: 'userId'})
-    user: User;
+    @ManyToOne(type => Student)
+    @JoinColumn({name: 'studentId'})
+    student: Student;
 
-    @ManyToOne(type => Lesson, { primary: true })
+    @ManyToOne(type => Lesson)
     @JoinColumn({name: 'lessonId'})
     lesson: Lesson;
 }

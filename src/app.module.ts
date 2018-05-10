@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './module/user.module';
+import {StudentModule} from './module/student.module';
 import {ResultModule} from "./module/result.module";
 import {ExerciseModule} from "./module/exercise.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
@@ -8,7 +8,7 @@ import {LessonModule} from "./module/lesson.module";
 
 @Module({
   imports: [TypeOrmModule.forRoot(),
-  UserModule,
+  StudentModule,
   ResultModule,
   ExerciseModule,
   Revision_sheetModule,
