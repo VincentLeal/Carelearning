@@ -1,8 +1,6 @@
-import {Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
-import {Exercice} from "./exercice.entity";
-import {Score} from "./score.entity";
-import {RevisionSheet} from "./revision_sheet.entity";
-import {Revision_user} from "./revision_user.entity";
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Result} from "./result.entity";
+import {Revision_sheet} from "./revision_sheet.entity";
 
 @Entity()
 export class User {
@@ -27,9 +25,9 @@ export class User {
     @Column('timestamp')
     register_date: string;
 
-    @OneToMany(type => Score, score => score.user)
-    score: Score[];
+    @OneToMany(type => Result, result => result.user)
+    result: Result[];
 
-    @OneToMany(type => Revision_user, revision_user => revision_user.user)
-    revision_user: Revision_user[];
+    @OneToMany(type => Revision_sheet, revision_sheet => revision_sheet.user)
+    revision_sheet: Revision_sheet[];
 }

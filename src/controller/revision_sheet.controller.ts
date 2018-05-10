@@ -1,35 +1,34 @@
 import {Body, Controller, Delete, Get, Param, Patch, Post} from "@nestjs/common";
-import { RevisionSheet } from "../entity/revision_sheet.entity";
-import {RevisionSheetService} from "../service/revision_sheet.service";
+import {Revision_sheet} from "../entity/revision_sheet.entity";
+import {Revision_sheetService} from "../service/revision_sheet.service";
 
 @Controller('revision_sheet')
-export class RevisionSheetController {
-    constructor(private readonly revisionSheetService: RevisionSheetService) {}
+export class Revision_sheetController {
+    constructor(private readonly revision_sheetService: Revision_sheetService) {}
     @Get()
-    async findAll(): Promise<RevisionSheet[]> {
-        return await this.revisionSheetService.findAll();
+    async findAll(): Promise<Revision_sheet[]> {
+        return await this.revision_sheetService.findAll();
     }
 
     @Get(':id')
-    async findOne(@Param('id') id: string){
-        return await this.revisionSheetService.findOne(+id);
+    async findOne(@Param('id') id: string) {
+        return await this.revision_sheetService.findOne(+id);
     }
 
     @Post()
-    async create(@Body() revisionSheet: RevisionSheet) {
-        const createdRevisionSheet = await this.revisionSheetService.create(revisionSheet);
-        return { revisionSheet: createdRevisionSheet };
+    async create(@Body() revision_sheet: Revision_sheet) {
+        const createdRevision_sheet = await this.revision_sheetService.create(revision_sheet);
+        return { reivision_sheet: createdRevision_sheet };
     }
 
     @Patch(':id')
-    async update(@Param('id') id: string, @Body() revisionSheet: Partial<RevisionSheet>) {
-        return await this.revisionSheetService.update(+id, revisionSheet);
+    async update(@Param('id') id: string, @Body() revision_sheet: Partial<Revision_sheet>) {
+        return await this.revision_sheetService.update(+id, revision_sheet);
     }
 
     @Delete(':id')
-    async  destroy(@Param('id') id: string) {
-        await this.revisionSheetService.destroy(+id);
+    async destroy(@Param('id') id: string) {
+        await this.revision_sheetService.destroy(+id);
         return;
     }
-
 }

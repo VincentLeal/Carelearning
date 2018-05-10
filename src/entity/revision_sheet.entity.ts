@@ -1,23 +1,17 @@
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
-import {Revision_user} from "./revision_user.entity";
+import {Column, Entity, JoinColumn, ManyToOne} from "typeorm";
+import {User} from "./user.entity";
+import {Lesson} from "./lesson";
 
 @Entity()
-export class RevisionSheet{
-    @PrimaryGeneratedColumn()
-    id: number;
+export class Revision_sheet {
+    @Column()
+    favorite: boolean;
 
-    @Column('text')
-    module: string;
+    @ManyToOne(type => User, { primary: true })
+    @JoinColumn({name: 'userId'})
+    user: User;
 
-    @Column('text')
-    title: string;
-
-    @Column('text')
-    content: string;
-
-    @Column('boolean')
-    isDone: boolean;
-
-    @OneToMany(type => Revision_user, revision_user => revision_user.revision_sheet)
-    revision_user: Revision_user;
+    @ManyToOne(type => Lesson, { primary: true })
+    @JoinColumn({name: 'lessonId'})
+    lesson: Lesson;
 }

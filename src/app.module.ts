@@ -1,20 +1,18 @@
 import { Module } from '@nestjs/common';
 import { UserModule } from './module/user.module';
-import { ScoreModule } from "./module/score.module";
-import { RevisionSheetModule } from "./module/revision_sheet.module";
-import { ExerciceModule } from "./module/exercice.module";
+import {ResultModule} from "./module/result.module";
+import {ExerciseModule} from "./module/exercise.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import {Historic_scoreModule} from "./module/historic_score.module";
-import {Revision_userModule} from "./module/revision_user.module";
+import {Revision_sheetModule} from "./module/revision_sheet.module";
+import {LessonModule} from "./module/lesson.module";
 
 @Module({
   imports: [TypeOrmModule.forRoot(),
   UserModule,
-  ScoreModule,
-  Historic_scoreModule,
-  ExerciceModule,
-  RevisionSheetModule,
-  Revision_userModule,
+  ResultModule,
+  ExerciseModule,
+  Revision_sheetModule,
+  LessonModule,
   ],
 })
 export class ApplicationModule {}

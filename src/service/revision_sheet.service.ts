@@ -1,31 +1,33 @@
-import {Component} from '@nestjs/common';
-import {RevisionSheet} from '../entity/revision_sheet.entity';
-import {InjectRepository} from '@nestjs/typeorm';
+import {Component} from "@nestjs/common";
+import {InjectRepository} from "@nestjs/typeorm";
+import {Revision_sheet} from "../entity/revision_sheet.entity";
 import {Repository} from "typeorm";
 
 @Component()
-export class RevisionSheetService {
+export class Revision_sheetService {
     constructor(
-        @InjectRepository(RevisionSheet)
-        private readonly revisionSheetRepository: Repository<RevisionSheet>
+        @InjectRepository(Revision_sheet)
+        private readonly revision_sheetRepository: Repository<Revision_sheet>
     ) {}
 
-    async findAll(): Promise<RevisionSheet[]> {
-        return await this.revisionSheetRepository.find();
+    async findAll(): Promise<Revision_sheet[]> {
+        return await this.revision_sheetRepository.find();
     }
 
-    async findOne(id: number) {
-        return await this.revisionSheetRepository.findOneById(id);
+    async findOne(id: number): Promise<Revision_sheet> {
+        return await this.revision_sheetRepository.findOneById(id);
     }
-    async create(revisionSheet: RevisionSheet) {
-        return await this.revisionSheetRepository.save(revisionSheet);
+
+    async create(revision_sheet: Revision_sheet) {
+        return await this.revision_sheetRepository.save(revision_sheet);
     }
-    async update(id: number, revisionSheetData: Partial<RevisionSheet>) {
-        await this.revisionSheetRepository.updateById(id, revisionSheetData);
-        return this.revisionSheetRepository.findOneById(id);
+
+    async update(id: number, revision_sheetData: Partial<Revision_sheet>): Promise<Revision_user> {
+        await this.revision_sheetRepository.updateById(id, revision_sheetData);
+        return this.revision_sheetRepository.findOneById(id);
     }
 
     async destroy(id: number) {
-        return await this.revisionSheetRepository.deleteById(id);
+        return await this.revision_sheetRepository.deleteById(id);
     }
 }
