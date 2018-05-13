@@ -2,13 +2,19 @@ package sample;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,7 +25,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-
+import java.util.Observable;
 
 
 public class Main extends Application {
@@ -28,9 +34,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         String getStudent = "http://localhost:3000/student";
 
-        primaryStage.setTitle("Student List");
+        primaryStage.setTitle("Main menu");
         Button btn = new Button();
-        btn.setText("Students");
+        btn.setText("Display students");
             btn.setOnAction(event -> {
                 try{
                     get(getStudent);
@@ -45,6 +51,7 @@ public class Main extends Application {
     }
 
 
+
     public static void main(String[] args) { launch(args);
         /*try {
             get("http://localhost:3000/student");
@@ -53,7 +60,7 @@ public class Main extends Application {
         }*/
     }
 
-    public static String get(String url) throws IOException {
+    public  String get(String url) throws IOException {
         String source = "";
         URL nodeJs = new URL(url);
         URLConnection urlConnection = nodeJs.openConnection();
@@ -71,14 +78,46 @@ public class Main extends Application {
 
         for(int i = 0; i < jsonArray.length(); i++){
             JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+            int id = jsonObject.getInt("id");
             String firstname = jsonObject.getString("firstname");
             String lastname = jsonObject.getString("lastname");
+            String password = jsonObject.getString("password");
             String mail = jsonObject.getString("mail");
             String school = jsonObject.getString("school");
             String registerDate = jsonObject.getString("register_date");
 
-            System.out.println("Firstname : " + firstname + ", lastname : " + lastname + ", mail : " + mail + ", school : " + school + ", register date : " + registerDate + "\n");
+
+            Student student = new Student(id, firstname, lastname, password, mail, school, registerDate);
+
+            String text = student.toString();
+
+            //student.displayStudent(text);
+            //System.out.println("Firstname : " + firstname + ", lastname : " + lastname + ", mail : " + mail + ", school : " + school + ", register date : " + registerDate + "\n");
+
+            ListView<String> list = new ListView<>();
+            ObservableList<String> items = FXCollections.observableArrayList(student.toString());
+            list.setItems(items);
+
+            Stage primaryStage = new Stage();
+            final Scene scene = new Scene(list, 500, 500);
+            primaryStage.setScene(scene);
+           /* try {
+                final URL uri = getClass().getResource("displayStudent.fxml");
+                final FXMLLoader fxmlLoader = new FXMLLoader(uri);
+                final AnchorPane root = (AnchorPane) fxmlLoader.load();
+
+                final Scene scene = new Scene(root, 500, 500);
+                primaryStage.setScene(scene);
+            } catch (IOException e) {
+                System.out.println("Loading Error...");
+            }*/
+            primaryStage.setTitle("Student List");
+            primaryStage.show();
+
+            System.out.println(student.toString());
         }
+
 /*
         JSONObject obj = new JSONObject(source);
         JSONObject res = obj.getJSONArray("results").getJSONObject(0);
@@ -86,4 +125,19 @@ public class Main extends Application {
 */
         return source;
     }
+
+        ;
+
+       /* Stage displayStudentStage = new Stage();
+        displayStudentStage.setTitle("Student List");
+
+        final Group group = new Group();
+        Scene scene = new Scene(group, 500, 400);
+
+        Text text = new Text(message);
+        //StackPane displayStudent = new StackPane();
+        group.getChildren().add(text);
+        displayStudentStage.setScene(scene);
+        displayStudentStage.show();*/
+
 }
