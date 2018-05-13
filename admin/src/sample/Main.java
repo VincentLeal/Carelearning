@@ -75,33 +75,30 @@ public class Main extends Application {
         }
 
         JSONArray jsonArray = new JSONArray(source);
+        ListView<String> list = new ListView<>();
+        Student student = new Student();
+
 
         for(int i = 0; i < jsonArray.length(); i++){
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-            int id = jsonObject.getInt("id");
-            String firstname = jsonObject.getString("firstname");
-            String lastname = jsonObject.getString("lastname");
-            String password = jsonObject.getString("password");
-            String mail = jsonObject.getString("mail");
-            String school = jsonObject.getString("school");
-            String registerDate = jsonObject.getString("register_date");
+            student.setId(jsonObject.getInt("id"));
+            student.setFirstname(jsonObject.getString("firstname"));
+            student.setLastname(jsonObject.getString("lastname"));
+            student.setPassword(jsonObject.getString("password"));
+            student.setMail(jsonObject.getString("mail"));
+            student.setSchool(jsonObject.getString("school"));
+            student.setRegisterDate(jsonObject.getString("register_date"));
 
-
-            Student student = new Student(id, firstname, lastname, password, mail, school, registerDate);
-
-            String text = student.toString();
+            String studentToString = student.toString();
 
             //student.displayStudent(text);
             //System.out.println("Firstname : " + firstname + ", lastname : " + lastname + ", mail : " + mail + ", school : " + school + ", register date : " + registerDate + "\n");
 
-            ListView<String> list = new ListView<>();
-            ObservableList<String> items = FXCollections.observableArrayList(student.toString());
+            ObservableList<String> items = FXCollections.observableArrayList(studentToString);
             list.setItems(items);
 
-            Stage primaryStage = new Stage();
-            final Scene scene = new Scene(list, 500, 500);
-            primaryStage.setScene(scene);
+
            /* try {
                 final URL uri = getClass().getResource("displayStudent.fxml");
                 final FXMLLoader fxmlLoader = new FXMLLoader(uri);
@@ -112,17 +109,22 @@ public class Main extends Application {
             } catch (IOException e) {
                 System.out.println("Loading Error...");
             }*/
-            primaryStage.setTitle("Student List");
-            primaryStage.show();
+
 
             System.out.println(student.toString());
         }
+        Stage primaryStage = new Stage();
+        final Scene scene = new Scene(list, 500, 500);
+        primaryStage.setScene(scene);
 
+        primaryStage.setTitle("Student List");
+        primaryStage.show();
 /*
         JSONObject obj = new JSONObject(source);
         JSONObject res = obj.getJSONArray("results").getJSONObject(0);
         System.out.println(res.getString("firstname"));
 */
+        in.close();
         return source;
     }
 

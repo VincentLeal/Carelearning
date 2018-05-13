@@ -1,13 +1,5 @@
 package sample;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.net.URL;
-
 /**
  * Created on 13/05/2018.
  */
@@ -19,6 +11,8 @@ public class Student {
     private String mail;
     private String school;
     private String registerDate;
+
+    public Student () {}
 
     public Student (int id, String firstname, String lastname, String password, String mail, String school, String registerDate){
         this.id = id;
@@ -88,28 +82,11 @@ public class Student {
 
     @Override
     public String toString() {
-        return "id : " + this.getId()
-                + ", firstname : " + this.getFirstname()
-                + ", lastname : " + this.getLastname()
-                + ", mail : " + this.getMail()
-                + ", school : " + this.getSchool()
-                + ", register date : " + this.getRegisterDate() + "\n";
-
-        //return super.toString();
+        return "Id : " + this.getId()
+                + "\nFirstname : " + this.getFirstname()
+                + "\nLastname : " + this.getLastname()
+                + "\nMail : " + this.getMail()
+                + "\nSchool : " + this.getSchool()
+                + "\nRegister date : " + this.getRegisterDate() + "\n";
     }
-    /*public void displayStudent(String message) {
-        Stage primaryStage = new Stage();
-        try {
-            final URL url = getClass().getResource("displayStudent");
-            final FXMLLoader fxmlLoader = new FXMLLoader(url);
-            final AnchorPane root = (AnchorPane) fxmlLoader.load();
-
-            final Scene scene = new Scene(root, 500, 500);
-            primaryStage.setScene(scene);
-        } catch (IOException e) {
-            System.out.println("Loading Error...");
-        }
-        primaryStage.setTitle("Student List");
-        primaryStage.show();
-    }*/
 }
