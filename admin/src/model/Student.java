@@ -12,17 +12,20 @@ public class Student {
     private SimpleIntegerProperty id;
     private SimpleStringProperty firstname;
     private SimpleStringProperty lastname;
-    private String password;
-    private String mail;
-    private String school;
-    private String registerDate;
+    private SimpleStringProperty password;
+    private SimpleStringProperty mail;
+    private SimpleStringProperty school;
+    private SimpleStringProperty registerDate;
 
     public Student () {}
 
-    public Student (int id, String firstname, String lastname) {
+    public Student (int id, String firstname, String lastname, String mail, String school, String registerDate) {
         this.id = new SimpleIntegerProperty(id);
         this.firstname = new SimpleStringProperty(firstname);
         this.lastname = new SimpleStringProperty(lastname);
+        this.mail = new SimpleStringProperty(mail);
+        this.school = new SimpleStringProperty(school);
+        this.registerDate = new SimpleStringProperty(registerDate);
     }
 
 
@@ -63,35 +66,51 @@ public class Student {
     }
 
     public String getPassword() {
-        return password;
+        return password.get();
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password.set(password);
+    }
+
+    public StringProperty passwordProperty() {
+        return password;
     }
 
     public String getMail() {
-        return mail;
+        return mail.get();
     }
 
     public void setMail(String mail) {
-        this.mail = mail;
+        this.mail.set(mail);
+    }
+
+    public StringProperty mailProperty() {
+        return mail;
     }
 
     public String getSchool() {
-        return school;
+        return school.get();
     }
 
     public void setSchool(String school) {
-        this.school = school;
+        this.school.set(school);
+    }
+
+    public StringProperty schoolProperty() {
+        return school;
     }
 
     public String getRegisterDate() {
-        return registerDate;
+        return registerDate.get();
     }
 
     public void setRegisterDate(String registerDate) {
-        this.registerDate = registerDate;
+        this.registerDate.set(registerDate);
+    }
+
+    public StringProperty registerDateProperty() {
+        return registerDate;
     }
 
     @Override

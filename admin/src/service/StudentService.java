@@ -43,7 +43,13 @@ public class StudentService {
 
             for(int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                student = new Student(jsonObject.getInt("id"), jsonObject.getString("firstname"), jsonObject.getString("lastname"));
+                student = new Student(jsonObject.getInt("id"),
+                        jsonObject.getString("firstname"),
+                        jsonObject.getString("lastname"),
+                        jsonObject.getString("mail"),
+                        jsonObject.getString("school"),
+                        jsonObject.getString("register_date"));
+
                 studentArrayList.add(student);
                 //student.setId(jsonObject.getInt("id"));
                 /*student.setFirstname(jsonObject.getString("firstname"));

@@ -33,13 +33,26 @@ public class StudentOverviewController implements Initializable {
     private TableColumn<Student, String> lastnameColumn;
 
     @FXML
+    private TableColumn<Student, String> mailColumn;
+
+    @FXML
+    private TableColumn<Student, String> schoolColumn;
+
+    @FXML
+    private TableColumn<Student, String> registerDateColumn;
+
+    @FXML
     final ObservableList<Student> studentData = FXCollections.observableArrayList(studentService.getStudent());
+
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle){
         idColumn.setCellValueFactory(new PropertyValueFactory<Student, Integer>("id"));
         firstnameColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("firstname"));
         lastnameColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("lastname"));
+        mailColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("mail"));
+        schoolColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("school"));
+        registerDateColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("registerDate"));
 
         studentTableView.setItems(studentData);
     }

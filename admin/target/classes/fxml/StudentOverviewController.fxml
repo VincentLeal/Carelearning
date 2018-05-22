@@ -16,6 +16,9 @@
                       <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
                       <TableColumn fx:id="firstnameColumn" prefWidth="112.0" text="FIRSTNAME" />
                         <TableColumn fx:id="lastnameColumn" prefWidth="120.0" text="LASTNAME" />
+                        <TableColumn fx:id="mailColumn" prefWidth="106.0" text="MAIL" />
+                        <TableColumn fx:id="schoolColumn" prefWidth="103.0" text="SCHOOL" />
+                        <TableColumn fx:id="registerDateColumn" prefWidth="120.0" text="REGISTER DATE" />
                     </columns>
                   </TableView>
                </children></AnchorPane>
