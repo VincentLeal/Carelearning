@@ -1,5 +1,6 @@
 package model;
 
+import controller.CustomDate;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,7 +20,12 @@ public class Student {
 
     public Student () {}
 
-    public Student (int id, String firstname, String lastname, String mail, String school, String registerDate) {
+    public Student (int id,
+                    String firstname,
+                    String lastname,
+                    String mail,
+                    String school,
+                    String registerDate) {
         this.id = new SimpleIntegerProperty(id);
         this.firstname = new SimpleStringProperty(firstname);
         this.lastname = new SimpleStringProperty(lastname);
@@ -109,9 +115,13 @@ public class Student {
         this.registerDate.set(registerDate);
     }
 
-    public StringProperty registerDateProperty() {
+    public SimpleStringProperty registerDateProperty(){
         return registerDate;
     }
+/*
+    public StringProperty registerDateProperty() {
+        return registerDate;
+    }*/
 
     @Override
     public String toString() {

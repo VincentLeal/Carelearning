@@ -1,18 +1,27 @@
 package service;
 
+import controller.CustomDate;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TableView;
 import model.Student;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import tool.DateFormatter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created on 22/05/2018.
@@ -24,39 +33,36 @@ public class StudentService {
 
     List<Student> studentArrayList = new ArrayList<>();
 
-    public List<Student> getStudent() {
-        Student student = null;
-
-        String source = "";
+    public List<Student> getStudents() {
+        StringBuilder source = new StringBuilder();
         try {
-        URL nodeJs = new URL(studentApi);
-        URLConnection urlConnection = nodeJs.openConnection();
-        BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-        String inputline;
+            URL nodeJs = new URL(studentApi);
+            URLConnection urlConnection = nodeJs.openConnection();
+            BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            String inputline;
 
-        while((inputline = in.readLine()) != null) {
-            source += inputline;
-        }
-        in.close();
+            while((inputline = in.readLine()) != null) {
+                source.append(inputline);
+            }
+            in.close();
 
-        JSONArray jsonArray = new JSONArray(source);
+            JSONArray jsonArray = new JSONArray(source.toString());
 
-            for(int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
+            Student student;
+
+            for(int index = 0; index < jsonArray.length(); index++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(index);
+                String registerDate = jsonObject.getString("register_date");
+                String frenchRegisterDate = DateFormatter.toFrenchDate(registerDate);
+
                 student = new Student(jsonObject.getInt("id"),
                         jsonObject.getString("firstname"),
                         jsonObject.getString("lastname"),
                         jsonObject.getString("mail"),
                         jsonObject.getString("school"),
-                        jsonObject.getString("register_date"));
+                        frenchRegisterDate);
 
                 studentArrayList.add(student);
-                //student.setId(jsonObject.getInt("id"));
-                /*student.setFirstname(jsonObject.getString("firstname"));
-                student.setLastname(jsonObject.getString("lastname"));*/
-
-                /*ObservableList<String> items = FXCollections.observableArrayList(student.toString());
-                studentTableView.setItems(items);*/
             }
 
             return studentArrayList;
@@ -68,6 +74,5 @@ public class StudentService {
         return studentArrayList;
 
     }
-
 }
 

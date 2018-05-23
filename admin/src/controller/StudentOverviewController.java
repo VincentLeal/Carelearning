@@ -10,9 +10,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.Student;
 import service.StudentService;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static javafx.collections.FXCollections.observableArrayList;
 
 /**
  * Created on 19/05/2018.
@@ -42,17 +43,17 @@ public class StudentOverviewController implements Initializable {
     private TableColumn<Student, String> registerDateColumn;
 
     @FXML
-    final ObservableList<Student> studentData = FXCollections.observableArrayList(studentService.getStudent());
+    private final ObservableList<Student> studentData = observableArrayList(studentService.getStudents());
 
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle){
-        idColumn.setCellValueFactory(new PropertyValueFactory<Student, Integer>("id"));
-        firstnameColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("firstname"));
-        lastnameColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("lastname"));
-        mailColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("mail"));
-        schoolColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("school"));
-        registerDateColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("registerDate"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        firstnameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+        lastnameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+        mailColumn.setCellValueFactory(new PropertyValueFactory<>("mail"));
+        schoolColumn.setCellValueFactory(new PropertyValueFactory<>("school"));
+        registerDateColumn.setCellValueFactory(new PropertyValueFactory<>("registerDate"));
 
         studentTableView.setItems(studentData);
     }
