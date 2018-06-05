@@ -1,6 +1,5 @@
 package model;
 
-import controller.CustomDate;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -34,6 +33,21 @@ public class Student {
         this.registerDate = new SimpleStringProperty(registerDate);
     }
 
+    public Student(int id,
+                   String firstname,
+                   String lastname,
+                   String mail,
+                   String school,
+                   String password,
+                   String registerDate) {
+        this.id = new SimpleIntegerProperty(id);
+        this.firstname = new SimpleStringProperty(firstname);
+        this.lastname = new SimpleStringProperty(lastname);
+        this.mail = new SimpleStringProperty(mail);
+        this.school = new SimpleStringProperty(school);
+        this.password = new SimpleStringProperty(password);
+        this.registerDate = new SimpleStringProperty(registerDate);
+    }
 
     public Integer getId() {
         return id.get();

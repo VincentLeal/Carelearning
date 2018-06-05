@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="tableId" fx:id="StudentOverviewController" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentOverviewController">
+<AnchorPane id="tableId" fx:id="StudentOverviewController" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentOverviewController">
    <children>
       <SplitPane dividerPositions="0.8065326633165829" orientation="VERTICAL" prefHeight="400.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -16,23 +16,24 @@
                <children>
                   <TableView fx:id="studentTableView" layoutX="28.0" prefHeight="317.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="idColumn" prefWidth="55.0" text="ID" />
+                      <TableColumn fx:id="idColumn" editable="false" prefWidth="40.0" text="ID" />
                       <TableColumn fx:id="firstnameColumn" prefWidth="112.0" text="FIRSTNAME" />
                         <TableColumn fx:id="lastnameColumn" prefWidth="120.0" text="LASTNAME" />
-                        <TableColumn fx:id="mailColumn" prefWidth="106.0" text="MAIL" />
+                        <TableColumn fx:id="mailColumn" prefWidth="180.0" text="MAIL" />
                         <TableColumn fx:id="schoolColumn" prefWidth="103.0" text="SCHOOL" />
-                        <TableColumn fx:id="registerDateColumn" prefWidth="120.0" text="REGISTER DATE" />
+                        <TableColumn fx:id="registerDateColumn" editable="false" prefWidth="160.0" text="REGISTER DATE" />
                     </columns>
                   </TableView>
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="79.0" prefWidth="598.0">
                <children>
-                  <TextField fx:id="firstnameInput" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="128.0" promptText="Firstname" />
-                  <TextField fx:id="lastnameInput" layoutX="14.0" layoutY="37.0" prefHeight="31.0" prefWidth="128.0" promptText="Lastname" />
-                  <TextField fx:id="mailInput" layoutX="160.0" layoutY="6.0" prefHeight="31.0" prefWidth="128.0" promptText="Mail" />
-                  <TextField fx:id="schoolInput" layoutX="160.0" layoutY="37.0" prefHeight="31.0" prefWidth="128.0" promptText="School" />
-                  <Button layoutX="472.0" layoutY="21.0" mnemonicParsing="false" text="Save" />
-                  <PasswordField layoutX="311.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0" promptText="Password" />
+                  <TextField fx:id="firstnameInput" layoutX="14.0" layoutY="22.0" prefHeight="17.0" prefWidth="128.0" promptText="Firstname" />
+                  <TextField fx:id="lastnameInput" layoutX="155.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0" promptText="Lastname" />
+                  <TextField fx:id="mailInput" layoutX="299.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0" promptText="Mail" />
+                  <TextField fx:id="schoolInput" layoutX="438.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0" promptText="School" />
+                   <PasswordField fx:id="passwordInput" layoutX="577.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0" promptText="Password" />
+                   <Button fx:id="addStudent" layoutX="721.0" layoutY="7.0" mnemonicParsing="false" onAction="#saveNewStudent" prefHeight="31.0" prefWidth="63.0" text="Save" />
+                  <Button fx:id="removeStudent" layoutX="719.0" layoutY="46.0" mnemonicParsing="false" text="Delete" />
                </children>
           </AnchorPane>
         </items>
