@@ -33,14 +33,13 @@ public class Student {
         this.registerDate = new SimpleStringProperty(registerDate);
     }
 
-    public Student(int id,
+    public Student(
                    String firstname,
                    String lastname,
                    String mail,
                    String school,
                    String password,
                    String registerDate) {
-        this.id = new SimpleIntegerProperty(id);
         this.firstname = new SimpleStringProperty(firstname);
         this.lastname = new SimpleStringProperty(lastname);
         this.mail = new SimpleStringProperty(mail);

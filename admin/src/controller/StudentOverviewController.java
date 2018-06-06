@@ -4,15 +4,20 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import model.Student;
 import service.StudentService;
 import tool.DateFormatter;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -79,14 +84,44 @@ public class StudentOverviewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle){
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         firstnameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+        firstnameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         lastnameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+        lastnameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         mailColumn.setCellValueFactory(new PropertyValueFactory<>("mail"));
+        mailColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         schoolColumn.setCellValueFactory(new PropertyValueFactory<>("school"));
+        schoolColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         registerDateColumn.setCellValueFactory(new PropertyValueFactory<>("registerDate"));
 
         studentTableView.setItems(studentData);
 
+        firstnameColumn.setOnEditCommit(event ->
+                ((Student) event
+                        .getTableView()
+                        .getItems()
+                        .get(event.getTablePosition().getRow()))
+                        .setFirstname(event.getNewValue()));
+
+        lastnameColumn.setOnEditCommit(new EventHandler<CellEditEvent<Student, String>>() {
+            @Override
+            public void handle(CellEditEvent<Student, String> t) {
+                //((Student) t.getTableView().getItems().get(t.getTablePosition().getRow())).setLastname(t.getNewValue());
+
+
+            }
+        });
+
+
         indexOf();
+    }
+
+    private void editColumn(TableColumn<Student, String> column){
+        column.setOnEditCommit(new EventHandler<CellEditEvent<Student, String>>() {
+            @Override
+            public void handle(CellEditEvent<Student, String> event) {
+                ((Student) event.getTableView().getItems().get(event.getTablePosition().getRow())).setFirstname(event.getNewValue());
+            }
+        });
     }
 
     private void indexOf(){
@@ -99,7 +134,6 @@ public class StudentOverviewController implements Initializable {
     @FXML
     private void saveNewStudent(ActionEvent event) throws IOException {
         Student student = new Student(
-                count.incrementAndGet(),
                 firstnameInput.getText(),
                 lastnameInput.getText(),
                 mailInput.getText(),
@@ -108,10 +142,8 @@ public class StudentOverviewController implements Initializable {
                 DateFormatter.currentDate()
         );
 
-        try{
+        try {
             studentService.postStudent(student);
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -119,6 +151,7 @@ public class StudentOverviewController implements Initializable {
         studentData.add(student);
 
         clearForm();
+
     }
 
     @FXML

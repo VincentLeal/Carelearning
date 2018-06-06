@@ -14,13 +14,13 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TableView fx:id="studentTableView" layoutX="28.0" prefHeight="317.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="studentTableView" editable="true" layoutX="28.0" prefHeight="317.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="idColumn" editable="false" prefWidth="40.0" text="ID" />
-                      <TableColumn fx:id="firstnameColumn" prefWidth="112.0" text="FIRSTNAME" />
-                        <TableColumn fx:id="lastnameColumn" prefWidth="120.0" text="LASTNAME" />
-                        <TableColumn fx:id="mailColumn" prefWidth="180.0" text="MAIL" />
-                        <TableColumn fx:id="schoolColumn" prefWidth="103.0" text="SCHOOL" />
+                      <TableColumn fx:id="firstnameColumn" editable="true" prefWidth="112.0" text="FIRSTNAME" />
+                        <TableColumn fx:id="lastnameColumn" editable="true" prefWidth="120.0" text="LASTNAME" />
+                        <TableColumn fx:id="mailColumn" editable="true" prefWidth="180.0" text="MAIL" />
+                        <TableColumn fx:id="schoolColumn" editable="true" prefWidth="103.0" text="SCHOOL" />
                         <TableColumn fx:id="registerDateColumn" editable="false" prefWidth="160.0" text="REGISTER DATE" />
                     </columns>
                   </TableView>
