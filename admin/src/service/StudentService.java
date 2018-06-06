@@ -1,22 +1,16 @@
 package service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Student;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONString;
 import tool.DateFormatter;
-import tool.ParameterStringBuilder;
 
-import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
-import java.net.*;
-import java.nio.Buffer;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created on 22/05/2018.
@@ -73,33 +67,19 @@ public class StudentService {
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
         httpURLConnection.setRequestMethod("POST");
-       // httpURLConnection.setRequestProperty("User-Agent", USER_AGENT);
         httpURLConnection.setRequestProperty("Content-Type", "application/json");
 
-        /*Map<String, String> parameters = new HashMap<>();
-        parameters.put("id", student.getId().toString());
-        parameters.put("firstname", student.getFirstname());
-        parameters.put("lastname", student.getLastname());
-        parameters.put("mail", student.getMail());
-        parameters.put("school", student.getPassword());
-        parameters.put("password", student.getPassword());
-        parameters.put("register_date", student.getRegisterDate());
-
-*/
-        JSONObject jsonObject = new JSONObject("{" +
-                "\"firstname\":" +
-                 student.getFirstname() +"," +
-                "\"lastname\":\"Dixon\"," +
-                "\"mail\":\"dd@gmail.com\"," +
-                "\"school\":\"ESGI\"," +
-                "\"password\":\"azertyui\"," +
-                "\"register_date\":\"2018-10-04T22:00:00.000Z" +
-                "\"}");
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("firstname", student.getFirstname());
+        jsonObject.put("lastname", student.getLastname());
+        jsonObject.put("mail", student.getMail());
+        jsonObject.put("school", student.getSchool());
+        jsonObject.put("password", student.getPassword());
+        jsonObject.put("register_date", student.getRegisterDate());
 
         httpURLConnection.setDoOutput(true);
         DataOutputStream outputStream = new DataOutputStream(httpURLConnection.getOutputStream());
         outputStream.writeBytes(jsonObject.toString());
-        //outputStream.writeBytes(ParameterStringBuilder.getParamsString(parameters));
         outputStream.flush();
 
         closeQuietly(outputStream);
@@ -121,7 +101,6 @@ public class StudentService {
 
         System.out.println(response.toString());
     }
-
 
     private void closeQuietly(Closeable closeable) {
         try {

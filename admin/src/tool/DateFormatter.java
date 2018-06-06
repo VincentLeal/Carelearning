@@ -1,6 +1,7 @@
 package tool;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
@@ -18,5 +19,12 @@ public final class DateFormatter {
                 .withLocale(Locale.FRANCE)
                 .withZone( ZoneId.of("UTC") )
                 .format(dateTime);
+    }
+
+    public static String currentDate() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
+        return dateTimeFormatter.format(currentDateTime);
     }
 }

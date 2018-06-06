@@ -2,9 +2,6 @@ package controller;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,8 +10,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Student;
 import service.StudentService;
+import tool.DateFormatter;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,7 +23,7 @@ import static javafx.collections.FXCollections.observableArrayList;
  * Created on 19/05/2018.
  */
 public class StudentOverviewController implements Initializable {
-    StudentService studentService = new StudentService();
+    private StudentService studentService = new StudentService();
     Student student = new Student();
 
     @FXML
@@ -108,19 +105,16 @@ public class StudentOverviewController implements Initializable {
                 mailInput.getText(),
                 schoolInput.getText(),
                 passwordInput.getText(),
-                "2018-10-04T22:00:00.000Z"
+                DateFormatter.currentDate()
         );
 
         try{
             studentService.postStudent(student);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*student.setFirstname(firstnameInput.getText());
-        student.setLastname(lastnameInput.getText());
-        student.setMail(mailInput.getText());
-        student.setSchool(schoolInput.getText());
-        student.setPassword(passwordInput.getText());*/
 
         studentData.add(student);
 
