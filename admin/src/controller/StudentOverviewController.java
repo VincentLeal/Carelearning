@@ -15,9 +15,7 @@ import model.Student;
 import service.StudentService;
 import tool.DateFormatter;
 
-import javax.swing.*;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -96,10 +94,10 @@ public class StudentOverviewController implements Initializable {
         studentTableView.setItems(studentData);
 
         firstnameColumn.setOnEditCommit(event ->
-                ((Student) event
+                event
                         .getTableView()
                         .getItems()
-                        .get(event.getTablePosition().getRow()))
+                        .get(event.getTablePosition().getRow())
                         .setFirstname(event.getNewValue()));
 
         lastnameColumn.setOnEditCommit(new EventHandler<CellEditEvent<Student, String>>() {
@@ -119,7 +117,7 @@ public class StudentOverviewController implements Initializable {
         column.setOnEditCommit(new EventHandler<CellEditEvent<Student, String>>() {
             @Override
             public void handle(CellEditEvent<Student, String> event) {
-                ((Student) event.getTableView().getItems().get(event.getTablePosition().getRow())).setFirstname(event.getNewValue());
+                event.getTableView().getItems().get(event.getTablePosition().getRow()).setFirstname(event.getNewValue());
             }
         });
     }
@@ -132,7 +130,7 @@ public class StudentOverviewController implements Initializable {
     }
 
     @FXML
-    private void saveNewStudent(ActionEvent event) throws IOException {
+    private void saveNewStudent(ActionEvent event) {
         Student student = new Student(
                 firstnameInput.getText(),
                 lastnameInput.getText(),
