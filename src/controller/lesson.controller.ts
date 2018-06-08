@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, Patch, Post} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, Post, Put} from "@nestjs/common";
 import {Lesson} from "../entity/lesson";
 import {LessonService} from "../service/lesson.service";
 
@@ -21,7 +21,7 @@ export class LessonController {
         return { lesson: createdLesson };
     }
 
-    @Patch(':id')
+    @Put(':id')
     async update(@Param('id') id: string, @Body() lesson: Partial<Lesson>) {
         return await this.lessonService.update(+id, lesson);
     }

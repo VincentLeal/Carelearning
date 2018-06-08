@@ -100,12 +100,15 @@ public class StudentOverviewController implements Initializable {
                         .get(event.getTablePosition().getRow())
                         .setFirstname(event.getNewValue()));
 
-        lastnameColumn.setOnEditCommit(new EventHandler<CellEditEvent<Student, String>>() {
-            @Override
-            public void handle(CellEditEvent<Student, String> t) {
-                //((Student) t.getTableView().getItems().get(t.getTablePosition().getRow())).setLastname(t.getNewValue());
+        lastnameColumn.setOnEditCommit(t -> {
+            t.getTableView().getItems().get(t.getTablePosition().getRow()).setLastname(t.getNewValue());
+            String newValue = t.getNewValue();
 
-
+            int id = t.getTableView().getItems().get(t.getTablePosition().getRow()).getId();
+            try{
+                studentService.updateStudent("lastname", newValue, id);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
 

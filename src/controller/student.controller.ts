@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Patch, Delete } from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
 import {Student} from '../entity/student.entity';
 import {StudentService} from "../service/student.service";
 
@@ -21,7 +21,7 @@ export class StudentController {
         return { student: createdStudent };
     }
 
-    @Patch(':id')
+    @Put(':id')
     async update(@Param('id') id: string, @Body() student: Partial<Student>) {
         return await this.studentService.update(+id, student);
     }

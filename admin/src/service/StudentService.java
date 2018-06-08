@@ -102,6 +102,40 @@ public class StudentService {
         System.out.println(response.toString());
     }
 
+    public void updateStudent(String key, String newValue, int id) throws IOException {
+        URL url = new URL(studentApi + "/" + id);
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+        httpURLConnection.setRequestMethod("PUT");
+        httpURLConnection.setRequestProperty("Content-Type", "application/json");
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(key, newValue);
+
+        httpURLConnection.setDoOutput(true);
+        DataOutputStream outputStream = new DataOutputStream(httpURLConnection.getOutputStream());
+        outputStream.writeBytes(jsonObject.toString());
+        outputStream.flush();
+
+        closeQuietly(outputStream);
+
+        int responseCode = httpURLConnection.getResponseCode();
+        System.out.println("nSending" + httpURLConnection.getRequestMethod() + "request to url " + url);
+        System.out.println("Patch data : " + jsonObject.toString());
+        System.out.println("Response code " + responseCode);
+
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+        String output;
+        StringBuffer response = new StringBuffer();
+
+        while ((output = bufferedReader.readLine()) != null) {
+            response.append(output);
+        }
+        bufferedReader.close();
+
+        System.out.println(response.toString());
+    }
+
     private void closeQuietly(Closeable closeable) {
         try {
             if(closeable != null) {

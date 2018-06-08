@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, Patch, Post} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, Post, Put} from "@nestjs/common";
 import {Revision_sheet} from "../entity/revision_sheet.entity";
 import {Revision_sheetService} from "../service/revision_sheet.service";
 
@@ -21,7 +21,7 @@ export class Revision_sheetController {
         return { reivision_sheet: createdRevision_sheet };
     }
 
-    @Patch(':id')
+    @Put(':id')
     async update(@Param('id') id: string, @Body() revision_sheet: Partial<Revision_sheet>) {
         return await this.revision_sheetService.update(+id, revision_sheet);
     }
