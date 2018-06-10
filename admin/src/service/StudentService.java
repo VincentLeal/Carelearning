@@ -17,7 +17,6 @@ import java.util.List;
  */
 public class StudentService {
     private String studentApi = "http://localhost:3000/student";
-    private final String USER_AGENT = "Mozilla/5.0";
 
     private List<Student> studentArrayList = new ArrayList<>();
 
@@ -135,6 +134,14 @@ public class StudentService {
         closeQuietly(bufferedReader);
 
         System.out.println(response.toString());
+    }
+
+    public void deleteStudent(int id) throws IOException {
+        URL url = new URL(studentApi + "/" + id);
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+        httpURLConnection.setRequestMethod("DELETE");
+        httpURLConnection.setRequestProperty("Content-Type", "application/json");
     }
 
     private void closeQuietly(Closeable closeable) {
