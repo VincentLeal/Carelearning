@@ -27,7 +27,6 @@ import static javafx.collections.FXCollections.observableArrayList;
  */
 public class StudentOverviewController implements Initializable {
     private StudentService studentService = new StudentService();
-    Student student = new Student();
 
     @FXML
     TableView<Student> studentTableView;
@@ -76,8 +75,6 @@ public class StudentOverviewController implements Initializable {
 
     private IntegerProperty index = new SimpleIntegerProperty();
 
-    private static final AtomicInteger count = new AtomicInteger(4);
-
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle){
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -100,35 +97,22 @@ public class StudentOverviewController implements Initializable {
                         .get(event.getTablePosition().getRow())
                         .setFirstname(event.getNewValue()));
 
-        lastnameColumn.setOnEditCommit(t -> {
-            t.getTableView().getItems().get(t.getTablePosition().getRow()).setLastname(t.getNewValue());
-            String newValue = t.getNewValue();
+        editColumn(firstnameColumn, "firstname");
+        editColumn(lastnameColumn, "lastname");
+        editColumn(mailColumn, "mail");
+        editColumn(schoolColumn, "school");
+    }
 
-            int id = t.getTableView().getItems().get(t.getTablePosition().getRow()).getId();
+    private void editColumn(TableColumn<Student, String> column, String key){
+        column.setOnEditCommit(event -> {
+            String newValue = event.getNewValue();
+            int id = event.getTableView().getItems().get(event.getTablePosition().getRow()).getId();
+
             try{
-                studentService.updateStudent("lastname", newValue, id);
+                studentService.updateStudent(key, newValue, id);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
-
-
-        indexOf();
-    }
-
-    private void editColumn(TableColumn<Student, String> column){
-        column.setOnEditCommit(new EventHandler<CellEditEvent<Student, String>>() {
-            @Override
-            public void handle(CellEditEvent<Student, String> event) {
-                event.getTableView().getItems().get(event.getTablePosition().getRow()).setFirstname(event.getNewValue());
-            }
-        });
-    }
-
-    private void indexOf(){
-        studentTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            index.set(studentData.indexOf(newValue));
-            System.out.println("OK index of is : " + studentData.indexOf(newValue));
         });
     }
 
