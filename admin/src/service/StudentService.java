@@ -32,7 +32,7 @@ public class StudentService {
             while((inputline = in.readLine()) != null) {
                 source.append(inputline);
             }
-            in.close();
+            closeQuietly(in);
 
             JSONArray jsonArray = new JSONArray(source.toString());
 
@@ -92,12 +92,12 @@ public class StudentService {
         BufferedReader bufferedReader = new BufferedReader(
                 new InputStreamReader(httpURLConnection.getInputStream()));
         String output;
-        StringBuffer response = new StringBuffer();
+        StringBuilder response = new StringBuilder();
 
         while ((output = bufferedReader.readLine()) != null) {
             response.append(output);
         }
-        bufferedReader.close();
+        closeQuietly(bufferedReader);
 
         System.out.println(response.toString());
     }
@@ -126,12 +126,13 @@ public class StudentService {
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
         String output;
-        StringBuffer response = new StringBuffer();
+        StringBuilder response = new StringBuilder();
 
         while ((output = bufferedReader.readLine()) != null) {
             response.append(output);
         }
-        bufferedReader.close();
+
+        closeQuietly(bufferedReader);
 
         System.out.println(response.toString());
     }
