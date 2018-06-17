@@ -9,39 +9,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentOverviewController">
-    <SplitPane dividerPositions="0.8065326633165829" orientation="VERTICAL" prefHeight="400.0" prefWidth="700.0"
-               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-               AnchorPane.topAnchor="0.0">
+    <SplitPane dividerPositions="0.8065326633165829" orientation="VERTICAL" prefHeight="400.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-            <TableView fx:id="studentTableView" editable="true" layoutX="28.0" prefHeight="317.0" prefWidth="598.0"
-                       AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                       AnchorPane.topAnchor="0.0">
+            <TableView fx:id="studentTableView" editable="true" layoutX="28.0" prefHeight="317.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                 <columns>
-                    <TableColumn fx:id="idColumn" editable="false" prefWidth="40.0" text="ID"/>
-                    <TableColumn fx:id="firstnameColumn" prefWidth="112.0" text="FIRSTNAME"/>
-                    <TableColumn fx:id="lastnameColumn" prefWidth="120.0" text="LASTNAME"/>
-                    <TableColumn fx:id="mailColumn" prefWidth="180.0" text="MAIL"/>
-                    <TableColumn fx:id="schoolColumn" prefWidth="103.0" text="SCHOOL"/>
-                    <TableColumn fx:id="registerDateColumn" editable="false" prefWidth="160.0"
-                                 text="REGISTER DATE"/>
+                    <TableColumn fx:id="idColumn" editable="false" prefWidth="40.0" text="ID" />
+                    <TableColumn fx:id="firstnameColumn" prefWidth="112.0" text="FIRSTNAME" />
+                    <TableColumn fx:id="lastnameColumn" prefWidth="120.0" text="LASTNAME" />
+                    <TableColumn fx:id="mailColumn" prefWidth="180.0" text="MAIL" />
+                    <TableColumn fx:id="schoolColumn" prefWidth="103.0" text="SCHOOL" />
+                    <TableColumn fx:id="registerDateColumn" editable="false" prefWidth="160.0" text="REGISTER DATE" />
                 </columns>
             </TableView>
         </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="79.0" prefWidth="598.0">
-            <TextField fx:id="firstnameInput" layoutX="14.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0"
-                       promptText="Firstname"/>
-            <TextField fx:id="lastnameInput" layoutX="155.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0"
-                       promptText="Lastname"/>
-            <TextField fx:id="mailInput" layoutX="299.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0"
-                       promptText="Mail"/>
-            <TextField fx:id="schoolInput" layoutX="438.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0"
-                       promptText="School"/>
-            <PasswordField fx:id="passwordInput" layoutX="577.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0"
-                           promptText="Password"/>
-            <Button fx:id="addStudent" layoutX="722.0" layoutY="7.0" mnemonicParsing="false"
-                    onAction="#saveNewStudent" prefHeight="31.0" prefWidth="63.0" text="Save"/>
-            <Button fx:id="refresh" layoutX="715.0" layoutY="53.0" mnemonicParsing="false" prefHeight="31.0"
-                    prefWidth="75.0" text="REFRESH"/>
+            <TextField fx:id="firstnameInput" layoutX="14.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0" promptText="Firstname" />
+            <TextField fx:id="lastnameInput" layoutX="155.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0" promptText="Lastname" />
+            <TextField fx:id="mailInput" layoutX="299.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0" promptText="Mail" />
+            <TextField fx:id="schoolInput" layoutX="438.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0" promptText="School" />
+            <PasswordField fx:id="passwordInput" layoutX="577.0" layoutY="22.0" prefHeight="31.0" prefWidth="128.0" promptText="Password" />
+            <Button fx:id="addStudent" layoutX="722.0" layoutY="7.0" mnemonicParsing="false" onAction="#saveNewStudent" prefHeight="31.0" prefWidth="63.0" text="Save" />
+            <Button fx:id="delStudent" layoutX="722.0" layoutY="53.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="DEL" />
         </AnchorPane>
     </SplitPane>
 </AnchorPane>

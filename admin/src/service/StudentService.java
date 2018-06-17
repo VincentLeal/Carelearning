@@ -138,10 +138,18 @@ public class StudentService {
 
     public void deleteStudent(int id) throws IOException {
         URL url = new URL(studentApi + "/" + id);
+        System.out.println(url.toString());
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
-        httpURLConnection.setRequestMethod("DELETE");
+        httpURLConnection.setDoOutput(true);
+
         httpURLConnection.setRequestProperty("Content-Type", "application/json");
+        httpURLConnection.setRequestMethod("DELETE");
+        httpURLConnection.connect();
+
+        int responseCode = httpURLConnection.getResponseCode();
+        System.out.println("nSending" + httpURLConnection.getRequestMethod() + "request to url " + url);
+        System.out.println("Response code " + responseCode);
     }
 
     private void closeQuietly(Closeable closeable) {
