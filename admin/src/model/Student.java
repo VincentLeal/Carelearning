@@ -33,8 +33,7 @@ public class Student {
         this.registerDate = new SimpleStringProperty(registerDate);
     }
 
-    public Student(
-                   String firstname,
+    public Student(String firstname,
                    String lastname,
                    String mail,
                    String school,
@@ -138,8 +137,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Id : " + this.getId()
-                + "\nFirstname : " + this.getFirstname()
+        return "Firstname : " + this.getFirstname()
                 + "\nLastname : " + this.getLastname()
                 + "\nMail : " + this.getMail()
                 + "\nSchool : " + this.getSchool()

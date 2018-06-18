@@ -1,10 +1,7 @@
 package controller;
 
-import custom_cell.ButtonDeleteCell;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,16 +10,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.Callback;
+import javafx.scene.input.MouseEvent;
 import model.Student;
 import service.StudentService;
 import tool.DateFormatter;
 
-import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
@@ -82,6 +77,8 @@ public class StudentOverviewController implements Initializable {
 
     int id = 0;
 
+    int ind;
+
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -96,28 +93,6 @@ public class StudentOverviewController implements Initializable {
         schoolColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         registerDateColumn.setCellValueFactory(new PropertyValueFactory<>("registerDate"));
 
-
-
-        TableColumn delete = new TableColumn<>("DELETE");
-        delete.setSortable(false);
-
-        delete.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Student, String>, ObservableValue<String>>) p ->
-                        new SimpleStringProperty( String.valueOf(p.getValue().getId()) )
-        );
-
-        AtomicInteger indexCell = new AtomicInteger();
-        delete.setCellFactory(
-                new Callback<TableColumn<Student, String>, TableCell<Student, String>>() {
-                    @Override
-                    public TableCell<Student, String> call(TableColumn<Student, String> deleteColumn) {
-                        int studentId = Integer.parseInt( deleteColumn.getCellData(0) );
-
-                        return new ButtonDeleteCell(studentId, studentTableView);
-                    }
-                });
-
-        studentTableView.getColumns().add(delete);
-
         studentTableView.setItems(studentData);
 
         editColumn(firstnameColumn, "firstname");
@@ -125,7 +100,10 @@ public class StudentOverviewController implements Initializable {
         editColumn(mailColumn, "mail");
         editColumn(schoolColumn, "school");
 
+        ind = indexOf();
+
         getSelectedRow();
+
     }
 
     private void editColumn(TableColumn<Student, String> column, String key){
@@ -178,6 +156,8 @@ public class StudentOverviewController implements Initializable {
                 public void handle(ActionEvent event) {
                     try {
                         studentService.deleteStudent(id);
+                        deleteStudent(ind);
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -202,11 +182,21 @@ public class StudentOverviewController implements Initializable {
         passwordInput.clear();
     }
 
-    private void indexOf(){
+    private int indexOf(){
         studentTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             index.set(studentData.indexOf(newValue));
-            System.out.println("OK index of is : " + studentData.indexOf(newValue));
+            id = studentData.indexOf(newValue);
+            System.out.println("OK index of is : " + id);
             });
+        return id;
+    }
+
+    @FXML
+    public void deleteStudent(int ind) {
+        if(ind > -1) {
+            studentData.remove(ind);
+            studentTableView.getSelectionModel().clearSelection();
+        }
     }
 
 }

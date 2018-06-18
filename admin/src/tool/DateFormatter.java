@@ -23,7 +23,7 @@ public final class DateFormatter {
 
     public static String currentDate() {
         LocalDateTime currentDateTime = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
         return dateTimeFormatter.format(currentDateTime);
     }
