@@ -4,7 +4,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -77,9 +76,6 @@ public class StudentOverviewController implements Initializable {
 
     int id = 0;
 
-    int ind;
-
-
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle){
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -100,9 +96,9 @@ public class StudentOverviewController implements Initializable {
         editColumn(mailColumn, "mail");
         editColumn(schoolColumn, "school");
 
-        ind = indexOf();
-
         getSelectedRow();
+
+        //indexOf(studentTableView);
 
     }
 
@@ -132,11 +128,16 @@ public class StudentOverviewController implements Initializable {
 
         try {
             studentService.postStudent(student);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        studentData.add(student);
+        studentData.clear();
+        //Prevent nullPointerException
+        studentData.addAll(studentService.getStudents());
+//        studentData.add(student);
 
 
         clearForm();
@@ -151,28 +152,19 @@ public class StudentOverviewController implements Initializable {
         if(studentTableView.getSelectionModel().getSelectedItem() != null) {
             Student selectedStudent = studentTableView.getSelectionModel().getSelectedItem();
             id = selectedStudent.getId();
-            delStudent.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    try {
-                        studentService.deleteStudent(id);
-                        deleteStudent(ind);
+            delStudent.setOnAction(event -> {
+                try {
+                    studentService.deleteStudent(id);
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    Student selectedItem = studentTableView.getSelectionModel().getSelectedItem();
+                    studentTableView.getItems().remove(selectedItem);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             });
         }
     }
-
-   /* public void deleteStudent(int id) {
-        try {
-            studentService.deleteStudent(id);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 
     private void clearForm() {
         firstnameInput.clear();
@@ -180,23 +172,6 @@ public class StudentOverviewController implements Initializable {
         mailInput.clear();
         schoolInput.clear();
         passwordInput.clear();
-    }
-
-    private int indexOf(){
-        studentTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            index.set(studentData.indexOf(newValue));
-            id = studentData.indexOf(newValue);
-            System.out.println("OK index of is : " + id);
-            });
-        return id;
-    }
-
-    @FXML
-    public void deleteStudent(int ind) {
-        if(ind > -1) {
-            studentData.remove(ind);
-            studentTableView.getSelectionModel().clearSelection();
-        }
     }
 
 }
