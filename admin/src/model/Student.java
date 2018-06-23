@@ -19,32 +19,29 @@ public class Student {
 
     public Student () {}
 
-    public Student (int id,
-                    String firstname,
-                    String lastname,
-                    String mail,
-                    String school,
-                    String registerDate) {
-        this.id = new SimpleIntegerProperty(id);
-        this.firstname = new SimpleStringProperty(firstname);
-        this.lastname = new SimpleStringProperty(lastname);
-        this.mail = new SimpleStringProperty(mail);
-        this.school = new SimpleStringProperty(school);
-        this.registerDate = new SimpleStringProperty(registerDate);
-    }
-
     public Student(String firstname,
                    String lastname,
                    String mail,
                    String school,
                    String password,
                    String registerDate) {
+        this(-1, firstname, lastname, mail, school, registerDate, password);
+    }
+
+    public Student (int id,
+                    String firstname,
+                    String lastname,
+                    String mail,
+                    String school,
+                    String registerDate,
+                    String password) {
+        this.id = new SimpleIntegerProperty(id);
         this.firstname = new SimpleStringProperty(firstname);
         this.lastname = new SimpleStringProperty(lastname);
         this.mail = new SimpleStringProperty(mail);
         this.school = new SimpleStringProperty(school);
-        this.password = new SimpleStringProperty(password);
         this.registerDate = new SimpleStringProperty(registerDate);
+        this.password = new SimpleStringProperty(password);
     }
 
     public Integer getId() {

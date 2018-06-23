@@ -62,7 +62,6 @@ public class StudentOverviewController implements Initializable {
     @FXML
     private PasswordField passwordInput;
 
-
     @FXML
     Button addStudent;
 
@@ -71,8 +70,6 @@ public class StudentOverviewController implements Initializable {
 
     @FXML
     private ObservableList<Student> studentData = observableArrayList(studentService.getStudents());
-
-    private IntegerProperty index = new SimpleIntegerProperty();
 
     int id = 0;
 
@@ -98,8 +95,6 @@ public class StudentOverviewController implements Initializable {
 
         getSelectedRow();
 
-        //indexOf(studentTableView);
-
     }
 
     private void editColumn(TableColumn<Student, String> column, String key){
@@ -116,7 +111,7 @@ public class StudentOverviewController implements Initializable {
     }
 
     @FXML
-    private void saveNewStudent(ActionEvent event) {
+    private void saveNewStudent() {
         Student student = new Student(
                 firstnameInput.getText(),
                 lastnameInput.getText(),
@@ -127,24 +122,18 @@ public class StudentOverviewController implements Initializable {
         );
 
         try {
-            studentService.postStudent(student);
-
+            int newStudentId = studentService.postStudent(student);
+            student.setId(newStudentId);
+            studentData.add(student);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        studentData.clear();
-        //Prevent nullPointerException
-        studentData.addAll(studentService.getStudents());
-//        studentData.add(student);
-
-
         clearForm();
     }
 
     @FXML
-    public void getSelectedRow() {
+    private void getSelectedRow() {
         studentTableView.setOnMouseClicked((MouseEvent event) -> getSelectedId());
     }
 
@@ -173,5 +162,4 @@ public class StudentOverviewController implements Initializable {
         schoolInput.clear();
         passwordInput.clear();
     }
-
 }

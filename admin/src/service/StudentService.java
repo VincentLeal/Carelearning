@@ -1,5 +1,6 @@
 package service;
 
+import jdk.nashorn.internal.parser.JSONParser;
 import model.Student;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -47,7 +48,8 @@ public class StudentService {
                         jsonObject.getString("lastname"),
                         jsonObject.getString("mail"),
                         jsonObject.getString("school"),
-                        frenchRegisterDate);
+                        frenchRegisterDate,
+                        "*****");
 
                 studentArrayList.add(student);
             }
@@ -61,7 +63,7 @@ public class StudentService {
         return studentArrayList;
     }
 
-    public void postStudent(Student student) throws IOException {
+    public int postStudent(Student student) throws IOException {
         URL url = new URL(studentApi);
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
@@ -96,9 +98,23 @@ public class StudentService {
         while ((output = bufferedReader.readLine()) != null) {
             response.append(output);
         }
+
+        JSONObject responseJson = new JSONObject(response.toString());
+
+        int responseStudentId = responseJson.getJSONObject("student").getInt("id");
+
+
+        System.out.println("id : " + responseJson.getJSONObject("student").getInt("id"));
+      //  System.out.println("id to string : " + responseJson.getJSONObject("id").toString());
+
+        System.out.println("Jsons response : " + responseJson.toString());
+
         closeQuietly(bufferedReader);
 
         System.out.println(response.toString());
+
+        return responseStudentId;
+
     }
 
     public void updateStudent(String key, String newValue, int id) throws IOException {
