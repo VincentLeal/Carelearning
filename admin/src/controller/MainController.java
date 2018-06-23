@@ -19,12 +19,22 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable{
 
     @FXML
-    private void displayStudentActionButton(ActionEvent event) throws IOException{
+    private void studentActionButton(ActionEvent event) throws IOException {
         Parent displayStudentPage = FXMLLoader.load(getClass().getResource("../fxml/StudentOverviewController.fxml"));
-        Scene diplayStudentScene = new Scene(displayStudentPage);
+        Scene displayStudentScene = new Scene(displayStudentPage);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        stage.setScene(diplayStudentScene);
+        stage.setScene(displayStudentScene);
+        stage.show();
+    }
+
+    @FXML
+    private void lessonActionButton(ActionEvent event) throws IOException {
+        Parent displayLessonPage = FXMLLoader.load(getClass().getResource("../fxml/LessonOverviewController.fxml"));
+        Scene displayLessonScene = new Scene(displayLessonPage);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(displayLessonScene);
         stage.show();
     }
 
