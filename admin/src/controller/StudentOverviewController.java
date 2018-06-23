@@ -1,9 +1,6 @@
 package controller;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -71,7 +68,7 @@ public class StudentOverviewController implements Initializable {
     @FXML
     private ObservableList<Student> studentData = observableArrayList(studentService.getStudents());
 
-    int id = 0;
+    private int id = 0;
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle){

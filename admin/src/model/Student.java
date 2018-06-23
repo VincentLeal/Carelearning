@@ -127,10 +127,6 @@ public class Student {
     public SimpleStringProperty registerDateProperty(){
         return registerDate;
     }
-/*
-    public StringProperty registerDateProperty() {
-        return registerDate;
-    }*/
 
     @Override
     public String toString() {
