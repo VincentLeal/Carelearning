@@ -5,10 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import tool.CsvMapper;
+import tool.CsvReader;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,6 +25,8 @@ public final class LessonOverviewController extends Application {
     @FXML
     private void openFile(){
         final FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(".csv files (*.csv)", "*.csv");
+        fileChooser.getExtensionFilters().add(extensionFilter);
 
         Stage stage = new Stage();
 
@@ -31,7 +34,11 @@ public final class LessonOverviewController extends Application {
             System.out.println("button pressed");
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
-                openFile(file);
+                try {
+                    openFile(file);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
     }
@@ -41,16 +48,11 @@ public final class LessonOverviewController extends Application {
         openFile();
     }
 
-    private void openFile(File file) {
-        try {
-            desktop.open(file);
-        } catch (IOException ex) {
-            Logger.getLogger(
-                    LessonOverviewController.class.getName()).log(
-                    Level.SEVERE, null, ex
-            );
-        }
+    private void openFile(File file) throws IOException {
+        CsvMapper csvMapper = new CsvMapper();
+        csvMapper.readCsv();
     }
+
 
 }
 
