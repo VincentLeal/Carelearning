@@ -38,6 +38,10 @@ public class HttpTool {
             }
         }
 
+        int responseCode = httpURLConnection.getResponseCode();
+
+        System.out.println("Response code " + responseCode);
+
         return readResponse(httpURLConnection, httpRequest.getResponseType());
     }
 

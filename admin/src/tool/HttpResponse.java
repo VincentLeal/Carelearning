@@ -26,5 +26,4 @@ public class HttpResponse {
     public JSONObject getObject() {
         return object;
     }
-
 }

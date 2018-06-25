@@ -18,6 +18,7 @@ export class LessonController {
     @Post()
     async create(@Body() lesson: Lesson) {
         const createdLesson = await this.lessonService.create(lesson);
+        console.log(lesson);
         return { lesson: createdLesson };
     }
 

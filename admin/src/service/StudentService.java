@@ -62,10 +62,10 @@ public class StudentService {
         jsonStudent.put("register_date", student.getRegisterDate());
 
         HttpRequest<JSONObject> httpRequest = new HttpRequest<>( studentApi, JSONObject.class);
-        httpRequest.setBody( jsonStudent );
+        httpRequest.setBody(jsonStudent);
         httpRequest.setMethod("POST");
 
-        JSONObject responseJson = httpTool.httpCall( httpRequest ).getObject();
+        JSONObject responseJson = httpTool.httpCall(httpRequest).getObject();
 
         return responseJson.getJSONObject("student").getInt("id");
     }
@@ -85,7 +85,7 @@ public class StudentService {
         HttpRequest<JSONObject> httpRequest = new HttpRequest<>(studentApi + "/" + id);
         httpRequest.setMethod("DELETE");
 
-        httpTool.httpCall( httpRequest );
+        httpTool.httpCall(httpRequest);
     }
 }
 
