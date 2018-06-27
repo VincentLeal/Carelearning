@@ -3,13 +3,11 @@ package tool;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 
 public class HttpTool {
 
@@ -28,12 +26,14 @@ public class HttpTool {
 
         httpURLConnection.setRequestMethod(method);
         httpURLConnection.setRequestProperty("Content-Type", httpRequest.getContentType());
+        httpURLConnection.setRequestProperty("Accept-Charset", "UTF-8");
+
 
         if (!"GET".equalsIgnoreCase(method) && !"DELETE".equalsIgnoreCase(method)) {
             httpURLConnection.setDoOutput(true);
 
-            try (DataOutputStream outputStream = new DataOutputStream(httpURLConnection.getOutputStream())) {
-                outputStream.writeBytes(httpRequest.getBody().toString());
+            try (OutputStreamWriter outputStream = new OutputStreamWriter(httpURLConnection.getOutputStream(), StandardCharsets.UTF_8)) {
+                outputStream.write(httpRequest.getBody().toString());
                 outputStream.flush();
             }
         }
@@ -49,7 +49,7 @@ public class HttpTool {
         StringBuilder source = new StringBuilder();
         String inputline;
 
-        try ( BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream())) ) {
+        try ( BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), StandardCharsets.UTF_8))) {
             while((inputline = in.readLine()) != null) {
                 source.append(inputline);
             }

@@ -17,7 +17,7 @@ public class CsvMapper {
 
     public void readCsv() throws IOException {
         String csvFile = "C:/Users/lukile/Desktop/carelearning_test.csv";
-        String separator = ",";
+        String separator = "|";
 
         List<Lesson> lessons = getLessons(csvFile, separator);
 
