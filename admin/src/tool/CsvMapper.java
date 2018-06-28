@@ -9,17 +9,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CsvMapper {
     private String lessonApi = "http://localhost:3000/lesson";
 
     private HttpTool httpTool = HttpTool.getInstance();
 
-    public void readCsv() throws IOException {
-        String csvFile = "C:/Users/lukile/Desktop/carelearning_test.csv";
-        String separator = "|";
+    Pattern pattern = Pattern.compile("[^a-zA-Z-0-9]");
 
-        List<Lesson> lessons = getLessons(csvFile, separator);
+    public void readCsv() throws IOException {
+        String csvFile = "C:/Users/lukile/Desktop/test.csv";
+
+
+        List<Lesson> lessons = getLessons(csvFile);
 
         JSONArray jsonArray = toJsonArray(lessons);
 
@@ -28,23 +32,22 @@ public class CsvMapper {
         httpRequest.setMethod("POST");
 
         JSONArray responseJson = httpTool.httpCall(httpRequest).getArray();
-
-
-
-        System.out.println(responseJson);
     }
 
-    private List<Lesson> getLessons(String csvFile, String separator) {
+    private List<Lesson> getLessons(String csvFile) {
         int counterLine = 0;
+
+        String separator = null;
 
         String line;
         List<Lesson> lessons = new ArrayList<>();
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(csvFile))){
             while((line = bufferedReader.readLine()) != null) {
+                separator = findSeparator(counterLine, separator, pattern, line);
 
-                    String[] lessonPart = line.split(separator);
-                    if(lessonPart.length >= 3) {
-                        if(counterLine > 0){
+                String[] lessonPart = line.split(String.valueOf("\\" + separator));
+                if(lessonPart.length >= 3) {
+                    if(counterLine > 0){
                         lessons.add(listStringToListLesson(lessonPart));
                     }
                 }
@@ -54,6 +57,17 @@ public class CsvMapper {
             e.printStackTrace();
         }
         return lessons;
+    }
+
+    private String findSeparator(int counterLine, String separator, Pattern pattern, String line) {
+        //Read first line to find separator
+        if(counterLine == 0){
+            Matcher matcher = pattern.matcher(line);
+            if(matcher.find()){
+                separator = matcher.group(0);
+            }
+        }
+        return separator;
     }
 
     private Lesson listStringToListLesson(String[] stringList) {
