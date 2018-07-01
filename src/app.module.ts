@@ -5,6 +5,7 @@ import {ExerciseModule} from "./module/exercise.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import {Revision_sheetModule} from "./module/revision_sheet.module";
 import {LessonModule} from "./module/lesson.module";
+import {AuthModule} from "./authentication/auth.module";
 
 @Module({
     imports: [
@@ -14,6 +15,7 @@ import {LessonModule} from "./module/lesson.module";
         ExerciseModule,
         Revision_sheetModule,
         LessonModule,
+        AuthModule,
     ],
 })
 export class ApplicationModule {}
