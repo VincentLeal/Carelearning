@@ -18,6 +18,10 @@ export class StudentService {
         return await this.studentRepository.findOneById(id);
     }
 
+    async findOneByMail(mail: string): Promise<Student>{
+        return await this.studentRepository.findOne( {mail});
+    }
+
     async create(student: Student) {
         return await this.studentRepository.save(student);
     }

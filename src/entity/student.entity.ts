@@ -1,6 +1,7 @@
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {Result} from "./result.entity";
 import {Revision_sheet} from "./revision_sheet.entity";
+import {EncryptorService} from "../authentication/encryptor/encryptor.service";
 
 @Entity()
 export class Student {
@@ -24,6 +25,11 @@ export class Student {
 
     @Column('timestamp')
     register_date: string;
+
+    @BeforeInsert()
+    async hashPassword(){
+        this.password = await EncryptorService.encrypt(this.password)
+    }
 
     @OneToMany(type => Result, result => result.student)
     results: Result[];

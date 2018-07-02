@@ -1,19 +1,29 @@
 import * as jwt from 'jsonwebtoken';
 
-import { Injectable } from '@nestjs/common';
+import { Component } from '@nestjs/common';
 import { StudentService } from "../service/student.service";
-import { JwtPayload } from ''
+import {EncryptorService} from "./encryptor/encryptor.service";
 
-@Injectable()
+@Component()
 export class AuthService {
     constructor(private readonly studentService: StudentService) {}
 
-    async createToken() {
-        const student: JwtPayload = { email: 'lucile.1988.ls@gmail.com'};
-        return jwt.sign(student, 'secretKey', { expiresIn: 10 });
+    async createToken(student) {
+        //1 month in min
+        const expireIn = 43800;
+        const secretOrKey = 'secret';
+        const token = jwt.sign(student, secretOrKey, { expireIn });
+
+        return {
+            expires_in: expireIn,
+            access_token: token,
+        };
     }
 
-    async validateStudent(payload: JwtPayload): Promise<any>{
-        return await this.studentService.findOneByEmail(payload.email);
+    async validateStudent(signedStudent): Promise<boolean> {
+        const { mail, password } = signedStudent;
+        const student = await this.studentService.findOneByMail(mail);
+
+        return await EncryptorService.validate(password, student.password);
     }
 }

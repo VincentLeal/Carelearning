@@ -22,7 +22,7 @@ export class Revision_sheetService {
         return await this.revision_sheetRepository.save(revision_sheet);
     }
 
-    async update(id: number, revision_sheetData: Partial<Revision_sheet>): Promise<Revision_user> {
+    async update(id: number, revision_sheetData: Partial<Revision_sheet>): Promise<Revision_sheet> {
         await this.revision_sheetRepository.updateById(id, revision_sheetData);
         return this.revision_sheetRepository.findOneById(id);
     }

@@ -3,7 +3,7 @@ import {Exercise} from '../entity/exercise.entity';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from "typeorm";
 
-@Component()
+@Component ()
 export class ExerciseService {
     constructor(
         @InjectRepository(Exercise)
