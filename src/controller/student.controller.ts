@@ -1,6 +1,7 @@
-import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put, UsePipes} from '@nestjs/common';
 import {Student} from '../entity/student.entity';
 import {StudentService} from "../service/student.service";
+import {DeSerializationPipe} from "../authentication/pipes/DeSerializationPipe";
 
 @Controller('student')
 export class StudentController {
@@ -16,7 +17,9 @@ export class StudentController {
     }
 
     @Post()
+    @UsePipes(new DeSerializationPipe())
     async create(@Body() student: Student){
+        const hashPassword = student.hashPassword();
         const createdStudent = await this.studentService.create(student);
         return { student: createdStudent };
     }

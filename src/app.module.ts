@@ -9,13 +9,13 @@ import {AuthModule} from "./authentication/auth.module";
 
 @Module({
     imports: [
-        TypeOrmModule.forRoot(),
         StudentModule,
         ResultModule,
         ExerciseModule,
         Revision_sheetModule,
         LessonModule,
         AuthModule,
+        TypeOrmModule.forRoot(),
     ],
 })
 export class ApplicationModule {}

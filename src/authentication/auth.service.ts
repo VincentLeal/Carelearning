@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 
-import { Component } from '@nestjs/common';
-import { StudentService } from "../service/student.service";
+import {Component} from '@nestjs/common';
+import {StudentService} from "../service/student.service";
 import {EncryptorService} from "./encryptor/encryptor.service";
 
 @Component()
