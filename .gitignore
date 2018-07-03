@@ -9,3 +9,4 @@ admin/target/*
 .idea/
 *.iml
 */*.iml
+*.js.map
