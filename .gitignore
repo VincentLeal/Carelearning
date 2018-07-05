@@ -10,3 +10,4 @@ admin/target/*
 *.iml
 */*.iml
 *.js.map
+build/*

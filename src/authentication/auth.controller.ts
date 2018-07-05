@@ -18,8 +18,8 @@ export class AuthController {
         const student = await this.studentService.findOneByMail(mail);
 
         if(student) {
-            const result = await EncryptorService.validate(password, student.password);
-            if(result) {
+           // const result = await EncryptorService.validate(password, student.password);
+            if(password === student.password) {
                 return await this.authService.createToken(credentials);
             }
         }
