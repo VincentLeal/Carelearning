@@ -15,6 +15,6 @@ export class LessonModule implements NestModule{
     public configure(consumer: MiddlewaresConsumer) {
         consumer
             .apply(passport.authenticate('jwt', { session: false }))
-            .forRoutes({path: '/lesson', method: RequestMethod.ALL})
+            .forRoutes({ path: '/lesson', method: RequestMethod.ALL });
     }
 }

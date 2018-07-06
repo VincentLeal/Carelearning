@@ -1,9 +1,9 @@
 import * as passport from 'passport';
 
-import { ExtractJwt, Strategy } from 'passport-jwt';
+import {ExtractJwt, Strategy} from 'passport-jwt';
 
-import { Component, UnauthorizedException } from '@nestjs/common';
-import { AuthService } from "../auth.service";
+import {Component} from '@nestjs/common';
+import {AuthService} from "../auth.service";
 
 @Component()
 export class JwtStrategy extends Strategy {
@@ -23,7 +23,7 @@ export class JwtStrategy extends Strategy {
         const isValid = await this.authService.validateStudent(payload);
 
         if(!isValid){
-            return done(new UnauthorizedException(), false);
+            return done('Unauthorized', false);
         }
         done(null, payload);
     }

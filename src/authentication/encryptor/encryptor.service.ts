@@ -6,8 +6,7 @@ import { Component } from '@nestjs/common';
 export class EncryptorService {
 
     static async encrypt(password): Promise<string> {
-        const salt = await bcrypt.genSalt(10);
-        return await bcrypt.hash(password, salt);
+        return await bcrypt.hash(password, 10);
     }
 
     static async validate(password, hash): Promise<boolean> {

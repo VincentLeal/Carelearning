@@ -10,7 +10,7 @@ export class AuthService {
 
     async createToken(student) {
         //1 month in min
-        const expiresIn = 60 * 60;
+        const expiresIn = 60 * 730;
         const secretOrKey = 'secret';
         const token = jwt.sign(student, secretOrKey, { expiresIn });
 
