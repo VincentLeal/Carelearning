@@ -38,6 +38,16 @@ public class MainController implements Initializable{
         stage.show();
     }
 
+    @FXML
+    private void exerciseActionButton(ActionEvent event) throws IOException {
+        Parent displayExercisePage = FXMLLoader.load(getClass().getResource("../fxml/exercises/ExercisesOverviewController.fxml"));
+        Scene displayExerciseScene = new Scene(displayExercisePage);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(displayExerciseScene);
+        stage.show();
+    }
+
     public void initialize(URL url, ResourceBundle resourceBundle){
 
     }
