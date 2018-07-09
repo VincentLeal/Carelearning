@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Carelearning</string>
+    <string-array name="female_genital_system_array">
+        <item>Col de l utérus</item>
+        <item>Endomètre</item>
+        <item>Ovaire</item>
+        <item>Pavillon de la trompe de Fallope</item>
+        <item>Trompe de Fallope</item>
+        <item>Utérus</item>
+        <item>Vagin</item>
+    </string-array>
+
+    <string-array name="brain_anatomy_array">
+        <item>Lobe frontal</item>
+        <item>Lobe temporal</item>
+        <item>Tronc cérébral</item>
+        <item>Cervelet</item>
+        <item>Lobe pariétal</item>
+        <item>Lobe occipital</item>
+    </string-array>
 </resources>

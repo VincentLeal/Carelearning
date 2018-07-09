@@ -1,31 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.vince.carelearning.MainActivity"
-    android:orientation="vertical">
+    >
 
 
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
+        android:id="@+id/logo"
+        android:layout_width="385dp"
+        android:layout_height="234dp"
         android:src="@drawable/logo_carelearning"
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textSize="24dp"
-        android:text="In Nurse We Trust"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Subscribe"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/slogan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="In Nurse We Trust"
+        android:textSize="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/logoLogin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+
+        android:src="@drawable/user_login"
+        app:layout_constraintTop_toBottomOf="@id/slogan"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+        android:id="@+id/username_input"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:hint="Nom d'utilisateur"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/logoLogin"
+        app:layout_constraintTop_toBottomOf="@+id/slogan"
+        android:text="bm.mhoma@gmail.com"/>
+
+    <EditText
+        android:id="@+id/password_input"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:hint="Mot de passe"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/logoPwd"
+        app:layout_constraintTop_toBottomOf="@+id/username_input"
+        android:text="ben"/>
+
+    <ImageView
+        android:id="@+id/logoPwd"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+
+        android:src="@drawable/lock"
+        app:layout_constraintTop_toBottomOf="@id/logoLogin"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/signup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
+        android:layout_gravity="center"
+        android:text="Créer un compte"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/password_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/password_button"
+        />
+
+    <Button
+        android:id="@+id/password_button"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
+        android:layout_gravity="center"
+        android:text="Mot de passe oublié?"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/password_input"
+        app:layout_constraintStart_toEndOf="@id/signup_button"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="168dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="8dp"
+        android:text="Connexion"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/password_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>
