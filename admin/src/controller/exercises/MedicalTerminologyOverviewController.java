@@ -15,7 +15,7 @@ public class MedicalTerminologyOverviewController implements Initializable {
     private ExerciseService exerciseService = new ExerciseService();
 
     @FXML
-    private TextField question;
+    private TextField questionInput;
 
     @FXML
     private TextField goodAnswerInput;
@@ -45,7 +45,7 @@ public class MedicalTerminologyOverviewController implements Initializable {
         String type = "QCM";
 
         Exercise mcqExercise = new Exercise(
-                question.getText(),
+                questionInput.getText(),
                 goodAnswerInput.getText(),
                 choice1Input.getText(),
                 choice2Input.getText(),
@@ -63,7 +63,7 @@ public class MedicalTerminologyOverviewController implements Initializable {
     }
 
     private void clearForm() {
-        question.clear();
+        questionInput.clear();
         goodAnswerInput.clear();
         choice1Input.clear();
         choice2Input.clear();
