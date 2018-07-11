@@ -54,6 +54,7 @@ public class StudentService {
 
     public int postStudent(Student student) throws IOException {
         JSONObject jsonStudent = new JSONObject();
+
         jsonStudent.put("firstname", student.getFirstname());
         jsonStudent.put("lastname", student.getLastname());
         jsonStudent.put("mail", student.getMail());
@@ -61,7 +62,7 @@ public class StudentService {
         jsonStudent.put("password", student.getPassword());
         jsonStudent.put("register_date", student.getRegisterDate());
 
-        HttpRequest<JSONObject> httpRequest = new HttpRequest<>( studentApi, JSONObject.class);
+        HttpRequest<JSONObject> httpRequest = new HttpRequest<>(studentApi, JSONObject.class);
         httpRequest.setBody(jsonStudent);
         httpRequest.setMethod("POST");
 

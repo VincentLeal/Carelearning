@@ -15,7 +15,7 @@ public class Lesson {
         this(-1, module, title, content);
     }
 
-    public Lesson(int id, String module, String title, String content) {
+    private Lesson(int id, String module, String title, String content) {
         this.id = id;
         this.module = module;
         this.title = title;
