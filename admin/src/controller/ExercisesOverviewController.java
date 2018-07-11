@@ -9,9 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
-
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class ExercisesOverviewController extends Application {
@@ -19,7 +18,7 @@ public class ExercisesOverviewController extends Application {
     private Button medicalTerminology;
 
     @FXML
-    private Label prefixAndSuffix;
+    private Button prefixAndSuffix;
 
     @FXML
     private Label doseCalculation;
@@ -39,21 +38,23 @@ public class ExercisesOverviewController extends Application {
     }
 
     @FXML
-    private void medicalTerminologyExercise(javafx.event.ActionEvent event) throws IOException {
-       // medicalTerminology.setOnAction(event -> System.out.println("Préfixe et suffixe"));
-
-        Parent displayMedicalTerminologyPage = FXMLLoader.load(getClass().getResource("/fxml/exercises/MedicalTerminologyOverviewController.fxml"));
-        Scene displayMedicalTerminologyScene = new Scene(displayMedicalTerminologyPage);
+    private void medicalTerminologyExercise(ActionEvent event) throws IOException {
+        Parent page = FXMLLoader.load(getClass().getResource("/fxml/exercises/MedicalTerminologyOverviewController.fxml"));
+        Scene scene = new Scene(page);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        stage.setScene(displayMedicalTerminologyScene);
+        stage.setScene(scene);
         stage.show();
     }
 
     @FXML
-    private void prefixAndSuffixExercice() {
-        prefixAndSuffix.setOnMouseClicked(event -> System.out.println("Préfixe et suffixe"));
+    private void prefixAndSuffixExercice(ActionEvent event) throws IOException {
+        Parent page = FXMLLoader.load(getClass().getResource("/fxml/exercises/PrefixAndSuffixOverviewController.fxml"));
+        Scene scene = new Scene(page);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
