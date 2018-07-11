@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<AnchorPane id="anchor" prefHeight="500.0" prefWidth="300.0" style="-fx-background-image: ..\img\carelearning.png;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+    <stylesheets>
+        <URL value="@../css/application.css" />
+    </stylesheets>
     <children>
-        <Button fx:id="student" layoutX="76.0" layoutY="116.0" onAction="#studentActionButton" prefHeight="31.0" prefWidth="143.0" text="Elèves" textFill="RED">
+        <Button fx:id="student" layoutX="76.0" layoutY="116.0" onAction="#studentActionButton" prefHeight="31.0" prefWidth="143.0" text="Elèves" textFill="#bf0000">
          <font>
-            <Font name="Andalus" size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font></Button>
-        <Button fx:id="lesson" layoutX="76.0" layoutY="235.0" mnemonicParsing="false" onAction="#lessonActionButton" prefHeight="31.0" prefWidth="143.0" text="Leçon" textFill="RED">
+        <Button fx:id="lesson" layoutX="76.0" layoutY="211.0" mnemonicParsing="false" onAction="#lessonActionButton" prefHeight="31.0" prefWidth="143.0" text="Leçon" textFill="#bf0000">
          <font>
-            <Font name="Andalus" size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font></Button>
       <Label contentDisplay="CENTER" layoutX="72.0" layoutY="14.0" text="Carelearning" textOverrun="CENTER_ELLIPSIS">
          <font>
@@ -30,9 +36,9 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <Button fx:id="exercise" layoutX="73.0" layoutY="358.0" mnemonicParsing="false" onAction="#exerciseActionButton" prefHeight="41.0" prefWidth="143.0" text="Exercices" textFill="RED">
+      <Button fx:id="exercise" layoutX="76.0" layoutY="304.0" mnemonicParsing="false" onAction="#exerciseActionButton" prefHeight="41.0" prefWidth="143.0" text="Exercices" textFill="#bf0000">
          <font>
-            <Font name="Andalus" size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <Label layoutX="100.0" layoutY="58.0" text="In nurse, we trust" textFill="#ab0000">
@@ -40,5 +46,10 @@
             <Font name="Andalus" size="14.0" />
          </font>
       </Label>
+      <ImageView fitHeight="277.0" fitWidth="300.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/carelearning.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

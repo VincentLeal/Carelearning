@@ -3,16 +3,39 @@ package model;
 public class Exercise {
     private int id;
     private String question;
-    private String choice;
+    private  String goodAnswer;
+    private String choice1;
+    private String choice2;
+    private String choice3;
     private String module;
     private String type;
 
     public Exercise() {}
 
-    public Exercise(int id, String question, String choice, String module, String type) {
+    public Exercise(String question,
+                    String goodAnswer,
+                    String choice1,
+                    String choice2,
+                    String choice3,
+                    String module,
+                    String type) {
+        this(-1, question, goodAnswer, choice1, choice2, choice3, module, type);
+    }
+
+    private Exercise(int id, String question,
+                     String goodAnswer,
+                     String choice1,
+                     String choice2,
+                     String choice3,
+                     String module,
+                     String type) {
+
         this.id = id;
         this.question = question;
-        this.choice = choice;
+        this.goodAnswer = goodAnswer;
+        this.choice1 = choice1;
+        this.choice2 = choice2;
+        this.choice3 = choice3;
         this.module = module;
         this.type = type;
     }
@@ -33,12 +56,36 @@ public class Exercise {
         this.question = question;
     }
 
-    public String getChoice() {
-        return choice;
+    public String getGoodAnswer() {
+        return goodAnswer;
     }
 
-    public void setChoice(String choice) {
-        this.choice = choice;
+    public void setGoodAnswer(String goodAnswer) {
+        this.goodAnswer = goodAnswer;
+    }
+
+    public String getChoice1() {
+        return choice1;
+    }
+
+    public void setChoice1(String choice1) {
+        this.choice1 = choice1;
+    }
+
+    public String getChoice2() {
+        return choice2;
+    }
+
+    public void setChoice2(String choice2) {
+        this.choice2 = choice2;
+    }
+
+    public String getChoice3() {
+        return choice3;
+    }
+
+    public void setChoice3(String choice3) {
+        this.choice3 = choice3;
     }
 
     public String getModule() {
@@ -62,7 +109,10 @@ public class Exercise {
         return "Exercise{" +
                 "id=" + id +
                 ", question='" + question + '\'' +
-                ", choice='" + choice + '\'' +
+                ", goodAnswer='" + goodAnswer + '\'' +
+                ", choice1='" + choice1 + '\'' +
+                ", choice2='" + choice2 + '\'' +
+                ", choice3='" + choice3 + '\'' +
                 ", module='" + module + '\'' +
                 ", type='" + type + '\'' +
                 '}';

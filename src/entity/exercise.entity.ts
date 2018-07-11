@@ -1,5 +1,5 @@
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
-import {Result} from "./result.entity";
+import {Result} from './result.entity';
 
 @Entity()
 export class Exercise {
@@ -10,7 +10,16 @@ export class Exercise {
     question: string;
 
     @Column({nullable: true})
-    choice: string;
+    goodAnswer: string;
+
+    @Column({nullable: true})
+    choice1: string;
+
+    @Column({nullable: true})
+    choice2: string;
+
+    @Column({nullable: true})
+    choice3: string;
 
     @Column('text')
     module: string;
