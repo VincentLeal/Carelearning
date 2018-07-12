@@ -27,6 +27,7 @@ public class HttpTool {
         httpURLConnection.setRequestMethod(method);
         httpURLConnection.setRequestProperty("Content-Type", httpRequest.getContentType());
         httpURLConnection.setRequestProperty("Accept-Charset", "UTF-8");
+        httpURLConnection.setRequestProperty("Authorization", "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWlsIjoiZmplb2pmQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiYSIsImlhdCI6MTUzMTQyNjcwMSwiZXhwIjoxNTMxNDcwNTAxfQ.uoGAC_T5hd60P-FGubU5ARdserUUm2_FYr7nK0HbqGU");
 
 
         if (!"GET".equalsIgnoreCase(method) && !"DELETE".equalsIgnoreCase(method)) {
