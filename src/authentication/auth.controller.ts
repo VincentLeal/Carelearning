@@ -1,7 +1,7 @@
 import {BadRequestException, Body, Controller, Post} from '@nestjs/common';
 import {AuthService} from "./auth.service";
-import {StudentService} from "../service/student.service";
-import {Student} from "../entity/student.entity";
+import {StudentService} from '../service/student.service';
+import {Student} from '../entity/student.entity';
 import {EncryptorService} from "./encryptor/encryptor.service";
 
 @Controller('auth')
@@ -23,7 +23,7 @@ export class AuthController {
                 return await this.authService.createToken(credentials);
             }
         }
-        throw new BadRequestException("Invalid credentials");
+        throw new BadRequestException('Invalid credentials');
     }
 
 }
