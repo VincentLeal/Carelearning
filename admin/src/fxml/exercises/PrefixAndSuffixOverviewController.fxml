@@ -38,6 +38,6 @@
               preserveRatio="true">
       <Image url="@../../img/bandage.jpg"/>
    </ImageView>
-   <Button layoutX="29.0" layoutY="389.0" mnemonicParsing="false" text="Création"/>
+   <Button layoutX="29.0" layoutY="389.0" mnemonicParsing="false" onAction="#createPrefixAndSuffixExercise" text="Création"/>
    <Button layoutX="203.0" layoutY="389.0" mnemonicParsing="false" text="Retour"/>
 </AnchorPane>
