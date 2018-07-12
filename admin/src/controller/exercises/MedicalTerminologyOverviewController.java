@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import model.Exercise;
 import service.ExerciseService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -56,7 +57,7 @@ public class MedicalTerminologyOverviewController implements Initializable {
 
         try {
             exerciseService.postExercise(mcqExercise);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         clearForm();
