@@ -3,7 +3,7 @@ import * as passport from 'passport';
 import {ExtractJwt, Strategy} from 'passport-jwt';
 
 import {Component} from '@nestjs/common';
-import {AuthService} from "../auth.service";
+import {AuthService} from '../auth.service';
 
 @Component()
 export class JwtStrategy extends Strategy {

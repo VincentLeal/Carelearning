@@ -1,7 +1,7 @@
 import {BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
-import {Result} from "./result.entity";
-import {Revision_sheet} from "./revision_sheet.entity";
-import {EncryptorService} from "../authentication/encryptor/encryptor.service";
+import {Result} from './result.entity';
+import {Revision_sheet} from './revision_sheet.entity';
+import {EncryptorService} from '../authentication/encryptor/encryptor.service';
 
 @Entity()
 export class Student {
@@ -17,7 +17,7 @@ export class Student {
     @Column('text')
     password: string;
 
-    @Column('text')
+    @Column('text', { unique: true })
     mail: string;
 
     @Column('text')
@@ -28,7 +28,7 @@ export class Student {
 
     @BeforeInsert()
     async hashPassword(){
-        this.password = await EncryptorService.encrypt(this.password)
+        this.password = await EncryptorService.encrypt(this.password);
     }
 
     @OneToMany(type => Result, result => result.student)

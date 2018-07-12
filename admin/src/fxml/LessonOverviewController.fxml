@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LessonOverviewController">
     <stylesheets>
-        <URL value="@/css/application.css" />
+        <URL value="@/src/css/application.css" />
     </stylesheets>
     <Label layoutX="67.0" layoutY="48.0" prefHeight="97.0" prefWidth="279.0" text="Ici, vous pouvez importer votre &#10;fichier .csv  pour créer votre leçon" textAlignment="CENTER">
       <font>

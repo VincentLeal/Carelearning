@@ -30,7 +30,7 @@ public class ExercisesOverviewController extends Application {
     public void start(Stage primaryStage) throws Exception {
         medicalTerminology.setStyle("-fx-background-color: transparent;");
 
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/exercises/ExercisesOverviewController.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("src/fxml/exercises/ExercisesOverviewController.fxml"));
         Scene scene =  new Scene(root);
         primaryStage.setScene(scene);
 
@@ -39,7 +39,7 @@ public class ExercisesOverviewController extends Application {
 
     @FXML
     private void medicalTerminologyExercise(ActionEvent event) throws IOException {
-        Parent page = FXMLLoader.load(getClass().getResource("/fxml/exercises/MedicalTerminologyOverviewController.fxml"));
+        Parent page = FXMLLoader.load(getClass().getResource("/src/fxml/exercises/MedicalTerminologyOverviewController.fxml"));
         Scene scene = new Scene(page);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -49,7 +49,7 @@ public class ExercisesOverviewController extends Application {
 
     @FXML
     private void prefixAndSuffixExercice(ActionEvent event) throws IOException {
-        Parent page = FXMLLoader.load(getClass().getResource("/fxml/exercises/PrefixAndSuffixOverviewController.fxml"));
+        Parent page = FXMLLoader.load(getClass().getResource("/src/fxml/exercises/PrefixAndSuffixOverviewController.fxml"));
         Scene scene = new Scene(page);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
