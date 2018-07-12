@@ -19,8 +19,6 @@ export class StudentController {
     @Post()
     @UsePipes(new DeSerializationPipe())
     async create(@Body() student: Student){
-        const hashPassword = await student.hashPassword();
-
         const createdStudent = await this.studentService.create(student);
         return { student: createdStudent };
     }
