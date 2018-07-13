@@ -1,6 +1,6 @@
 package controller.exercises;
 
-import controller.TransitionView;
+import tool.TransitionView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -10,7 +10,6 @@ import javafx.scene.layout.AnchorPane;
 import model.Exercise;
 import service.ExerciseService;
 
-import javax.sql.rowset.spi.TransactionalWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

@@ -8,14 +8,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tool.CsvMapper;
-import tool.CsvReader;
+import tool.TransitionView;
 
 import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created on 23/06/2018.

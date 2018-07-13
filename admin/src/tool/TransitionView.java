@@ -1,4 +1,4 @@
-package controller;
+package tool;
 
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
