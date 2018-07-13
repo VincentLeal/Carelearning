@@ -20,7 +20,7 @@ public class MainController implements Initializable{
 
     @FXML
     private void studentActionButton(ActionEvent event) throws IOException {
-        Parent displayStudentPage = FXMLLoader.load(getClass().getResource("/src/fxml/StudentOverviewController.fxml"));
+        Parent displayStudentPage = FXMLLoader.load(getClass().getResource("/fxml/StudentOverviewController.fxml"));
         Scene displayStudentScene = new Scene(displayStudentPage);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -30,7 +30,7 @@ public class MainController implements Initializable{
 
     @FXML
     private void lessonActionButton(ActionEvent event) throws IOException {
-        Parent displayLessonPage = FXMLLoader.load(getClass().getResource("/src/fxml/LessonOverviewController.fxml"));
+        Parent displayLessonPage = FXMLLoader.load(getClass().getResource("/fxml/LessonOverviewController.fxml"));
         Scene displayLessonScene = new Scene(displayLessonPage);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -40,7 +40,7 @@ public class MainController implements Initializable{
 
     @FXML
     private void exerciseActionButton(ActionEvent event) throws IOException {
-        Parent displayExercisePage = FXMLLoader.load(getClass().getResource("/src/fxml/exercises/ExercisesOverviewController.fxml"));
+        Parent displayExercisePage = FXMLLoader.load(getClass().getResource("/fxml/exercises/ExercisesOverviewController.fxml"));
         Scene displayExerciseScene = new Scene(displayExercisePage);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 

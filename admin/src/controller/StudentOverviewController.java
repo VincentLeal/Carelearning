@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import model.Student;
 import service.StudentService;
 import tool.DateFormatter;
@@ -23,8 +24,14 @@ import static javafx.collections.FXCollections.observableArrayList;
 public class StudentOverviewController implements Initializable {
     private StudentService studentService = new StudentService();
 
+    private TransitionView transitionView = new TransitionView();
+    private String fxmlBackScene = "/fxml/MainController.fxml";
+
     @FXML
-    TableView<Student> studentTableView;
+    private AnchorPane anchorPane;
+
+    @FXML
+    private TableView<Student> studentTableView;
 
     @FXML
     private TableColumn<Student, Integer> idColumn;
@@ -60,10 +67,10 @@ public class StudentOverviewController implements Initializable {
     private PasswordField passwordInput;
 
     @FXML
-    Button addStudent;
+    private Button delStudent;
 
     @FXML
-    Button delStudent;
+    private Button backToMenu;
 
     @FXML
     private ObservableList<Student> studentData = observableArrayList(studentService.getStudents());
@@ -89,6 +96,8 @@ public class StudentOverviewController implements Initializable {
         editColumn(lastnameColumn, "lastname");
         editColumn(mailColumn, "mail");
         editColumn(schoolColumn, "school");
+
+        backToMenu.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, 300.0, 500.0));
 
         getSelectedRow();
 

@@ -10,7 +10,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="anchor" prefHeight="500.0" prefWidth="300.0" style="-fx-background-image: ..\img\carelearning.png;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<AnchorPane id="anchor" prefHeight="500.0" prefWidth="300.0"  xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
     <stylesheets>
         <URL value="@../css/application.css" />
     </stylesheets>

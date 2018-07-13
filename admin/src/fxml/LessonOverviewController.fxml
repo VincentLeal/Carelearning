@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LessonOverviewController">
-    <stylesheets>
-        <URL value="@/src/css/application.css" />
-    </stylesheets>
+<AnchorPane fx:id="anchorPane" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LessonOverviewController">
     <Label layoutX="67.0" layoutY="48.0" prefHeight="97.0" prefWidth="279.0" text="Ici, vous pouvez importer votre &#10;fichier .csv  pour créer votre leçon" textAlignment="CENTER">
       <font>
          <Font name="Bell MT Bold" size="18.0" />
@@ -29,5 +24,5 @@
                preserveRatio="true">
         <Image url="@../img/seringue.jpg"/>
     </ImageView>
-   <Button layoutX="168.0" layoutY="192.0" mnemonicParsing="false" text="Retour" />
+   <Button fx:id="goBackButton" layoutX="168.0" layoutY="192.0" mnemonicParsing="false" text="Retour" />
 </AnchorPane>

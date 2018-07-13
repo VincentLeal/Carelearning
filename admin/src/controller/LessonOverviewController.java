@@ -2,7 +2,9 @@ package controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tool.CsvMapper;
@@ -10,17 +12,28 @@ import tool.CsvReader;
 
 import java.awt.*;
 import java.io.*;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * Created on 23/06/2018.
  */
-public final class LessonOverviewController extends Application {
+public final class LessonOverviewController extends Application implements Initializable {
     private Desktop desktop = Desktop.getDesktop();
 
+    private TransitionView transitionView = new TransitionView();
+    private String fxmlBackScene = "/fxml/MainController.fxml";
+
     @FXML
-    Button chooseFileButton;
+    private AnchorPane anchorPane;
+
+    @FXML
+    private Button chooseFileButton;
+
+    @FXML
+    private Button goBackButton;
 
     @FXML
     private void openFile(){
@@ -54,5 +67,9 @@ public final class LessonOverviewController extends Application {
     }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        goBackButton.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, 300.0, 500.0));
+    }
 }
 

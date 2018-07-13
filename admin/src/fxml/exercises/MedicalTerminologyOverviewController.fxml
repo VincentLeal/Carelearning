@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121"
+<AnchorPane fx:id="anchorPane" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.exercises.MedicalTerminologyOverviewController">
    <Label layoutX="188.0" layoutY="14.0" text="Question à choix multiples">
@@ -54,5 +54,5 @@
               preserveRatio="true">
       <Image url="@../../img/serpent.png"/>
    </ImageView>
-   <Button layoutX="428.0" layoutY="444.0" mnemonicParsing="false" text="Retour"/>
+   <Button fx:id="goBackButton" layoutX="428.0" layoutY="444.0" mnemonicParsing="false" text="Retour"/>
 </AnchorPane>

@@ -1,19 +1,28 @@
 package controller.exercises;
 
+import controller.TransitionView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+import javafx.scene.layout.AnchorPane;
 import model.Exercise;
 import service.ExerciseService;
 
+import javax.sql.rowset.spi.TransactionalWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MedicalTerminologyOverviewController implements Initializable {
     private ExerciseService exerciseService = new ExerciseService();
+
+    private TransitionView transitionView = new TransitionView();
+    private String fxmlBackScene = "/fxml/exercises/ExercisesOverviewController.fxml";
+
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private TextField questionInput;
@@ -31,14 +40,14 @@ public class MedicalTerminologyOverviewController implements Initializable {
     private TextField choice3Input;
 
     @FXML
-    private Button createButton;
+    private Button goBackButton;
 
     @FXML
     private TextField moduleInput;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        goBackButton.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, 800.0, 400.0));
     }
 
     @FXML
