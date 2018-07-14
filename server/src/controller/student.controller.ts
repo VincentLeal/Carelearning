@@ -1,7 +1,7 @@
 import {Body, Controller, Delete, Get, Param, Post, Put, UsePipes} from '@nestjs/common';
 import {Student} from '../entity/student.entity';
-import {StudentService} from "../service/student.service";
-import {DeSerializationPipe} from "../authentication/pipes/DeSerializationPipe";
+import {StudentService} from '../service/student.service';
+import {DeSerializationPipe} from '../authentication/pipes/DeSerializationPipe';
 
 @Controller('student')
 export class StudentController {
@@ -31,7 +31,6 @@ export class StudentController {
     @Delete(':id')
     async destroy(@Param('id') id: string) {
         await this.studentService.destroy(+id);
-        return;
     }
 
 }

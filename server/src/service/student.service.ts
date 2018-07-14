@@ -1,13 +1,14 @@
-import {Component} from '@nestjs/common';
+import {Component, ForbiddenException} from '@nestjs/common';
 import {Student} from '../entity/student.entity';
 import {InjectRepository} from '@nestjs/typeorm';
-import {Repository} from "typeorm";
+import {Repository} from 'typeorm';
+import {ConflictException} from '@nestjs/common/exceptions/conflict.exception';
 
 @Component()
 export class StudentService {
     constructor(
         @InjectRepository(Student)
-        private readonly studentRepository: Repository<Student>
+        private readonly studentRepository: Repository<Student>,
     ) {}
 
     async findAll(): Promise<Student[]> {
@@ -23,6 +24,12 @@ export class StudentService {
     }
 
     async create(student: Student) {
+        const studentFromDB = await this.findOneByMail(student.mail);
+        const studentAlreadyExist = studentFromDB != null;
+        if (studentAlreadyExist) {
+            throw new ConflictException();
+        }
+
         return await this.studentRepository.save(student);
     }
 

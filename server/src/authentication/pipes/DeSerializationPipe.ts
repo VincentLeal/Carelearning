@@ -5,7 +5,7 @@ import { plainToClass } from 'class-transformer';
 export class DeSerializationPipe extends ValidationPipe {
     async transform(value, metadata: ArgumentMetadata) {
         super.transform(value, metadata)
-        let { metatype } = metadata
+        const { metatype } = metadata
         return plainToClass(metatype, value);
     }
 }

@@ -17,7 +17,7 @@ export class Student {
     @Column('text')
     password: string;
 
-    @Column('text', { unique: true })
+    @Column('text')
     mail: string;
 
     @Column('text')
