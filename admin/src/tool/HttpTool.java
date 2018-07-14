@@ -2,8 +2,13 @@ package tool;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import tool.exception.HTTPConflictException;
+import tool.exception.HTTPException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -19,7 +24,7 @@ public class HttpTool {
         return instance;
     }
 
-    public HttpResponse httpCall(HttpRequest httpRequest) throws IOException {
+    public HttpResponse httpCall(HttpRequest httpRequest) throws HTTPException, IOException {
         URL url = new URL(httpRequest.getUrl());
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         String method = httpRequest.getMethod();
@@ -43,7 +48,16 @@ public class HttpTool {
 
         System.out.println("Response code " + responseCode);
 
-        return readResponse(httpURLConnection, httpRequest.getResponseType());
+        HttpResponse httpResponse = null;
+        try {
+            httpResponse = readResponse(httpURLConnection, httpRequest.getResponseType());
+        } catch (IOException e) {
+            if(e.getMessage().contains("409")) {
+                throw new HTTPConflictException();
+            }
+        }
+
+        return httpResponse;
     }
 
     private HttpResponse readResponse(URLConnection urlConnection, Class responseType) throws IOException {

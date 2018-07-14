@@ -5,7 +5,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import tool.DateFormatter;
 import tool.HttpRequest;
+import tool.HttpResponse;
 import tool.HttpTool;
+import tool.exception.HTTPConflictException;
+import tool.exception.HTTPException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,11 +25,10 @@ public class StudentService {
 
     public List<Student> getStudents() {
         try {
-            HttpRequest<JSONObject> httpRequest = new HttpRequest<>( studentApi, JSONArray.class );
+            HttpRequest<JSONObject> httpRequest = new HttpRequest<>(studentApi, JSONArray.class);
             JSONArray studentArray = httpTool.httpCall(httpRequest).getArray();
 
             Student student;
-
             for(int index = 0; index < studentArray.length(); index++) {
                 JSONObject jsonObject = studentArray.getJSONObject(index);
                 String registerDate = jsonObject.getString("register_date");
@@ -52,7 +54,7 @@ public class StudentService {
         return studentArrayList;
     }
 
-    public int postStudent(Student student) throws IOException {
+    public int postStudent(Student student) throws HTTPConflictException, IOException {
         JSONObject jsonStudent = new JSONObject();
 
         jsonStudent.put("firstname", student.getFirstname());
