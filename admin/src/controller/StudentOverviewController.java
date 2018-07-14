@@ -1,17 +1,27 @@
 package controller;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import model.Student;
 import service.StudentService;
 import tool.DateFormatter;
 import tool.TransitionView;
+import tool.exception.HTTPConflictException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -133,8 +143,10 @@ public class StudentOverviewController implements Initializable {
             student.setId(newStudentId);
             studentData.add(student);
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (HTTPConflictException ex) {
+            displayConflictErrorDialog();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
         clearForm();
     }
@@ -159,6 +171,22 @@ public class StudentOverviewController implements Initializable {
                     e.printStackTrace();
                 }
             });
+        }
+    }
+
+    private void displayConflictErrorDialog () {
+        try {
+            Parent page = FXMLLoader.load(getClass().getResource("/fxml/ConflictDialog.fxml"));
+            Scene scene = new Scene(page);
+            Stage stage = new Stage();
+
+            stage.setTitle("Impossible de créer cet utilisateur !");
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
