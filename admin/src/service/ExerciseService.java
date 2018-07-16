@@ -15,7 +15,7 @@ public class ExerciseService {
 
     private HttpTool httpTool = HttpTool.getInstance();
 
-    public void postExercise(Exercise exercise) throws IOException {
+    public int postExercise(Exercise exercise) throws IOException {
         JSONObject jsonExercise = new JSONObject();
 
         jsonExercise.put("question", exercise.getQuestion());
@@ -31,6 +31,7 @@ public class ExerciseService {
         httpRequest.setMethod("POST");
 
         JSONObject responseJson = httpTool.httpCall(httpRequest).getObject();
+        return responseJson.getJSONObject("exercise").getInt("id");
     }
 
 }

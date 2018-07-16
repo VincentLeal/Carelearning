@@ -7,6 +7,9 @@ export class Image {
     id: number;
 
     @Column('text')
+    title: string;
+
+    @Column('text')
     label: string;
 
     @Column('text')

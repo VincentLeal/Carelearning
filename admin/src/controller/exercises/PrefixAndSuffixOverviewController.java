@@ -17,7 +17,7 @@ public class PrefixAndSuffixOverviewController implements Initializable {
     private ExerciseService exerciseService = new ExerciseService();
 
     private TransitionView transitionView = new TransitionView();
-    String fxmlBackScene = "/fxml/exercises/ExercisesOverviewController.fxml";
+    private String fxmlBackScene = "/fxml/exercises/ExercisesOverviewController.fxml";
 
     @FXML
     private AnchorPane anchorPane;

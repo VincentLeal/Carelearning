@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import sun.security.krb5.internal.PAData;
 import tool.TransitionView;
 
 import java.io.IOException;
@@ -67,7 +68,7 @@ public class ExercisesOverviewController extends Application implements Initiali
     }
 
     @FXML
-    private void prefixAndSuffixExercice(ActionEvent event) throws IOException {
+    private void prefixAndSuffixExercise(ActionEvent event) throws IOException {
         Parent page = FXMLLoader.load(getClass().getResource("/fxml/exercises/PrefixAndSuffixOverviewController.fxml"));
         Scene scene = new Scene(page);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -83,9 +84,13 @@ public class ExercisesOverviewController extends Application implements Initiali
     }
 
     @FXML
-    private void schemeExercice() {
-        scheme.setOnMouseClicked(event -> System.out.println("Schéma"));
+    private void schemeExercise(ActionEvent event) throws IOException {
+        Parent page = FXMLLoader.load(getClass().getResource("/fxml/exercises/SchemeOverviewController.fxml"));
+        Scene scene = new Scene(page);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        stage.setScene(scene);
+        stage.show();
     }
 }
 
