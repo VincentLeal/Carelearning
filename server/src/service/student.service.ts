@@ -29,7 +29,6 @@ export class StudentService {
         if (studentAlreadyExist) {
             throw new ConflictException();
         }
-        student.role = 'user';
         return await this.studentRepository.save(student);
     }
 

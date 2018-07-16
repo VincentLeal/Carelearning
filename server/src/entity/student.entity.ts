@@ -26,7 +26,7 @@ export class Student {
     @Column('timestamp')
     register_date: string;
 
-    @Column('text')
+    @Column('text', {default: 'user'})
     role: string;
 
     @BeforeInsert()

@@ -1,6 +1,6 @@
-import {Body, Controller, Delete, Get, Param, Post, Put} from "@nestjs/common";
-import {Lesson} from "../entity/lesson";
-import {LessonService} from "../service/lesson.service";
+import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
+import {Lesson} from '../entity/lesson';
+import {LessonService} from '../service/lesson.service';
 
 @Controller('lesson')
 export class LessonController {
@@ -18,7 +18,6 @@ export class LessonController {
     @Post()
     async create(@Body() lesson: Lesson) {
         const createdLesson = await this.lessonService.create(lesson);
-        console.log(lesson);
         return { lesson: createdLesson };
     }
 
