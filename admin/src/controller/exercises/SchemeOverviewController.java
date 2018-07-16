@@ -47,9 +47,6 @@ public class SchemeOverviewController implements Initializable{
     private TextField urlInput;
 
     @FXML
-    private Button addImage;
-
-    @FXML
     private ComboBox moduleBox;
 
     @FXML
@@ -108,48 +105,6 @@ public class SchemeOverviewController implements Initializable{
         }catch (IOException e){
             e.printStackTrace();
         }
-    }
-
-
-
-
-    public void createImages() {
-        String label = "";
-        String url = "";
-        List<String> labelList = new ArrayList<>();
-        List<String> urlList = new ArrayList<>();
-        int i = 0;
-
-        HashMap<String, String> images = new HashMap<>();
-
-        for(Node node : anchorPane.getChildren()) {
-            /*System.out.println("Id " + node.getId());*/
-            if(node instanceof TextField) {
-                    if(node.getId().startsWith("nameImage" + i)){
-                        label = ((TextField) node).getText();
-                        System.out.println(label);
-                        labelList.add(label);
-                    }else if(node.getId().startsWith("imageInput")){
-                        url = ((TextField) node).getText();
-                        System.out.println(url);
-                        urlList.add(url);
-                    }
-                images.put(label, url);
-
-                ((TextField)node).setText("hello");
-            }
-        }
-
-        //Récupérer tous les noms de chacune des images
-
-
-        //Récupérer toute les url
-        //En faire un objet Image
-
-        //Ajouter tous les objets dans une liste
-        //postImage avec liste
-
-
     }
 
     private void clearImageInput() {
