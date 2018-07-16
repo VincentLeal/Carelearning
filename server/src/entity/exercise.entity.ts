@@ -1,5 +1,6 @@
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {Result} from './result.entity';
+import {Image} from './image.entity';
 
 @Entity()
 export class Exercise {
@@ -29,4 +30,7 @@ export class Exercise {
 
     @OneToMany(type => Result, result => result.exercise)
     results: Result[];
+
+    @OneToMany(type => Image, image => image.exercise)
+    images: Image[];
 }
