@@ -18,7 +18,6 @@ export class AuthController {
         const student = await this.studentService.findOneByMail(mail);
         const tokenPayload = {
             mail: studentRequest.mail,
-            password: studentRequest.password,
             role: student.role,
         };
         if (student) {

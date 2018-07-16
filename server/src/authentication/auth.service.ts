@@ -20,10 +20,14 @@ export class AuthService {
         };
     }
 
-    async validateStudent(signedStudent): Promise<boolean> {
-        const { mail, password, role } = signedStudent;
+    async defineRole(signedStudent): Promise<string> {
+        const { mail, role } = signedStudent;
         const student = await this.studentService.findOneByMail(mail);
 
-        return await EncryptorService.validate(password, student.password);
+
+        if(role === 'admin')
+            return 'admin';
+        return 'user';
+        //return await EncryptorService.validate(password, student.password);
     }
 }

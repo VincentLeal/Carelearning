@@ -12,19 +12,23 @@ export class JwtStrategy extends Strategy {
             {
                 jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
                 passReqToCallback: true,
-                secretOrKey: 'secret'
+                secretOrKey: 'secret',
             },
             async (req, payload, next) => await this.verify(req, payload, next),
         );
         passport.use(this);
     }
 
-    async verify(req, payload, done){
-        const isValid = await this.authService.validateStudent(payload);
+    async verify(req, payload, done) {
+        await this.authService.defineRole(payload);
 
-        if(!isValid){
+        done(null, payload);
+
+        /*if(!isValid){
             return done('Unauthorized', false);
         }
         done(null, payload);
+    }*/
+
     }
 }
