@@ -1,9 +1,6 @@
 package model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 /**
  * Created on 13/05/2018.
@@ -16,6 +13,7 @@ public class Student {
     private SimpleStringProperty mail;
     private SimpleStringProperty school;
     private SimpleStringProperty registerDate;
+    private SimpleStringProperty role;
 
     public Student () {}
 
@@ -24,8 +22,9 @@ public class Student {
                    String mail,
                    String school,
                    String password,
-                   String registerDate) {
-        this(-1, firstname, lastname, mail, school, registerDate, password);
+                   String registerDate,
+                   String role) {
+        this(-1, firstname, lastname, mail, school, registerDate, password, role);
     }
 
     public Student (int id,
@@ -34,7 +33,8 @@ public class Student {
                     String mail,
                     String school,
                     String registerDate,
-                    String password) {
+                    String password,
+                    String role) {
         this.id = new SimpleIntegerProperty(id);
         this.firstname = new SimpleStringProperty(firstname);
         this.lastname = new SimpleStringProperty(lastname);
@@ -42,6 +42,7 @@ public class Student {
         this.school = new SimpleStringProperty(school);
         this.registerDate = new SimpleStringProperty(registerDate);
         this.password = new SimpleStringProperty(password);
+        this.role = new SimpleStringProperty(role);
     }
 
     public Integer getId() {
@@ -128,12 +129,28 @@ public class Student {
         return registerDate;
     }
 
+    public String getRole() {
+        return role.get();
+    }
+
+    public void setRole(String status) {
+        this.role.set(status);
+    }
+
+    public boolean isAdmin(String role) {
+        return role.equals("1") || role.toLowerCase().charAt(0) == 'A';
+    }
+
     @Override
     public String toString() {
-        return "Firstname : " + this.getFirstname()
-                + "\nLastname : " + this.getLastname()
-                + "\nMail : " + this.getMail()
-                + "\nSchool : " + this.getSchool()
-                + "\nRegister date : " + this.getRegisterDate() + "\n";
+        return "Student{" +
+                "firstname=" + firstname +
+                ", lastname=" + lastname +
+                ", password=" + password +
+                ", mail=" + mail +
+                ", school=" + school +
+                ", registerDate=" + registerDate +
+                ", role=" + role +
+                '}';
     }
 }

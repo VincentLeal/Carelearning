@@ -26,6 +26,9 @@ export class Student {
     @Column('timestamp')
     register_date: string;
 
+    @Column('text')
+    role: string;
+
     @BeforeInsert()
     async hashPassword(){
         this.password = await EncryptorService.encrypt(this.password);

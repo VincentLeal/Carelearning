@@ -1,11 +1,11 @@
-import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {Student} from "./student.entity";
-import {Lesson} from "./lesson";
+import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
+import {Student} from './student.entity';
+import {Lesson} from './lesson';
 
 @Entity()
 export class Revision_sheet {
     @PrimaryGeneratedColumn()
-    id:number;
+    id: number;
 
     @Column()
     favorite: boolean;

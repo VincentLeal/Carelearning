@@ -13,14 +13,18 @@ export class AuthController {
 
 
     @Post()
-    public async getToken(@Body() credentials: Student) {
-        const { mail, password } = credentials;
+    public async authStudent(@Body() studentRequest: Student) {
+        const { mail, password } = studentRequest;
         const student = await this.studentService.findOneByMail(mail);
-
-        if(student) {
+        const tokenPayload = {
+            mail: studentRequest.mail,
+            password: studentRequest.password,
+            role: student.role,
+        };
+        if (student) {
             const result = await EncryptorService.validate(password, student.password);
-            if(result) {
-                return await this.authService.createToken(credentials);
+            if (result) {
+                return await this.authService.createToken(tokenPayload);
             }
         }
         throw new BadRequestException('Invalid credentials');

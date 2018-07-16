@@ -63,6 +63,9 @@ public class StudentOverviewController implements Initializable {
     private TableColumn<Student, String> registerDateColumn;
 
     @FXML
+    private TableColumn<Student, String> roleColumn;
+
+    @FXML
     private TextField firstnameInput;
 
     @FXML
@@ -76,6 +79,9 @@ public class StudentOverviewController implements Initializable {
 
     @FXML
     private PasswordField passwordInput;
+
+    @FXML
+    private ComboBox roleBox;
 
     @FXML
     private Button delStudent;
@@ -100,6 +106,8 @@ public class StudentOverviewController implements Initializable {
         schoolColumn.setCellValueFactory(new PropertyValueFactory<>("school"));
         schoolColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         registerDateColumn.setCellValueFactory(new PropertyValueFactory<>("registerDate"));
+        roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
+        roleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         studentTableView.setItems(studentData);
 
@@ -107,6 +115,10 @@ public class StudentOverviewController implements Initializable {
         editColumn(lastnameColumn, "lastname");
         editColumn(mailColumn, "mail");
         editColumn(schoolColumn, "school");
+        editColumn(roleColumn, "role");
+
+        roleBox.getItems().addAll("user", "admin");
+        roleBox.getSelectionModel().select("user");
 
         backToMenu.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, 300.0, 500.0));
 
@@ -135,7 +147,8 @@ public class StudentOverviewController implements Initializable {
                 mailInput.getText(),
                 schoolInput.getText(),
                 passwordInput.getText(),
-                DateFormatter.currentDate()
+                DateFormatter.currentDate(),
+                roleBox.getValue().toString()
         );
 
         try {

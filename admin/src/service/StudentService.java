@@ -40,7 +40,8 @@ public class StudentService {
                         jsonObject.getString("mail"),
                         jsonObject.getString("school"),
                         frenchRegisterDate,
-                        "*****");
+                        "*****",
+                        jsonObject.getString("role"));
 
                 studentArrayList.add(student);
             }
@@ -63,6 +64,7 @@ public class StudentService {
         jsonStudent.put("school", student.getSchool());
         jsonStudent.put("password", student.getPassword());
         jsonStudent.put("register_date", student.getRegisterDate());
+        jsonStudent.put("role", student.getRole());
 
         HttpRequest<JSONObject> httpRequest = new HttpRequest<>(studentApi, JSONObject.class);
         httpRequest.setBody(jsonStudent);
