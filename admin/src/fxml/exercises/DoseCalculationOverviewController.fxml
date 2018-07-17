@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.exercises.DoseCalculationOverviewController">
+   <children>
+      <Label layoutX="239.0" layoutY="22.0" text="Calcul de dose">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="39.0" style="-fx-underline: true;" text="Enoncé">
+         <font>
+            <Font name="Bell MT" size="18.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="questionInput" layoutX="14.0" layoutY="71.0" prefHeight="123.0" prefWidth="575.0" text="Vous mettez en place une perfusion d'un produit H.&#10;Le volume de la perfusion est de 1L et la prescription indique que le produit doit &#10;être administré en 12h.&#10;Quel sera le débit en  gouttes / min ?" />
+      <Label layoutX="14.0" layoutY="211.0" style="-fx-underline: true;" text="Message explicatif">
+         <font>
+            <Font name="Bell MT" size="18.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="descriptionInput" layoutX="14.0" layoutY="244.0" prefHeight="167.0" prefWidth="575.0" promptText="Ce message permettra aux étudiant(e)s de mieux comprendre leur erreur. Et leur&#10;permettre de s'améliorer. Ex: &#10;Le débit d’une perfusion se calcule en divisant le volume de la perfusion &#10;converti en gouttes par le temps prescrit en minute. Ici nous &#10;avons donc (1000x20)/(12x60)=20000/720=27,777… gouttes/minute &#10;soit par excès 28 gouttes/minute.&#10;" />
+      <Label layoutX="14.0" layoutY="424.0" />
+      <Label layoutX="14.0" layoutY="424.0" style="-fx-underline: true;" text="Réponse">
+         <font>
+            <Font name="Bell MT" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="answerInput" layoutX="14.0" layoutY="458.0" prefHeight="31.0" prefWidth="111.0" promptText="28" />
+      <Button layoutX="70.0" layoutY="542.0" mnemonicParsing="false" onAction="#createDoseCalculationExercise" text="Création" />
+      <Button fx:id="goBackButton" layoutX="467.0" layoutY="542.0" mnemonicParsing="false" text="Retour" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="202.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/calcul.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

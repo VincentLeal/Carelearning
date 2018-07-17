@@ -78,9 +78,13 @@ public class ExercisesOverviewController extends Application implements Initiali
     }
 
     @FXML
-    private void doseCalculationExercise() {
-        doseCalculation.setOnMouseClicked(event -> System.out.println("Calcul de deose"));
+    private void doseCalculationExercise(ActionEvent event) throws IOException {
+        Parent page = FXMLLoader.load(getClass().getResource("/fxml/exercises/DoseCalculationOverviewController.fxml"));
+        Scene scene = new Scene(page);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

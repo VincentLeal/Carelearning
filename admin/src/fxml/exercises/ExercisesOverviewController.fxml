@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExercisesOverviewController">
+<AnchorPane fx:id="anchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExercisesOverviewController">
     <Label layoutX="310.0" layoutY="14.0" text="Création d'exercices">
         <font>
             <Font name="System Bold" size="18.0" />
         </font>
     </Label>
-    <Accordion layoutX="4.0" layoutY="134.0" prefHeight="263.0" prefWidth="792.0">
+    <Accordion layoutX="4.0" layoutY="134.0" prefHeight="365.0" prefWidth="792.0">
         <panes>
             <TitledPane animated="false" prefHeight="140.0" prefWidth="792.0" text="Terminologie médicale">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="230.0" prefWidth="790.0">
@@ -23,12 +23,12 @@
                             <Font name="System Bold" size="15.0" />
                         </font>
                     </Button>
-                    <TextArea editable="false" layoutY="25.0" prefHeight="114.0" prefWidth="792.0" text="Au travers de questions, proposer différentes réponses sous forme de bouton radio (une seule réponse &#10;est donc possible) concernant la terminologie médicale. Par exemple :&#10;Qu’est ce que l’aboulie : &#10;- la perte d’appétit&#10;- l’envie de « ne rien faire »&#10;- le fait de « perdre la boule »&#10;- le fait de se sentir en surcharge pondérale&#10;Ici, la réponse est &quot;l'envie de ne rien faire&quot;" />
+                    <TextArea editable="false" layoutY="25.0" prefHeight="214.0" prefWidth="792.0" text="Au travers de questions, proposer différentes réponses sous forme de bouton radio (une seule réponse &#10;est donc possible) concernant la terminologie médicale. Par exemple :&#10;Qu’est ce que l’aboulie : &#10;- la perte d’appétit&#10;- l’envie de « ne rien faire »&#10;- le fait de « perdre la boule »&#10;- le fait de se sentir en surcharge pondérale&#10;Ici, la réponse est &quot;l'envie de ne rien faire&quot;" />
                 </AnchorPane>
             </TitledPane>
             <TitledPane animated="false" text="Préfixe et suffixe">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="200.0">
-                    <TextArea editable="false" layoutX="-1.0" layoutY="27.0" prefHeight="112.0" prefWidth="792.0" text="Dans le monde médical, les préfixes et les suffixes désignent, sauf cas contraire, toujours les mêmes types de &#10;maux. &#10;Par exemple le -a ou -an désignent la privation de quelque chose, ainsi l’anorexie correspond au « manque » (-an &#10;privatif) d’appétit. &#10;Un exemple de question pourrait donc être : Compléter le mot avec le préfixe correspondant à la définition &#10;suivante: &#10;Malformation ou déformation résultant d’une anomalie du développement d’un tissu ou d’un organe &#10;(période embryonnaire ou après la naissance) &#10;_ _ _plasie (la bonne réponse étant : dysplasie)." />
+                    <TextArea editable="false" layoutX="-1.0" layoutY="27.0" prefHeight="211.0" prefWidth="792.0" text="Dans le monde médical, les préfixes et les suffixes désignent, sauf cas contraire, toujours les mêmes types de &#10;maux. &#10;Par exemple le -a ou -an désignent la privation de quelque chose, ainsi l’anorexie correspond au « manque » (-an &#10;privatif) d’appétit. &#10;Un exemple de question pourrait donc être : Compléter le mot avec le préfixe correspondant à la définition &#10;suivante: &#10;Malformation ou déformation résultant d’une anomalie du développement d’un tissu ou d’un organe &#10;(période embryonnaire ou après la naissance) &#10;_ _ _plasie (la bonne réponse étant : dysplasie)." />
                     <Button fx:id="prefixAndSuffix" layoutX="-2.0" layoutY="-1.0" mnemonicParsing="false" onAction="#prefixAndSuffixExercise" prefHeight="31.0" prefWidth="792.0" text="Je crée cet exercice !" textFill="#24a4d6">
                         <font>
                             <Font name="System Bold" size="15.0" />
@@ -38,14 +38,18 @@
             </TitledPane>
             <TitledPane animated="false" text="Calculs de dose">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <Label fx:id="doseCalculation" layoutX="14.0" layoutY="6.0" onMouseClicked="#doseCalculationExercise" text="Je crée cet exercice !" textFill="#24a4d6" />
-                    <TextArea editable="false" layoutY="25.0" prefHeight="112.0" prefWidth="792.0" text="Lors de l’injection de certains médicaments et de certaines drogues, il est très important de respecter une &#10;certaines posologie en fonction de la concentration de ce médicament/drogue et parfois selon le poids du &#10;patient.&#10;Il s’agit d’une règle de trois mais qu’il faut impérativement savoir maîtriser tant les enjeux sont importants. &#10;Un exemple d’exercice pourrait donc être : &#10;Injection de morphine chez un patient de 60kg par intraveineuse. Sachant que la dose quotidienne recommandée &#10;est de 0,3mg/kg/j. &#10;Vous disposez d’ampoule de 50mg/5ml et de pochon de 500ml de chlorure de sodium calculez :&#10;- la dose de morphine&#10;- le nombre d’ampoule nécessaire&#10;- le nombre de gouttes par minute&#10;&#10;Ici la réponse est : &#10;-&gt; Pour un patient de 60kg la dose journalière sera donc de : 18 mg.&#10;-&gt; Pour 18mg, il faudra donc 1,8 ml de morphine, soit 1 ampoule (non complète)&#10;-&gt; Sachant que 1ml = 20 gouttes, cela représente donc pour une journée 6.96 arrondie à 7 gouttes par minutes" />
+                    <TextArea editable="false" layoutY="30.0" prefHeight="209.0" prefWidth="792.0" text="Lors de l’injection de certains médicaments et de certaines drogues, il est très important de respecter une &#10;certaines posologie en fonction de la concentration de ce médicament/drogue et parfois selon le poids du &#10;patient.&#10;Il s’agit d’une règle de trois mais qu’il faut impérativement savoir maîtriser tant les enjeux sont importants. &#10;Un exemple d’exercice pourrait donc être : &#10;Injection de morphine chez un patient de 60kg par intraveineuse. Sachant que la dose quotidienne recommandée &#10;est de 0,3mg/kg/j. &#10;Vous disposez d’ampoule de 50mg/5ml et de pochon de 500ml de chlorure de sodium calculez :&#10;- la dose de morphine&#10;- le nombre d’ampoule nécessaire&#10;- le nombre de gouttes par minute&#10;&#10;Ici la réponse est : &#10;-&gt; Pour un patient de 60kg la dose journalière sera donc de : 18 mg.&#10;-&gt; Pour 18mg, il faudra donc 1,8 ml de morphine, soit 1 ampoule (non complète)&#10;-&gt; Sachant que 1ml = 20 gouttes, cela représente donc pour une journée 6.96 arrondie à 7 gouttes par minutes" />
+               <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#doseCalculationExercise" prefHeight="31.0" prefWidth="792.0" text="Je crée cet exercice !" textFill="#24a4d6">
+                  <font>
+                     <Font name="System Bold" size="15.0" />
+                  </font>
+               </Button>
                 </AnchorPane>
             </TitledPane>
-            <TitledPane animated="false" text="Schémas">
+            <TitledPane animated="false" prefHeight="197.0" prefWidth="792.0" text="Schémas">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <TextArea editable="false" layoutY="29.0" prefHeight="110.0" prefWidth="792.0" text="Le but ici est de placer en drag and drop les différents organes d’un appareil, l’appareil digestif par exemple afin &#10;de reconstituer la place  physiologique des organes. &#10;&#10;Un autre type de schéma est également proposé : Proposer un schéma avec une liste de différents os sur le côté.&#10;Cliquer sur le nom d’un os, puis cliquer sur le schéma à l’endroit supposé. Peut être découpé sur une partie &#10;(les os de la main, les os de la jambe, du pied, etc)&#10;/!\ Chacune des images devra être découpée  au préalable grâce à un logiciel de votre choix. L'url où chaque &#10;image est hébergée devra être ensuite renseignée indépendamment." />
-               <Button layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="792.0" onAction="#schemeExercise" text="Je crée cet exercice !" textFill="#24a4d6">
+                    <TextArea editable="false" layoutY="29.0" prefHeight="211.0" prefWidth="792.0" text="Le but ici est de placer en drag and drop les différents organes d’un appareil, l’appareil digestif par exemple afin &#10;de reconstituer la place  physiologique des organes. &#10;&#10;Un autre type de schéma est également proposé : Proposer un schéma avec une liste de différents os sur le côté.&#10;Cliquer sur le nom d’un os, puis cliquer sur le schéma à l’endroit supposé. Peut être découpé sur une partie &#10;(les os de la main, les os de la jambe, du pied, etc)&#10;/!\ Chacune des images devra être découpée  au préalable grâce à un logiciel de votre choix. L'url où chaque &#10;image est hébergée devra être ensuite renseignée indépendamment." />
+               <Button layoutY="-1.0" mnemonicParsing="false" onAction="#schemeExercise" prefHeight="31.0" prefWidth="792.0" text="Je crée cet exercice !" textFill="#24a4d6">
                   <font>
                      <Font name="System Bold" size="15.0" />
                   </font>
@@ -54,7 +58,7 @@
             </TitledPane>
         </panes>
     </Accordion>
-    <TextArea layoutX="147.0" layoutY="41.0" prefHeight="62.0" prefWidth="506.0" text="Ici, vous pouvez choisir quels types d'exercices vous souhaitez créer. &#10;Cliquez sur chaque section pour plus de détails.">
+    <TextArea editable="false" layoutX="147.0" layoutY="41.0" prefHeight="62.0" prefWidth="506.0" text="Ici, vous pouvez choisir quels types d'exercices vous souhaitez créer. &#10;Cliquez sur chaque section pour plus de détails.">
         <font>
           <Font name="System" size="16.0" />
         </font>

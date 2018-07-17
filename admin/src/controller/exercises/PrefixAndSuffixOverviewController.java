@@ -37,12 +37,12 @@ public class PrefixAndSuffixOverviewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        goBackButton.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, 800.0, 400.0));
-        moduleBox.getItems().addAll("ORL-Dermato-Stomato", "Digestif", "Urologie",
-                "Ophtalmo", "Psychiatrie", "Cancérologie", "Endocrino", "Ortho-Traumato",
-                "Infectieux et VIH", "Pneumologie", "Urgences-Réa-transfu",
-                "Cardio-vasculaire", "Gynécologie", "Pédiatrie", "Neurologie");
-        moduleBox.getSelectionModel().select("ORL-Dermato-Stomato");
+        goBackButton.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, 800.0, 500.0));
+        moduleBox.getItems().addAll("Cancérologie","Cardio-vasculaire","Digestif",
+                "Endocrino", "Gynécologie", "Infectieux et VIH","Ophtalmo","Neurologie",
+                "ORL-Dermato-Stomato","Ortho-Traumato","Pédiatrie","Pneumologie",
+                "Psychiatrie","Urgences-Réa-transfu","Urologie");
+        moduleBox.getSelectionModel().select("Calcul de dose");
     }
 
     @FXML
@@ -76,6 +76,6 @@ public class PrefixAndSuffixOverviewController implements Initializable {
     private void clearForm() {
         questionInput.clear();
         goodAnswerInput.clear();
-        moduleBox.getSelectionModel().select("ORL-Dermato-Stomato");
+        moduleBox.getSelectionModel().select("Calcul de dose");
     }
 }
