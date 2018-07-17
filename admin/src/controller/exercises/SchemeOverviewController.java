@@ -98,9 +98,6 @@ public class SchemeOverviewController implements Initializable{
 
         try {
             int id = exerciseService.postExercise(schemaExercise);
-
-            List<Image> tr = images;
-
             imageService.postImage(images, id);
         }catch (IOException e){
             e.printStackTrace();

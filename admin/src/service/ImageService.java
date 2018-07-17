@@ -30,13 +30,13 @@ public class ImageService {
 
             jsonArray.put(jsonImage);
         }
-        HttpRequest<JSONArray> httpRequest = new HttpRequest<>(imageApi, JSONArray.class);
+        HttpRequest<JSONArray> httpRequest = new HttpRequest<>(imageApi, JSONObject.class);
         httpRequest.setBody(jsonArray);
         httpRequest.setMethod("POST");
 
-        JSONArray responsJson = httpTool.httpCall(httpRequest).getArray();
+        JSONObject responseJson = httpTool.httpCall(httpRequest).getObject();
 
-        System.out.println(responsJson);
+        System.out.println(responseJson);
 
     }
 }
