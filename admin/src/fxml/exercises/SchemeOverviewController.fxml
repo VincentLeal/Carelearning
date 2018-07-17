@@ -41,7 +41,7 @@
       <Button fx:id="goBackButton" layoutX="455.0" layoutY="555.0" mnemonicParsing="false" text="Retour" />
       <ImageView fitHeight="261.0" fitWidth="257.0" layoutX="320.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../img/schmajpg.jpg" />
+            <Image url="@../../img/schema.jpg" />
          </image>
       </ImageView>
       <Label layoutX="350.0" layoutY="166.0" style="-fx-underline: true;" text="Module">
