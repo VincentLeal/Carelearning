@@ -1,5 +1,6 @@
 package controller.exercises;
 
+import javafx.scene.control.ComboBox;
 import tool.TransitionView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,16 +43,26 @@ public class MedicalTerminologyOverviewController implements Initializable {
     private Button goBackButton;
 
     @FXML
-    private TextField moduleInput;
+    private ComboBox moduleBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         goBackButton.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, 800.0, 400.0));
+
+        moduleBox.getItems().addAll("ORL-Dermato-Stomato", "Digestif", "Urologie",
+                "Ophtalmo", "Psychiatrie", "Cancérologie", "Endocrino", "Ortho-Traumato",
+                "Infectieux et VIH", "Pneumologie", "Urgences-Réa-transfu",
+                "Cardio-vasculaire", "Gynécologie", "Pédiatrie", "Neurologie");
+        moduleBox.getSelectionModel().select("ORL-Dermato-Stomato");
+
+
     }
 
     @FXML
     private void createNewMCQ() {
         String type = "QCM";
+        String module = moduleBox.getValue().toString();
+
 
         Exercise mcqExercise = new Exercise(
                 questionInput.getText(),
@@ -59,7 +70,7 @@ public class MedicalTerminologyOverviewController implements Initializable {
                 choice1Input.getText(),
                 choice2Input.getText(),
                 choice3Input.getText(),
-                moduleInput.getText(),
+                module,
                 type
         );
 
@@ -77,7 +88,7 @@ public class MedicalTerminologyOverviewController implements Initializable {
         choice1Input.clear();
         choice2Input.clear();
         choice3Input.clear();
-        moduleInput.clear();
+        moduleBox.getSelectionModel().select("ORL-Dermato-Stomato");
     }
 
 }

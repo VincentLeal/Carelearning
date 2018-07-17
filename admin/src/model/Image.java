@@ -66,7 +66,7 @@ public class Image {
         this.exerciseId = exerciseId;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Image{" +
                 "id=" + id +
@@ -74,5 +74,10 @@ public class Image {
                 ", label='" + label + '\'' +
                 ", url='" + url + '\'' +
                 '}';
+    }*/
+
+    public String toString() {
+        return "nom : " + label + " -- " +
+                "url : " + url;
     }
 }

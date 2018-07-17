@@ -1,16 +1,8 @@
 package controller.exercises;
 
-import controller.ExercisesOverviewController;
-import javafx.animation.Transition;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.Exercise;
 import model.Image;
@@ -20,7 +12,9 @@ import tool.TransitionView;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class SchemeOverviewController implements Initializable{
     private ExerciseService exerciseService = new ExerciseService();
@@ -50,18 +44,20 @@ public class SchemeOverviewController implements Initializable{
     private ComboBox moduleBox;
 
     @FXML
-    private Button goBackButton;
+    private ListView imageListView;
 
+    @FXML
+    private Button goBackButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         goBackButton.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, 800.0, 400.0));
 
-        moduleBox.getItems().addAll("ORL", "Digestif",
-                "Ophtalmo", "Psychiatrie",
-                "Infectieux et VIH", "Pneumologie",
-                "Cardiologie");
-        moduleBox.getSelectionModel().select("ORL");
+        moduleBox.getItems().addAll("ORL-Dermato-Stomato", "Digestif", "Urologie",
+                "Ophtalmo", "Psychiatrie", "Cancérologie", "Endocrino", "Ortho-Traumato",
+                "Infectieux et VIH", "Pneumologie", "Urgences-Réa-transfu",
+                "Cardio-vasculaire", "Gynécologie", "Pédiatrie", "Neurologie");
+        moduleBox.getSelectionModel().select("ORL-Dermato-Stomato");
 
     }
 
@@ -73,6 +69,9 @@ public class SchemeOverviewController implements Initializable{
         );
         System.out.println(image);
         images.add(image);
+
+        imageListView.getItems().add(image);
+
         clearImageInput();
     }
 
@@ -98,14 +97,20 @@ public class SchemeOverviewController implements Initializable{
 
         try {
             int id = exerciseService.postExercise(schemaExercise);
-            imageService.postImage(images, id);
+            imageService.postImage(images, schemaExercise);
         }catch (IOException e){
             e.printStackTrace();
         }
+        clear();
     }
 
     private void clearImageInput() {
         labelInput.clear();
         urlInput.clear();
+    }
+
+    private void clear() {
+        moduleBox.getSelectionModel().select("ORL-Dermato-Stomato");
+        imageListView.getItems().clear();
     }
 }

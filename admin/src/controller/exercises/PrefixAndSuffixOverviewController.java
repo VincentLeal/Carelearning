@@ -1,5 +1,6 @@
 package controller.exercises;
 
+import javafx.scene.control.ComboBox;
 import tool.TransitionView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,7 +30,7 @@ public class PrefixAndSuffixOverviewController implements Initializable {
     private TextField goodAnswerInput;
 
     @FXML
-    private TextField moduleInput;
+    private ComboBox moduleBox;
 
     @FXML
     private Button goBackButton;
@@ -37,6 +38,11 @@ public class PrefixAndSuffixOverviewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         goBackButton.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, 800.0, 400.0));
+        moduleBox.getItems().addAll("ORL-Dermato-Stomato", "Digestif", "Urologie",
+                "Ophtalmo", "Psychiatrie", "Cancérologie", "Endocrino", "Ortho-Traumato",
+                "Infectieux et VIH", "Pneumologie", "Urgences-Réa-transfu",
+                "Cardio-vasculaire", "Gynécologie", "Pédiatrie", "Neurologie");
+        moduleBox.getSelectionModel().select("ORL-Dermato-Stomato");
     }
 
     @FXML
@@ -45,6 +51,7 @@ public class PrefixAndSuffixOverviewController implements Initializable {
         String choice1 = "/";
         String choice2 = "/";
         String choice3 = "/";
+        String module = moduleBox.getValue().toString();
 
         Exercise prefixAndSuffixExercise = new Exercise(
                 questionInput.getText(),
@@ -52,7 +59,7 @@ public class PrefixAndSuffixOverviewController implements Initializable {
                 choice1,
                 choice2,
                 choice3,
-                moduleInput.getText(),
+                module,
                 type
         );
 
@@ -69,6 +76,6 @@ public class PrefixAndSuffixOverviewController implements Initializable {
     private void clearForm() {
         questionInput.clear();
         goodAnswerInput.clear();
-        moduleInput.clear();
+        moduleBox.getSelectionModel().select("ORL-Dermato-Stomato");
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -8,36 +9,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.exercises.PrefixAndSuffixOverviewController">
+<AnchorPane fx:id="anchorPane" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.exercises.PrefixAndSuffixOverviewController">
    <Label layoutX="228.0" layoutY="14.0" text="Préfixe et suffixe">
       <font>
-         <Font name="System Bold" size="18.0"/>
+         <Font name="System Bold" size="18.0" />
       </font>
    </Label>
    <Label layoutX="28.0" layoutY="73.0" style="-fx-underline: true;" text="Quelle est votre question?">
       <font>
-         <Font name="Bell MT" size="18.0"/>
+         <Font name="Bell MT" size="18.0" />
       </font>
    </Label>
-   <TextField fx:id="questionInput" layoutX="26.0" layoutY="112.0" prefHeight="31.0" prefWidth="549.0"
-              promptText="ex: Traitement qui vise à la correction des défauts d'élocution: _____phonie"/>
+   <TextField fx:id="questionInput" layoutX="26.0" layoutY="112.0" prefHeight="31.0" prefWidth="549.0" promptText="ex: Traitement qui vise à la correction des défauts d'élocution: _____phonie" />
    <Label layoutX="29.0" layoutY="176.0" style="-fx-underline: true;" text="Quelle sera la réponse?">
       <font>
-         <Font name="Bell MT" size="18.0"/>
+         <Font name="Bell MT" size="18.0" />
       </font>
    </Label>
-   <TextField fx:id="goodAnswerInput" layoutX="30.0" layoutY="210.0" promptText="ortho"/>
+   <TextField fx:id="goodAnswerInput" layoutX="30.0" layoutY="210.0" promptText="ortho" />
    <Label layoutX="30.0" layoutY="267.0" style="-fx-underline: true;" text="A quel module appartient la question?">
       <font>
-         <Font name="Bell MT" size="18.0"/>
+         <Font name="Bell MT" size="18.0" />
       </font>
    </Label>
-   <TextField fx:id="moduleInput" layoutX="30.0" layoutY="307.0" promptText="ORL"/>
-   <ImageView fitHeight="314.0" fitWidth="261.0" layoutX="325.0" layoutY="177.0" pickOnBounds="true"
-              preserveRatio="true">
-      <Image url="@../../img/bandage.jpg"/>
+   <ImageView fitHeight="314.0" fitWidth="261.0" layoutX="325.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../../img/bandage.jpg" />
    </ImageView>
-   <Button layoutX="29.0" layoutY="389.0" mnemonicParsing="false" onAction="#createPrefixAndSuffixExercise" text="Création"/>
-   <Button fx:id="goBackButton" layoutX="203.0" layoutY="389.0" mnemonicParsing="false" text="Retour"/>
+   <Button layoutX="29.0" layoutY="389.0" mnemonicParsing="false" onAction="#createPrefixAndSuffixExercise" text="Création" />
+   <Button fx:id="goBackButton" layoutX="203.0" layoutY="389.0" mnemonicParsing="false" text="Retour" />
+   <ComboBox fx:id="moduleBox" layoutX="30.0" layoutY="308.0" prefHeight="31.0" prefWidth="229.0" />
 </AnchorPane>
