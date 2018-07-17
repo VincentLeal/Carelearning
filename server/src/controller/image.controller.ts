@@ -1,6 +1,8 @@
 import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
 import {ImageService} from '../service/image.service';
 import {Image} from '../entity/image.entity';
+import {Exercise} from '../entity/exercise.entity';
+import {ExerciseService} from '../service/exercise.service';
 
 @Controller('image')
 export class ImageController {
@@ -24,6 +26,7 @@ export class ImageController {
     @Post()
     async createImages(@Body() images: Image[]) {
         const createdImages = await this.imageService.createImages(images);
+
         return { images: createdImages };
     }
 

@@ -1,5 +1,6 @@
 package service;
 
+import model.Exercise;
 import model.Image;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,7 +18,7 @@ public class ImageService {
 
     private HttpTool httpTool = HttpTool.getInstance();
 
-    public void postImage(List<Image> images, int exerciseId) throws IOException {
+    public void postImage(List<Image> images, Exercise exercise) throws IOException {
         JSONArray jsonArray = new JSONArray();
 
         for(int i = 0; i < images.size(); i++){
@@ -26,7 +27,7 @@ public class ImageService {
             jsonImage.put("title", images.get(i).getTitle());
             jsonImage.put("label", images.get(i).getLabel());
             jsonImage.put("url", images.get(i).getUrl());
-            jsonImage.put("exerciseId", exerciseId);
+            jsonImage.put("exerciseId", exercise.getId());
 
             jsonArray.put(jsonImage);
         }
@@ -37,6 +38,5 @@ public class ImageService {
         JSONObject responseJson = httpTool.httpCall(httpRequest).getObject();
 
         System.out.println(responseJson);
-
     }
 }

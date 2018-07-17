@@ -15,7 +15,8 @@ export class Image {
     @Column('text')
     url: string;
 
-    @ManyToOne(type => Exercise)
+    @ManyToOne(type => Exercise, exercise => exercise.images)
     @JoinColumn({name: 'exerciseId'})
+
     exercise: Exercise;
 }
