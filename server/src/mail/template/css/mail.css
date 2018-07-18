@@ -1,0 +1,44 @@
+@font-face {
+    font-family: "Loveland";
+    src: url('loveland.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Curve";
+    src: url('LearningCurve.ttf') format("truetype");
+}
+
+h1 {
+    font-family: Loveland;
+    font-size: 45px;
+    color: rebeccapurple;
+}
+
+body {
+    background-color: lavender;
+    background-repeat: no-repeat;
+    background-image: url("../img/nurse.png");
+    background-size: 400px;
+}
+
+#heading {
+    text-align: center;
+}
+
+#slogan {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#mail-content {
+    font-family: Curve;
+    font-size: 30px;
+    font-weight: bold;
+    border: 2px solid gray;
+    padding: 6px;
+    width: 650px;
+    text-align: center;
+    margin: 6px auto;
+    background-color: lightskyblue;
+}
