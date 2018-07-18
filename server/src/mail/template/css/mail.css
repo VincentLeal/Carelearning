@@ -1,11 +1,9 @@
-@font-face {
-    font-family: "Loveland";
-    src: url('loveland.ttf') format('truetype');
-}
+/*
+
 
 @font-face {
     font-family: "Curve";
-    src: url('LearningCurve.ttf') format("truetype");
+    src: url('../font/LearningCurve.ttf') format("truetype");
 }
 
 h1 {
@@ -15,9 +13,7 @@ h1 {
 }
 
 body {
-    background-color: lavender;
-    background-repeat: no-repeat;
-    background-image: url("../img/nurse.png");
+    background: lavender url("../img/nurse.png") no-repeat;
     background-size: 400px;
 }
 
@@ -41,4 +37,4 @@ body {
     text-align: center;
     margin: 6px auto;
     background-color: lightskyblue;
-}
+}*/

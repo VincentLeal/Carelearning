@@ -7,10 +7,11 @@ export class RoleVerificator {
         this.authorizedRoles = authorizedRoles;
     }
 
-    verify(user): boolean {
-        if(!user || !this.hasSufficientRole(this.authorizedRoles, user.role)){
+     verify(user): boolean {
+        if (!user || !this.hasSufficientRole(this.authorizedRoles, user.role)){
             throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
         }
+        return true;
     }
 
     private hasSufficientRole(roles: any[], currentUserRole) {

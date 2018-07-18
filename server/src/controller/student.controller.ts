@@ -3,16 +3,16 @@ import {Student} from '../entity/student.entity';
 import {StudentService} from '../service/student.service';
 import {DeSerializationPipe} from '../authentication/pipes/DeSerializationPipe';
 import {RoleVerificator} from '../authentication/role.verificator';
-import {SendMail} from '../mail/send.mail';
+import {MailSender} from '../mail/send.mail';
 
 @Controller('student')
 export class StudentController {
     private readonly roleVerificator: RoleVerificator;
-    private readonly sendMail: SendMail;
+    private readonly mailSender: MailSender;
 
     constructor(private readonly studentService: StudentService) {
         this.roleVerificator = new RoleVerificator('admin');
-        this.sendMail = new SendMail();
+        this.mailSender = new MailSender();
     }
     @Get()
     async findAll(@Req() request): Promise<Student[]> {
@@ -29,7 +29,14 @@ export class StudentController {
     @UsePipes(new DeSerializationPipe())
     async create(@Body() student: Student){
         const createdStudent = await this.studentService.create(student);
-        this.sendMail.sendMail();
+
+        const randomPassword = Math.random().toString(20).substring(2, 15);
+        const context = {
+            username: student.firstname,
+            password: randomPassword,
+            mailTo: student.mail,
+        }
+        this.mailSender.sendMail(MailSender.MAIL_TEMPLATE.SEND_PASSWORD, context);
         return { student: createdStudent };
     }
 
