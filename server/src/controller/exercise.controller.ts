@@ -1,10 +1,15 @@
-import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put, Req} from '@nestjs/common';
 import {Exercise} from '../entity/exercise.entity';
-import {ExerciseService} from "../service/exercise.service";
+import {ExerciseService} from '../service/exercise.service';
+import {RoleVerificator} from '../authentication/role.verificator';
 
 @Controller('exercise')
 export class ExerciseController {
-    constructor(private readonly exerciseService: ExerciseService) {}
+    private readonly roleVerificator: RoleVerificator;
+
+    constructor(private readonly exerciseService: ExerciseService) {
+        this.roleVerificator = new RoleVerificator('admin');
+    }
     @Get()
     async findAll(): Promise<Exercise[]> {
         return await this.exerciseService.findAll();
@@ -22,12 +27,19 @@ export class ExerciseController {
     }
 
     @Put(':id')
-    async update(@Param('id') id: string, @Body() exercise: Partial<Exercise>) {
+    async update(@Req() request, @Param('id') id: string, @Body() exercise: Partial<Exercise>) {
+        console.log(request.user);
+
+        this.roleVerificator.verify(request.user);
+
         return await this.exerciseService.update(+id, exercise);
     }
 
     @Delete(':id')
-    async  destroy(@Param('id') id: string) {
+    async  destroy(@Req() request, @Param('id') id: string) {
+        console.log(request.user);
+
+        this.roleVerificator.verify(request.user);
         await this.exerciseService.destroy(+id);
         return;
     }

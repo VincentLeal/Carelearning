@@ -16,13 +16,14 @@ export class AuthController {
     public async authStudent(@Body() studentRequest: Student) {
         const { mail, password } = studentRequest;
         const student = await this.studentService.findOneByMail(mail);
-        const tokenPayload = {
-            mail: studentRequest.mail,
-            role: student.role,
-        };
+
         if (student) {
             const result = await EncryptorService.validate(password, student.password);
             if (result) {
+                const tokenPayload = {
+                    mail: student.mail,
+                    role: student.role,
+                };
                 return await this.authService.createToken(tokenPayload);
             }
         }

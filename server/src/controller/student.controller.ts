@@ -1,13 +1,19 @@
-import {Body, Controller, Delete, Get, Param, Post, Put, UsePipes} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put, Req, UsePipes} from '@nestjs/common';
 import {Student} from '../entity/student.entity';
 import {StudentService} from '../service/student.service';
 import {DeSerializationPipe} from '../authentication/pipes/DeSerializationPipe';
+import {RoleVerificator} from '../authentication/role.verificator';
 
 @Controller('student')
 export class StudentController {
-    constructor(private readonly studentService: StudentService) {}
+    private readonly roleVerificator: RoleVerificator;
+    constructor(private readonly studentService: StudentService) {
+        this.roleVerificator = new RoleVerificator('admin');
+    }
     @Get()
-    async findAll(): Promise<Student[]> {
+    async findAll(@Req() request): Promise<Student[]> {
+        this.roleVerificator.verify(request.user);
+
         return await this.studentService.findAll();
     }
 
@@ -29,7 +35,11 @@ export class StudentController {
     }
 
     @Delete(':id')
-    async destroy(@Param('id') id: string) {
+    async destroy(@Param('id') id: string, @Req() request) {
+        console.log(request.user);
+
+        this.roleVerificator.verify(request.user);
+
         await this.studentService.destroy(+id);
     }
 

@@ -20,14 +20,14 @@ export class AuthService {
         };
     }
 
-    async defineRole(signedStudent): Promise<string> {
-        const { mail, role } = signedStudent;
+    async validateToken(mail: string, token: string): Promise<boolean> {
         const student = await this.studentService.findOneByMail(mail);
 
+        if (!student)
+            return Promise.resolve(false);
 
-        if(role === 'admin')
-            return 'admin';
-        return 'user';
-        //return await EncryptorService.validate(password, student.password);
+        return jwt.verify(token, 'secret', {}, (error, decodedToken) => {
+             return error ? Promise.resolve(false) : Promise.resolve(true);
+        });
     }
 }

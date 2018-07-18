@@ -20,15 +20,14 @@ export class JwtStrategy extends Strategy {
     }
 
     async verify(req, payload, done) {
-        await this.authService.defineRole(payload);
-
-        done(null, payload);
-
-        /*if(!isValid){
+        const jwtToken = req.headers['authorization'];
+        if(!jwtToken)
             return done('Unauthorized', false);
-        }
-        done(null, payload);
-    }*/
+        const plainToken = jwtToken.split(' ')[1];
+        const isValidToken = await this.authService.validateToken(payload.mail, plainToken);
 
+        if(!isValidToken)
+            return done('Unauthorized', false);
+        return done(null, payload);
     }
 }
