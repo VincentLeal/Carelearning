@@ -21,7 +21,7 @@
             <Font name="Bell MT" size="18.0" />
          </font>
       </Label>
-      <TextArea fx:id="questionInput" layoutX="14.0" layoutY="71.0" prefHeight="123.0" prefWidth="575.0" text="Vous mettez en place une perfusion d'un produit H.&#10;Le volume de la perfusion est de 1L et la prescription indique que le produit doit &#10;être administré en 12h.&#10;Quel sera le débit en  gouttes / min ?" />
+      <TextArea fx:id="questionInput" layoutX="14.0" layoutY="71.0" prefHeight="123.0" prefWidth="575.0" promptText="Vous mettez en place une perfusion d'un produit H.Le volume de la perfusion est de 1L et la prescription indique que le produit doit être administré en 12h.Quel sera le débit en  gouttes / min ?" />
       <Label layoutX="14.0" layoutY="211.0" style="-fx-underline: true;" text="Message explicatif">
          <font>
             <Font name="Bell MT" size="18.0" />

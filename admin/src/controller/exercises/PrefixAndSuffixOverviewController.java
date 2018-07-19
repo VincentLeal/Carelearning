@@ -1,5 +1,8 @@
 package controller.exercises;
 
+import controller.dialog.DisplayView;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import tool.TransitionView;
 import javafx.fxml.FXML;
@@ -20,6 +23,8 @@ public class PrefixAndSuffixOverviewController implements Initializable {
     private TransitionView transitionView = new TransitionView();
     private String fxmlBackScene = "/fxml/exercises/ExercisesOverviewController.fxml";
     private String fxmlBackSceneTitle = "Exercices";
+
+    private DisplayView displayView = new DisplayView();
 
     @FXML
     private AnchorPane anchorPane;
@@ -48,30 +53,47 @@ public class PrefixAndSuffixOverviewController implements Initializable {
 
     @FXML
     private void createPrefixAndSuffixExercise() {
+        boolean emptyField = isEmptyTextField();
+
         String type = "Suffixe et préfixe";
         String choice1 = "/";
         String choice2 = "/";
         String choice3 = "/";
         String module = moduleBox.getValue().toString();
 
-        Exercise prefixAndSuffixExercise = new Exercise(
-                questionInput.getText(),
-                goodAnswerInput.getText(),
-                choice1,
-                choice2,
-                choice3,
-                module,
-                type
-        );
+        if(!emptyField){
+            Exercise prefixAndSuffixExercise = new Exercise(
+                    questionInput.getText(),
+                    goodAnswerInput.getText(),
+                    choice1,
+                    choice2,
+                    choice3,
+                    module,
+                    type
+            );
 
-        try {
-            exerciseService.postExercise(prefixAndSuffixExercise);
-        } catch (IOException e) {
-            e.printStackTrace();
+            try {
+                exerciseService.postExercise(prefixAndSuffixExercise);
+                displayView.dialog("/fxml/dialog/success/SuccessExerciseCreation.fxml", "Succès !");
+                clearForm();
+            } catch (IOException e) {
+                displayView.dialog("/fxml/dialog/error/FailExerciseCreation.fxml", "Erreur !");
+                e.printStackTrace();
+            }
         }
-        clearForm();
     }
 
+    private boolean isEmptyTextField() {
+        ObservableList<Node> observableList = anchorPane.getChildren();
+
+        for(Node verifyTextField : observableList) {
+            if(verifyTextField instanceof TextField
+                    && ((TextField) verifyTextField).getText().trim().isEmpty()){
+                return true;
+            }
+        }
+        return false;
+    }
 
 
     private void clearForm() {

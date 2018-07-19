@@ -1,5 +1,8 @@
 package controller.exercises;
 
+import controller.dialog.DisplayView;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import tool.TransitionView;
 import javafx.fxml.FXML;
@@ -22,6 +25,7 @@ public class MedicalTerminologyOverviewController implements Initializable {
     private String fxmlBackScene = "/fxml/exercises/ExercisesOverviewController.fxml";
     private String fxmlBackSceneTitle = "Exercices";
 
+    private DisplayView displayView = new DisplayView();
 
     @FXML
     private AnchorPane anchorPane;
@@ -65,23 +69,42 @@ public class MedicalTerminologyOverviewController implements Initializable {
         String type = "QCM";
         String module = moduleBox.getValue().toString();
 
+        boolean emptyField = isEmptyTextField();
 
-        Exercise mcqExercise = new Exercise(
-                questionInput.getText(),
-                goodAnswerInput.getText(),
-                choice1Input.getText(),
-                choice2Input.getText(),
-                choice3Input.getText(),
-                module,
-                type
-        );
+        if(!emptyField){
+            Exercise mcqExercise = new Exercise(
+                    questionInput.getText(),
+                    goodAnswerInput.getText(),
+                    choice1Input.getText(),
+                    choice2Input.getText(),
+                    choice3Input.getText(),
+                    module,
+                    type
+            );
 
-        try {
-            exerciseService.postExercise(mcqExercise);
-        } catch (IOException e) {
-            e.printStackTrace();
+            try {
+                exerciseService.postExercise(mcqExercise);
+                displayView.dialog("/fxml/dialog/success/SuccessExerciseCreation.fxml", "Succès !");
+                clearForm();
+            } catch (IOException e) {
+                displayView.dialog("/fxml/dialog/error/FailExerciseCreation.fxml", "Erreur !");
+                e.printStackTrace();
+            }
+        } else {
+            displayView.dialog("/fxml/dialog/error/FailExerciseCreation.fxml", "Erreur !");
         }
-        clearForm();
+    }
+
+    private boolean isEmptyTextField() {
+        ObservableList<Node> observableList = anchorPane.getChildren();
+
+        for(Node verifyTextField : observableList) {
+            if(verifyTextField instanceof TextField
+                    && ((TextField) verifyTextField).getText().trim().isEmpty()){
+                return true;
+            }
+        }
+        return false;
     }
 
     private void clearForm() {

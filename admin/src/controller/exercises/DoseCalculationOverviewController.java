@@ -1,5 +1,6 @@
 package controller.exercises;
 
+import controller.dialog.DisplayView;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +23,8 @@ public class DoseCalculationOverviewController implements Initializable {
     private TransitionView transitionView = new TransitionView();
     private String fxmlBackScene = "/fxml/exercises/ExercisesOverviewController.fxml";
     private String fxmlBackSceneTitle = "Exercices";
+
+    private DisplayView displayView = new DisplayView();
 
     @FXML
     private AnchorPane anchorPane;
@@ -61,21 +64,28 @@ public class DoseCalculationOverviewController implements Initializable {
         );
 
         try {
-            boolean emptyField = isEmptyTextField();
-            if(!emptyField)
+            boolean emptyArea = isEmptyTextArea();
+            boolean emptyField = answerInput.getText().trim().isEmpty();
+
+            if(!emptyArea && !emptyField){
                 exerciseService.postExercise(doseCalculation);
+                displayView.dialog("/fxml/dialog/success/SuccessExerciseCreation.fxml", "Succès !");
+                clearForm();
+            }else{
+                displayView.dialog("/fxml/dialog/error/FailExerciseCreation.fxml", "Erreur !");
+            }
         }catch (IOException e) {
+            displayView.dialog("/fxml/dialog/error/FailExerciseCreation.fxml", "Erreur !");
             e.printStackTrace();
         }
-        clearForm();
     }
 
-    private boolean isEmptyTextField() {
+    private boolean isEmptyTextArea() {
         ObservableList<Node> observableList = anchorPane.getChildren();
 
-        for(Node verifyTextField : observableList) {
-            if(verifyTextField instanceof TextField
-                && ((TextField) verifyTextField).getText().trim().isEmpty()){
+        for(Node verifyTextArea : observableList) {
+            if(verifyTextArea instanceof TextArea
+                && ((TextField) verifyTextArea).getText().trim().isEmpty()){
                  return true;
             }
         }

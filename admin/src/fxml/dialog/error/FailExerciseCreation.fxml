@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="186.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="219.0" fitWidth="226.0" layoutX="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/failEx.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="240.0" layoutY="21.0" text="Un problème est survenu pendant &#10;la création de votre exercice&#10;Vérifier que vos champs soient &#10;remplis et que le serveur &#10;soit démarré." textFill="#f50000">
+         <font>
+            <Font name="Bell MT Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

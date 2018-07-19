@@ -1,7 +1,10 @@
 package controller.exercises;
 
+import controller.dialog.DisplayView;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.Exercise;
@@ -22,10 +25,11 @@ public class SchemeOverviewController implements Initializable{
 
     List<Image> images = new ArrayList<>();
 
-
     private TransitionView transitionView = new TransitionView();
     private String fxmlBackScene = "/fxml/exercises/ExercisesOverviewController.fxml";
     private String fxmlBackSceneTitle = "Exercices";
+
+    private DisplayView displayView = new DisplayView();
 
     @FXML
     private AnchorPane anchorPane;
@@ -78,33 +82,44 @@ public class SchemeOverviewController implements Initializable{
 
     @FXML
     private void createSchemeExercise() {
-        String type = "Schéma";
-        String goodAnswer =  "/";
-        String choice1 = "/";
-        String choice2 = "/";
-        String choice3 = "/";
-        String module = moduleBox.getValue().toString();
+        boolean emptyField = titleInput.getText().trim().isEmpty();
+        boolean emptyTextArea =  descriptionInput.getText().trim().isEmpty();;
+        boolean emptyListView = imageListView.getItems().isEmpty();
 
-        Exercise schemaExercise = new Exercise(
-                descriptionInput.getText(),
-                goodAnswer,
-                choice1,
-                choice2,
-                choice3,
-                module,
-                type,
-                images
-        );
+        if(!emptyField && ! emptyTextArea && !emptyListView){
 
-        try {
-            int id = exerciseService.postExercise(schemaExercise);
-            imageService.postImage(images, schemaExercise);
-        }catch (IOException e){
-            e.printStackTrace();
+            String type = "Schéma";
+            String goodAnswer =  "/";
+            String choice1 = "/";
+            String choice2 = "/";
+            String choice3 = "/";
+            String module = moduleBox.getValue().toString();
+
+            Exercise schemaExercise = new Exercise(
+                    descriptionInput.getText(),
+                    goodAnswer,
+                    choice1,
+                    choice2,
+                    choice3,
+                    module,
+                    type,
+                    images
+            );
+
+            try {
+                int id = exerciseService.postExercise(schemaExercise);
+                imageService.postImage(images, schemaExercise);
+                displayView.dialog("/fxml/dialog/success/SuccessExerciseCreation.fxml", "Succès !");
+                clear();
+
+            }catch (IOException e){
+                displayView.dialog("/fxml/dialog/error/FailExerciseCreation.fxml", "Erreur !");
+                e.printStackTrace();
+            }
+        } else {
+            displayView.dialog("/fxml/dialog/error/FailExerciseCreation.fxml", "Erreur !");
         }
-        clear();
     }
-
     private void clearImageInput() {
         labelInput.clear();
         urlInput.clear();

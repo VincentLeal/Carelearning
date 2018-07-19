@@ -6,17 +6,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="200.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="174.0" layoutX="21.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="184.0" fitWidth="213.0" layoutX="2.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/stop.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="215.0" layoutY="90.0" text="L'email entré est déjà existant en base !">
+      <Label layoutX="222.0" layoutY="90.0" text="L'email entré est déjà existant en base !" textFill="#f50000">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
    </children>

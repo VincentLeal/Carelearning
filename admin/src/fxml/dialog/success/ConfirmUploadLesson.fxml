@@ -13,9 +13,9 @@
             <Image url="@../../../img/rightFile.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="233.0" layoutY="118.0" text="Votre leçon a été enregistré avec succès !">
+      <Label layoutX="209.0" layoutY="124.0" text="Votre leçon a été enregistrée avec succès !" textFill="#1f8637">
          <font>
-            <Font name="Bell MT Bold" size="18.0" />
+            <Font name="Bell MT Bold" size="24.0" />
          </font>
       </Label>
    </children>
