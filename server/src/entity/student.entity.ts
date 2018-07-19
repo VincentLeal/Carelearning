@@ -8,19 +8,19 @@ export class Student {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column('text')
+    @Column('text', { nullable: false })
     firstname: string;
 
-    @Column('text')
+    @Column('text', { nullable: false })
     lastname: string;
 
-    @Column('text')
+    @Column('text', { nullable: false })
     password: string;
 
-    @Column('text')
+    @Column('text', { nullable: false })
     mail: string;
 
-    @Column('text')
+    @Column('text', { nullable: false })
     school: string;
 
     @Column('timestamp')

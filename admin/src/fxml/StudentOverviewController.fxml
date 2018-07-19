@@ -24,16 +24,16 @@
                 </columns>
             </TableView>
         </AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="79.0" prefWidth="598.0">
-            <TextField fx:id="firstnameInput" layoutY="26.0" prefHeight="31.0" prefWidth="128.0" promptText="Prénom" />
-            <TextField fx:id="lastnameInput" layoutX="128.0" layoutY="26.0" prefHeight="31.0" prefWidth="128.0" promptText="Nom" />
-            <TextField fx:id="mailInput" layoutX="256.0" layoutY="26.0" prefHeight="31.0" prefWidth="128.0" promptText="Mail" />
-            <TextField fx:id="schoolInput" layoutX="384.0" layoutY="26.0" prefHeight="31.0" prefWidth="128.0" promptText="Ecole" />
-            <PasswordField fx:id="passwordInput" layoutX="39.0" layoutY="67.0" prefHeight="31.0" prefWidth="128.0" promptText="Mot de passe" />
-            <Button layoutX="531.0" layoutY="26.0" mnemonicParsing="false" onAction="#saveNewStudent" prefHeight="31.0" prefWidth="87.0" text="Inscrire" />
-            <Button fx:id="delStudent" layoutX="647.0" layoutY="26.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="Sup" />
-            <Button fx:id="backToMenu" layoutX="739.0" layoutY="26.0" mnemonicParsing="false" text="Retour" />
-            <ComboBox fx:id="roleBox" layoutX="203.0" layoutY="67.0" prefWidth="150.0" />
+        <AnchorPane fx:id="anchorPaneInput" minHeight="0.0" minWidth="0.0" prefHeight="79.0" prefWidth="598.0">
+            <TextField fx:id="firstnameInput" layoutX="14.0" layoutY="21.0" prefHeight="31.0" prefWidth="128.0" promptText="Prénom" />
+            <TextField fx:id="lastnameInput" layoutX="14.0" layoutY="67.0" prefHeight="31.0" prefWidth="128.0" promptText="Nom" />
+            <TextField fx:id="mailInput" layoutX="227.0" layoutY="26.0" prefHeight="31.0" prefWidth="128.0" promptText="Mail" />
+            <TextField fx:id="schoolInput" layoutX="227.0" layoutY="67.0" prefHeight="31.0" prefWidth="128.0" promptText="Ecole" />
+            <PasswordField fx:id="passwordInput" layoutX="443.0" layoutY="67.0" prefHeight="31.0" prefWidth="128.0" promptText="Mot de passe" />
+            <Button layoutX="649.0" layoutY="26.0" mnemonicParsing="false" onAction="#saveNewStudent" prefHeight="31.0" prefWidth="87.0" text="Inscrire" />
+            <Button fx:id="delStudent" layoutX="821.0" layoutY="42.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="Sup" />
+            <Button fx:id="backToMenu" layoutX="650.0" layoutY="67.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="87.0" text="Retour" />
+            <ComboBox fx:id="roleBox" layoutX="443.0" layoutY="26.0" prefWidth="150.0" />
         </AnchorPane>
     </SplitPane>
 </AnchorPane>

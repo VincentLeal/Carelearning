@@ -6,7 +6,7 @@ export class MailSender {
     private templateDirectory: string = './src/mail/template/html';
 
     static MAIL_TEMPLATE = {
-        SEND_PASSWORD: { fileName: 'sendPassword.html', subject: 'Test' },
+        SEND_PASSWORD: { fileName: 'sendPassword.html', subject: 'Heureux de vous accueillir :) !' },
     };
 
     sendMail(template: any, context: any) {
@@ -22,13 +22,13 @@ export class MailSender {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.CARELEANING_MAIL,
+                user: process.env.CARELEARNING_MAIL,
                 pass: process.env.CARELEARNING_PWD,
             },
         });
 
         const mailOptions = {
-            from: process.env.CARELEANING_MAIL,
+            from: process.env.CARELEARNING_MAIL,
             to: context.mailTo,
             subject: template.subject,
             html: mailTemplate,

@@ -29,14 +29,15 @@ export class StudentController {
     @UsePipes(new DeSerializationPipe())
     async create(@Body() student: Student){
         const createdStudent = await this.studentService.create(student);
-
-        const randomPassword = Math.random().toString(20).substring(2, 15);
-        const context = {
-            username: student.firstname,
-            password: randomPassword,
-            mailTo: student.mail,
+        if (student.role !== 'admin') {
+            const randomPassword = Math.random().toString(20).substring(2, 15);
+            const context = {
+                username: student.firstname,
+                password: randomPassword,
+                mailTo: student.mail,
+            };
+            this.mailSender.sendMail(MailSender.MAIL_TEMPLATE.SEND_PASSWORD, context);
         }
-        this.mailSender.sendMail(MailSender.MAIL_TEMPLATE.SEND_PASSWORD, context);
         return { student: createdStudent };
     }
 

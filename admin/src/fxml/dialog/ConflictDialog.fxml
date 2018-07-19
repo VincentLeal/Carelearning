@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="150.0" fitWidth="174.0" layoutX="21.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/stop.jpg" />
+            <Image url="@../../img/stop.jpg" />
          </image>
       </ImageView>
       <Label layoutX="215.0" layoutY="90.0" text="L'email entré est déjà existant en base !">

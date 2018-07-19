@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,11 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Student;
 import service.StudentService;
@@ -40,6 +36,9 @@ public class StudentOverviewController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
+
+    @FXML
+    private AnchorPane anchorPaneInput;
 
     @FXML
     private TableView<Student> studentTableView;
@@ -120,10 +119,11 @@ public class StudentOverviewController implements Initializable {
         roleBox.getItems().addAll("user", "admin");
         roleBox.getSelectionModel().select("user");
 
+        passwordInput.disableProperty().bind(roleBox.valueProperty().isEqualTo("user"));
+
         backToMenu.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, 300.0, 500.0));
 
         getSelectedRow();
-
     }
 
     private void editColumn(TableColumn<Student, String> column, String key){
@@ -152,9 +152,15 @@ public class StudentOverviewController implements Initializable {
         );
 
         try {
-            int newStudentId = studentService.postStudent(student);
-            student.setId(newStudentId);
-            studentData.add(student);
+            boolean emptyField = isEmptyTextfield(roleBox.getValue().toString());
+
+            if(!emptyField){
+                int newStudentId = studentService.postStudent(student);
+                student.setId(newStudentId);
+                studentData.add(student);
+            }else{
+                displayEmptyFieldDialog();
+            }
 
         } catch (HTTPConflictException ex) {
             displayConflictErrorDialog();
@@ -189,7 +195,7 @@ public class StudentOverviewController implements Initializable {
 
     private void displayConflictErrorDialog () {
         try {
-            Parent page = FXMLLoader.load(getClass().getResource("/fxml/ConflictDialog.fxml"));
+            Parent page = FXMLLoader.load(getClass().getResource("/fxml/dialog/ConflictDialog.fxml"));
             Scene scene = new Scene(page);
             Stage stage = new Stage();
 
@@ -203,11 +209,47 @@ public class StudentOverviewController implements Initializable {
         }
     }
 
+    private void displayEmptyFieldDialog() {
+        try {
+            Parent page = FXMLLoader.load(getClass().getResource("/fxml/dialog/EmptyFieldDialog.fxml"));
+            Scene scene = new Scene(page);
+            Stage stage = new Stage();
+
+            stage.setTitle("Vous avez oublié quelque chose");
+
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void clearForm() {
         firstnameInput.clear();
         lastnameInput.clear();
         mailInput.clear();
         schoolInput.clear();
         passwordInput.clear();
+    }
+
+    private boolean isEmptyTextfield(String role) {
+        ObservableList<Node> observableList = anchorPaneInput.getChildren();
+
+        for(Node verifyTextField : observableList) {
+            if(verifyTextField instanceof TextField){
+                if(role.equals("user")
+                    && !verifyTextField.getId().equals("passwordInput")
+                    && ((TextField) verifyTextField).getText().trim().isEmpty()) {
+                        System.out.println(verifyTextField.toString() + " is empty");
+                        return true;
+
+                }else if(role.equals("admin")
+                    && ((TextField) verifyTextField).getText().trim().isEmpty()){
+                        System.out.println(verifyTextField.toString() + " is empty");
+                        return true;
+                    }
+                }
+            }
+        return false;
     }
 }
