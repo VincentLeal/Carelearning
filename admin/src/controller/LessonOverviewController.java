@@ -1,5 +1,6 @@
 package controller;
 
+import controller.dialog.DisplayView;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,7 +12,8 @@ import tool.CsvMapper;
 import tool.TransitionView;
 
 import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,6 +25,9 @@ public final class LessonOverviewController extends Application implements Initi
 
     private TransitionView transitionView = new TransitionView();
     private String fxmlBackScene = "/fxml/MainController.fxml";
+    private String fxmlBackSceneTitle = "Menu principal";
+
+    private DisplayView displayView = new DisplayView();
 
     @FXML
     private AnchorPane anchorPane;
@@ -41,14 +46,16 @@ public final class LessonOverviewController extends Application implements Initi
 
         Stage stage = new Stage();
 
-        chooseFileButton.setOnAction(e -> {
+        chooseFileButton.setOnAction(event -> {
             System.out.println("button pressed");
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
                 try {
                     openFile(file);
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                    displayView.dialog("/fxml/dialog/success/ConfirmUploadLesson.fxml", "Leçon enregistrée");
+                } catch (IOException e) {
+                    displayView.dialog("/fxml/dialog/error/FileErrorDialog.fxml", "Oups !");
+                    e.printStackTrace();
                 }
             }
         });
@@ -59,15 +66,15 @@ public final class LessonOverviewController extends Application implements Initi
         openFile();
     }
 
-    private void openFile(File file) throws IOException {
+    private void openFile(File csvFile) throws IOException {
         CsvMapper csvMapper = new CsvMapper();
-        csvMapper.readCsv();
+        csvMapper.readCsv(csvFile);
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        goBackButton.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, 300.0, 500.0));
+        goBackButton.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, fxmlBackSceneTitle, 320.0, 500.0));
     }
 }
 

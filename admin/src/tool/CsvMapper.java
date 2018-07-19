@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,11 +20,8 @@ public class CsvMapper {
 
     Pattern pattern = Pattern.compile("[^a-zA-Z-0-9]");
 
-    public void readCsv() throws IOException {
-        String csvFile = "C:/Users/lukile/Desktop/test.csv";
-
-
-        List<Lesson> lessons = getLessons(csvFile);
+    public void readCsv(File filePath) throws IOException {
+        List<Lesson> lessons = getLessons(filePath);
 
         JSONArray jsonArray = toJsonArray(lessons);
 
@@ -34,7 +32,7 @@ public class CsvMapper {
         JSONArray responseJson = httpTool.httpCall(httpRequest).getArray();
     }
 
-    private List<Lesson> getLessons(String csvFile) {
+    private List<Lesson> getLessons(File csvFile) {
         int counterLine = 0;
 
         String separator = null;

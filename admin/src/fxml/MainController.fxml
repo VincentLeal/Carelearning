@@ -10,16 +10,16 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="anchor" prefHeight="500.0" prefWidth="300.0"  xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<AnchorPane id="anchor" prefHeight="500.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
     <stylesheets>
         <URL value="@../css/application.css" />
     </stylesheets>
     <children>
-        <Button fx:id="student" layoutX="76.0" layoutY="116.0" onAction="#studentActionButton" prefHeight="31.0" prefWidth="143.0" text="Elèves" textFill="#bf0000">
+        <Button fx:id="student" layoutX="89.0" layoutY="110.0" onAction="#studentActionButton" prefHeight="31.0" prefWidth="143.0" text="Elèves" textFill="#bf0000">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
-        <Button fx:id="lesson" layoutX="76.0" layoutY="211.0" mnemonicParsing="false" onAction="#lessonActionButton" prefHeight="31.0" prefWidth="143.0" text="Leçon" textFill="#bf0000">
+        <Button fx:id="lesson" layoutX="89.0" layoutY="201.0" mnemonicParsing="false" onAction="#lessonActionButton" prefHeight="31.0" prefWidth="143.0" text="Leçon" textFill="#bf0000">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
@@ -36,7 +36,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <Button fx:id="exercise" layoutX="76.0" layoutY="304.0" mnemonicParsing="false" onAction="#exerciseActionButton" prefHeight="41.0" prefWidth="143.0" text="Exercices" textFill="#bf0000">
+      <Button fx:id="exercise" layoutX="89.0" layoutY="294.0" mnemonicParsing="false" onAction="#exerciseActionButton" prefHeight="41.0" prefWidth="143.0" text="Exercices" textFill="#bf0000">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -46,7 +46,7 @@
             <Font name="Andalus" size="14.0" />
          </font>
       </Label>
-      <ImageView fitHeight="277.0" fitWidth="300.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="277.0" fitWidth="300.0" layoutX="14.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/carelearning.png" />
          </image>

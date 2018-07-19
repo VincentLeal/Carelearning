@@ -1,7 +1,9 @@
 package controller.exercises;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -19,6 +21,7 @@ public class DoseCalculationOverviewController implements Initializable {
 
     private TransitionView transitionView = new TransitionView();
     private String fxmlBackScene = "/fxml/exercises/ExercisesOverviewController.fxml";
+    private String fxmlBackSceneTitle = "Exercices";
 
     @FXML
     private AnchorPane anchorPane;
@@ -37,7 +40,7 @@ public class DoseCalculationOverviewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        goBackButton.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, 800.0,500.0));
+        goBackButton.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, fxmlBackSceneTitle, 800.0,500.0));
     }
 
     @FXML
@@ -58,11 +61,25 @@ public class DoseCalculationOverviewController implements Initializable {
         );
 
         try {
-            exerciseService.postExercise(doseCalculation);
+            boolean emptyField = isEmptyTextField();
+            if(!emptyField)
+                exerciseService.postExercise(doseCalculation);
         }catch (IOException e) {
             e.printStackTrace();
         }
         clearForm();
+    }
+
+    private boolean isEmptyTextField() {
+        ObservableList<Node> observableList = anchorPane.getChildren();
+
+        for(Node verifyTextField : observableList) {
+            if(verifyTextField instanceof TextField
+                && ((TextField) verifyTextField).getText().trim().isEmpty()){
+                 return true;
+            }
+        }
+        return false;
     }
 
     private void clearForm() {
@@ -70,7 +87,4 @@ public class DoseCalculationOverviewController implements Initializable {
         answerInput.clear();
         descriptionInput.clear();
     }
-
-
-
 }

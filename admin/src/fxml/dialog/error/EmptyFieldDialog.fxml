@@ -8,7 +8,7 @@
    <children>
       <ImageView fitHeight="462.0" fitWidth="450.0" layoutX="2.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../img/forgetField.jpg" />
+            <Image url="@../../../img/forgetField.jpg" />
          </image>
       </ImageView>
    </children>

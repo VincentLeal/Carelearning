@@ -25,6 +25,7 @@ public class SchemeOverviewController implements Initializable{
 
     private TransitionView transitionView = new TransitionView();
     private String fxmlBackScene = "/fxml/exercises/ExercisesOverviewController.fxml";
+    private String fxmlBackSceneTitle = "Exercices";
 
     @FXML
     private AnchorPane anchorPane;
@@ -51,7 +52,7 @@ public class SchemeOverviewController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        goBackButton.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, 800.0, 500.0));
+        goBackButton.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, fxmlBackSceneTitle, 800.0, 500.0));
 
         moduleBox.getItems().addAll("Cancérologie","Cardio-vasculaire","Digestif",
                 "Endocrino", "Gynécologie", "Infectieux et VIH","Ophtalmo","Neurologie",

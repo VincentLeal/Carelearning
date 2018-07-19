@@ -15,11 +15,11 @@ import java.io.IOException;
  */
 
 public class TransitionView {
-    public void goBackButton(AnchorPane anchorPane, String fxml, double width, double height) {
-        makeFadeOut(anchorPane, fxml, width, height);
+    public void goBackButton(AnchorPane anchorPane, String fxml, String title, double width, double height) {
+        makeFadeOut(anchorPane, fxml, title, width, height);
     }
 
-    private void makeFadeOut(AnchorPane anchorPane, String fxml, double width, double height) {
+    private void makeFadeOut(AnchorPane anchorPane, String fxml, String title, double width, double height) {
         FadeTransition fadeTransition = new FadeTransition();
 
         fadeTransition.setDuration(Duration.millis(1000));
@@ -29,7 +29,7 @@ public class TransitionView {
 
         fadeTransition.setOnFinished(event -> {
             try {
-                loadBackScene(anchorPane, fxml, width, height);
+                loadBackScene(anchorPane, fxml, title, width, height);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -37,12 +37,13 @@ public class TransitionView {
         fadeTransition.play();
     }
 
-    private void loadBackScene(AnchorPane anchorPane, String fxml, double width, double height) throws IOException {
-        Parent parent;
-        parent = FXMLLoader.load(getClass().getResource(fxml));
+    private void loadBackScene(AnchorPane anchorPane, String fxml, String title, double width, double height) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource(fxml));
 
         Scene scene = new Scene(parent, width, height);
         Stage stage = (Stage) anchorPane.getScene().getWindow();
+
+        stage.setTitle(title);
 
         stage.setScene(scene);
         stage.show();
