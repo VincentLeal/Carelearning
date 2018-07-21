@@ -5,8 +5,8 @@ import {Image} from '../entity/image.entity';
 
 @Component()
 export class ImageService {
-    constructor(@InjectRepository(Image)
-    private readonly imageRepository: Repository<Image>) {}
+    constructor(@InjectRepository(Image) private readonly imageRepository: Repository<Image>) {
+    }
 
     async findAll(): Promise<Image[]> {
         return await this.imageRepository.find();
@@ -16,16 +16,17 @@ export class ImageService {
         return await this.imageRepository.findOneById(id);
     }
 
-    async create(image: Image) {
+    async save(image: Image) {
         return await this.imageRepository.save(image);
     }
 
-    async createImages(images: Image[]) {
+    async saveImages(images: Image[]) {
         return await this.imageRepository.save(images);
     }
 
     async update(id: number, imageData: Partial<Image>) {
         await this.imageRepository.updateById(id, imageData);
+
         return this.imageRepository.findOneById(id);
     }
     async destroy(id: number) {

@@ -1,7 +1,7 @@
 import * as passport from 'passport';
 
-import {MiddlewaresConsumer, Module, NestModule, RequestMethod} from '@nestjs/common';
-import {StudentService } from '../service/student.service';
+import {MiddlewaresConsumer, Module, NestModule} from '@nestjs/common';
+import {StudentService} from '../service/student.service';
 import {Student} from '../entity/student.entity';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {StudentController} from '../controller/student.controller';
@@ -16,6 +16,7 @@ export class StudentModule implements NestModule {
     public configure(consumer: MiddlewaresConsumer) {
         consumer
             .apply(passport.authenticate('jwt', {session: false}))
-            .forRoutes({path: '/student', method: [RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE]});
+            .forRoutes(StudentController);
+
     }
 }

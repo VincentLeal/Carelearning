@@ -17,6 +17,5 @@ export class Image {
 
     @ManyToOne(type => Exercise, exercise => exercise.images)
     @JoinColumn({name: 'exerciseId'})
-
     exercise: Exercise;
 }

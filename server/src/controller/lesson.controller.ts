@@ -23,22 +23,20 @@ export class LessonController {
     @Post()
     async create(@Req() request, @Body() lesson: Lesson) {
         this.roleVerificator.verify(request.user);
-
         const createdLesson = await this.lessonService.create(lesson);
         return { lesson: createdLesson };
     }
 
     @Put(':id')
     async update(@Req() request, @Param('id') id: string, @Body() lesson: Partial<Lesson>) {
-        console.log(request.user);
         this.roleVerificator.verify(request.user);
         return await this.lessonService.update(+id, lesson);
     }
 
     @Delete(':id')
-    async  destroy(@Param('id') id: string) {
+    async  destroy(@Req() request, @Param('id') id: string) {
+        this.roleVerificator.verify(request.user);
         await this.lessonService.destroy(+id);
-        return;
     }
 
 }

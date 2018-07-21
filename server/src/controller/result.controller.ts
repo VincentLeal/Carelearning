@@ -1,34 +1,34 @@
-import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put, Req} from '@nestjs/common';
 import {Result} from '../entity/result.entity';
 import {ResultService} from "../service/result.service";
+import {RoleVerificator} from '../authentication/role.verificator';
 
 @Controller('result')
 export class ResultController{
-    constructor(private readonly resultService: ResultService) {}
+    private readonly roleVerificator: RoleVerificator;
+
+    constructor(private readonly resultService: ResultService) {
+        this.roleVerificator = new RoleVerificator('admin');
+    }
+
     @Get()
-    async findAll(): Promise<Result[]> {
+    async findAll(@Req() request): Promise<Result[]> {
         return await this.resultService.findAll();
     }
 
     @Get(':id')
-    async findOne(@Param('id') id: string){
-        return await this.resultService.findOne(+id);
+    async findOne(@Req() request, @Param('id') id: string){
+        if(request.user.role === 'admin'){
+            return await this.resultService.findOne(+id);
+        }else{
+            const userId = request.user.id;
+            return await this.resultService.findOne(+userId);
+        }
     }
 
     @Post()
     async create(@Body() result: Result) {
         const createdResult = await this.resultService.create(result);
         return { result: createdResult };
-    }
-
-    @Put(':id')
-    async update(@Param('id') id: string, @Body() result: Partial<Result>) {
-        return await this.resultService.update(+id, result);
-    }
-
-    @Delete(':id')
-    async  destroy(@Param('id') id: string) {
-        await this.resultService.destroy(+id);
-        return;
     }
 }

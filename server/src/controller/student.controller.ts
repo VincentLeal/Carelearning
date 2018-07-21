@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, Post, Put, Req, UsePipes} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put, Req, Res, UsePipes} from '@nestjs/common';
 import {Student} from '../entity/student.entity';
 import {StudentService} from '../service/student.service';
 import {DeSerializationPipe} from '../authentication/pipes/DeSerializationPipe';
@@ -7,22 +7,22 @@ import {MailSender} from '../mail/send.mail';
 
 @Controller('student')
 export class StudentController {
-    private readonly roleVerificator: RoleVerificator;
+    private readonly adminRoleVerificator: RoleVerificator;
     private readonly mailSender: MailSender;
 
     constructor(private readonly studentService: StudentService) {
-        this.roleVerificator = new RoleVerificator('admin');
+        this.adminRoleVerificator = new RoleVerificator('admin');
         this.mailSender = new MailSender();
     }
     @Get()
     async findAll(@Req() request): Promise<Student[]> {
-        this.roleVerificator.verify(request.user);
+        this.adminRoleVerificator.verify(request.user);
         return await this.studentService.findAll();
     }
 
-    @Get(':id')
-    async findOne(@Param('id') id: string){
-        return await this.studentService.findOne(+id);
+    @Get('/me')
+    async findMe(@Req() request){
+        return await this.studentService.findOneByMail(request.user.mail);
     }
 
     @Post()
@@ -42,16 +42,14 @@ export class StudentController {
     }
 
     @Put(':id')
-    async update(@Param('id') id: string, @Body() student: Partial<Student>) {
-        return await this.studentService.update(+id, student);
+    async update(@Req() request, @Param('id') id: number, @Body() student: Partial<Student>) {
+        this.adminRoleVerificator.verify(request.user);
+        return await this.studentService.update(id, student);
     }
 
     @Delete(':id')
     async destroy(@Param('id') id: string, @Req() request) {
-        console.log(request.user);
-
-        this.roleVerificator.verify(request.user);
-
+        this.adminRoleVerificator.verify(request.user);
         await this.studentService.destroy(+id);
     }
 

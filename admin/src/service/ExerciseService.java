@@ -25,12 +25,14 @@ public class ExerciseService {
         jsonExercise.put("choice3", exercise.getChoice3());
         jsonExercise.put("module", exercise.getModule());
         jsonExercise.put("type", exercise.getType());
+        jsonExercise.put("images", exercise.getImages());
 
         HttpRequest<JSONObject> httpRequest = new HttpRequest<>(exerciseApi, JSONObject.class);
         httpRequest.setBody(jsonExercise);
         httpRequest.setMethod("POST");
 
         JSONObject responseJson = httpTool.httpCall(httpRequest).getObject();
+
         return responseJson.getJSONObject("exercise").getInt("id");
     }
 

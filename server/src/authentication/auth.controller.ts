@@ -21,6 +21,7 @@ export class AuthController {
             const result = await EncryptorService.validate(password, student.password);
             if (result) {
                 const tokenPayload = {
+                    id: student.id,
                     mail: student.mail,
                     role: student.role,
                 };

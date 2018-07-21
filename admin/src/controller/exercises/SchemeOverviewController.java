@@ -108,7 +108,6 @@ public class SchemeOverviewController implements Initializable{
 
             try {
                 int id = exerciseService.postExercise(schemaExercise);
-                imageService.postImage(images, schemaExercise);
                 displayView.dialog("/fxml/dialog/success/SuccessExerciseCreation.fxml", "Succès !");
                 clear();
 

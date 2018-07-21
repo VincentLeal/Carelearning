@@ -4,7 +4,7 @@ package model;
  * Created on 16/07/2018.
  */
 public class Image {
-    private int id;
+    private Integer id;
     private String title;
     private String label;
     private String url;
@@ -16,10 +16,10 @@ public class Image {
     public Image(String title,
                  String label,
                  String url){
-        this(-1, title, label, url);
+        this(null, title, label, url);
     }
 
-    public Image(int id, String title, String label, String url) {
+    public Image(Integer id, String title, String label, String url) {
         this.id = id;
         this.title = title;
         this.label = label;
