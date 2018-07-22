@@ -38,8 +38,13 @@ public class ConnectionOverviewController {
                 if (isEmpty(mailInput, passwordInput)) {
                     emptyField.setText("Tous les champs doivent être remplis!");
                 } else {
-                    String accessToken =  connectionService.checkIfAdmin(mail, password);
-                    displayView.window("/fxml/MainController.fxml", "Menu principal", event);
+                    try {
+                        connectionService.checkIfAdmin(mail, password);
+                        displayView.window("/fxml/MainController.fxml", "Menu principal", event);
+                    } catch (RuntimeException ex) {
+                        String errorMessage = ex.getMessage();
+                        emptyField.setText(errorMessage);
+                    }
                 }
             }catch (NullPointerException e) {
                 e.printStackTrace();

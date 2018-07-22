@@ -44,7 +44,7 @@ public class ResultStudentController implements Initializable{
     private TableColumn<Result, String> moduleColumn;
 
     @FXML
-    private ObservableList<Result> resultData = observableArrayList(resultService.getResults());
+    private ObservableList<Result> resultData; /*= observableArrayList(resultService.getResults());*/
 
     @FXML
     private Button goBackButton;

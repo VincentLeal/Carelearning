@@ -6,6 +6,7 @@ import tool.HttpRequest;
 import tool.HttpTool;
 
 import java.io.IOException;
+import java.util.Base64;
 
 /**
  * Created on 22/07/2018.
@@ -15,8 +16,7 @@ public class ConnectionService {
 
     private HttpTool httpTool = HttpTool.getInstance();
 
-    public String checkIfAdmin(String mail, String password) {
-        String accessToken = null;
+    public void checkIfAdmin(String mail, String password) {
         try {
             JSONObject studentOrAdmin = new JSONObject();
 
@@ -27,15 +27,20 @@ public class ConnectionService {
             httpRequest.setBody(studentOrAdmin);
             httpRequest.setMethod("POST");
 
-            JSONObject responseJson = httpTool.httpCallWithoutAuth(httpRequest).getObject();
+            JSONObject responseJson = httpTool.httpCall(httpRequest).getObject();
 
-            accessToken = responseJson.get("access_token").toString();
+            String accessToken = responseJson.get("access_token").toString();
+
+            String payload = new String(Base64.getDecoder().decode(accessToken.split("\\.")[1]));
+            String role = new JSONObject(payload).getString("role");
+            if("user".equalsIgnoreCase(role)) {
+                throw new RuntimeException("Ceci n'est pas un compte administrateur");
+            }
+            httpTool.setAccessToken(accessToken);
 
         }catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
-        System.out.println(accessToken);
-        return accessToken;
 
     }
 }

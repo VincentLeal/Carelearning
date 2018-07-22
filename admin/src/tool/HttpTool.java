@@ -17,11 +17,16 @@ import java.nio.charset.StandardCharsets;
 public class HttpTool {
 
     private final static HttpTool instance = new HttpTool();
+    private String accessToken;
 
     private HttpTool() {}
 
     public static HttpTool getInstance() {
         return instance;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     public HttpResponse httpCall(HttpRequest httpRequest) throws HTTPException, IOException {
@@ -32,7 +37,9 @@ public class HttpTool {
         httpURLConnection.setRequestMethod(method);
         httpURLConnection.setRequestProperty("Content-Type", httpRequest.getContentType());
         httpURLConnection.setRequestProperty("Accept-Charset", "UTF-8");
-        httpURLConnection.setRequestProperty("Authorization", "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWlsIjoiYSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTUzMTgxNjQ1OSwiZXhwIjoxNTMxODYwMjU5fQ.lTH6tLkEwY94HOHE8S1IyGIZOHIIiX7EW9o3Ybnanms");
+        if(accessToken != null) {
+            httpURLConnection.setRequestProperty("Authorization", "Bearer " + accessToken);
+        }
 
 
         if (!"GET".equalsIgnoreCase(method) && !"DELETE".equalsIgnoreCase(method)) {
@@ -64,7 +71,7 @@ public class HttpTool {
         StringBuilder source = new StringBuilder();
         String inputline;
 
-        try ( BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), StandardCharsets.UTF_8))) {
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), StandardCharsets.UTF_8))) {
             while((inputline = in.readLine()) != null) {
                 source.append(inputline);
             }
