@@ -3,13 +3,18 @@ import {Student} from '../entity/student.entity';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import {ConflictException} from '@nestjs/common/exceptions/conflict.exception';
+import {MailSender} from '../mail/send.mail';
 
 @Component()
 export class StudentService {
+    private readonly mailSender: MailSender;
+
     constructor(
         @InjectRepository(Student)
         private readonly studentRepository: Repository<Student>,
-    ) {}
+    ) {
+        this.mailSender = new MailSender();
+    }
 
     async findAll(): Promise<Student[]> {
         return await this.studentRepository.find();
@@ -29,6 +34,18 @@ export class StudentService {
         if (studentAlreadyExist) {
             throw new ConflictException();
         }
+
+        if (student.role === 'user') {
+            student.password = Math.random().toString(20).substring(2, 15);
+            console.log('random pwd : ' , student.password);
+            const context = {
+                username: student.firstname,
+                password: student.password,
+                mailTo: student.mail,
+            };
+            this.mailSender.sendMail(MailSender.MAIL_TEMPLATE.SEND_PASSWORD, context);
+        }
+
         return await this.studentRepository.save(student);
     }
 

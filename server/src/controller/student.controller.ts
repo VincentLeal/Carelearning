@@ -8,11 +8,9 @@ import {MailSender} from '../mail/send.mail';
 @Controller('student')
 export class StudentController {
     private readonly adminRoleVerificator: RoleVerificator;
-    private readonly mailSender: MailSender;
 
     constructor(private readonly studentService: StudentService) {
         this.adminRoleVerificator = new RoleVerificator('admin');
-        this.mailSender = new MailSender();
     }
     @Get()
     async findAll(@Req() request): Promise<Student[]> {
@@ -28,16 +26,9 @@ export class StudentController {
     @Post()
     @UsePipes(new DeSerializationPipe())
     async create(@Body() student: Student){
+        console.log('student password ' + student.password);
         const createdStudent = await this.studentService.create(student);
-        if (student.role !== 'admin') {
-            const randomPassword = Math.random().toString(20).substring(2, 15);
-            const context = {
-                username: student.firstname,
-                password: randomPassword,
-                mailTo: student.mail,
-            };
-            this.mailSender.sendMail(MailSender.MAIL_TEMPLATE.SEND_PASSWORD, context);
-        }
+        console.log('password ' + student.password);
         return { student: createdStudent };
     }
 
