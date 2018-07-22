@@ -80,6 +80,8 @@ public class PrefixAndSuffixOverviewController implements Initializable {
                 displayView.dialog("/fxml/dialog/error/FailExerciseCreation.fxml", "Erreur !");
                 e.printStackTrace();
             }
+        } else {
+            displayView.dialog("/fxml/dialog/error/FailExerciseCreation.fxml", "Erreur !");
         }
     }
 

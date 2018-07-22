@@ -6,13 +6,13 @@ export class Lesson {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column('text')
+    @Column('text' , { nullable: false})
     module: string;
 
-    @Column('text')
+    @Column('text', { nullable: false})
     title: string;
 
-    @Column('text')
+    @Column('text', { nullable: false})
     content: string;
 
     @OneToMany(type => Revision_sheet, revision_sheet => revision_sheet.lesson)

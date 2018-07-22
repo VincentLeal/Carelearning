@@ -55,6 +55,32 @@ public class StudentService {
         return studentArrayList;
     }
 
+    public List<Student> searchByName(String firstname, String lastname) {
+        List<Student> students = new ArrayList<>();
+        try {
+            HttpRequest<JSONObject> httpRequest = new HttpRequest<>(studentApi, JSONArray.class);
+            JSONArray studentArray = httpTool.httpCall(httpRequest).getArray();
+
+            Student student = new Student();
+
+            for (int index = 0; index < studentArray.length(); index++){
+                JSONObject jsonObject = studentArray.getJSONObject(index);
+
+                if(jsonObject.getString("firstname").equalsIgnoreCase(firstname)
+                        && jsonObject.getString("lastname").equalsIgnoreCase(lastname)){
+
+                    student.setFirstname(jsonObject.getString("firtsname"));
+                    student.setLastname(jsonObject.getString("lasname"));
+
+                    students.add(student);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
+
     public int postStudent(Student student) throws HTTPConflictException, IOException {
         JSONObject jsonStudent = new JSONObject();
 

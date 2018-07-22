@@ -10,22 +10,22 @@ export class Exercise {
     @Column('text')
     question: string;
 
-    @Column({nullable: true})
+    @Column({nullable: false})
     goodAnswer: string;
 
-    @Column({nullable: true})
+    @Column({nullable: false})
     choice1: string;
 
-    @Column({nullable: true})
+    @Column({nullable: false})
     choice2: string;
 
-    @Column({nullable: true})
+    @Column({nullable: false})
     choice3: string;
 
-    @Column('text')
+    @Column('text', { nullable: false})
     module: string;
 
-    @Column('text')
+    @Column('text', { nullable: false})
     type: string;
 
     @OneToMany(type => Result, result => result.exercise)

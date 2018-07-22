@@ -2,6 +2,8 @@ package controller;
 
 import controller.dialog.DisplayView;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -44,6 +46,15 @@ public class StudentOverviewController implements Initializable {
     private AnchorPane anchorPaneInput;
 
     @FXML
+    private TextField searchBar;
+
+    @FXML
+    private ChoiceBox<String> choiceBox;
+
+    @FXML
+    private Button searchButton;
+
+    @FXML
     private TableView<Student> studentTableView;
 
     @FXML
@@ -68,6 +79,9 @@ public class StudentOverviewController implements Initializable {
     private TableColumn<Student, String> roleColumn;
 
     @FXML
+    private TableColumn resultColumn;
+
+    @FXML
     private TextField firstnameInput;
 
     @FXML
@@ -83,7 +97,7 @@ public class StudentOverviewController implements Initializable {
     private PasswordField passwordInput;
 
     @FXML
-    private ComboBox roleBox;
+    private ComboBox<String> roleBox;
 
     @FXML
     private Button delStudent;
@@ -111,6 +125,9 @@ public class StudentOverviewController implements Initializable {
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
         roleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
+        choiceBox.getItems().addAll("nom", "prénom", "mail", "ecole", "date d'inscription", "role");
+        choiceBox.setValue("nom");
+
         studentTableView.setItems(studentData);
 
         editColumn(firstnameColumn, "firstname");
@@ -124,9 +141,38 @@ public class StudentOverviewController implements Initializable {
 
         passwordInput.disableProperty().bind(roleBox.valueProperty().isEqualTo("user"));
 
-        backToMenu.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, fxmlBackSceneTitle, 320.0, 500.0));
+        backToMenu.setOnAction(event -> transitionView.goBackButton(anchorPane, fxmlBackScene, fxmlBackSceneTitle, 184.0, 338.0));
 
         getSelectedRow();
+    }
+
+    @FXML
+    private void searchStudent() {
+        FilteredList<Student> student = new FilteredList<>(studentData, stdt -> true);
+        studentTableView.setItems(student);
+
+        searchButton.setOnAction(event -> {
+            switch (choiceBox.getValue().toString()) {
+                case "nom":
+                    student.setPredicate(stdt -> stdt.getFirstname().contains(searchBar.getText().toLowerCase().trim()));
+                    break;
+                case "prénom":
+                    student.setPredicate(stdt -> stdt.getLastname().contains(searchBar.getText().toLowerCase().trim()));
+                    break;
+                case "mail":
+                    student.setPredicate(stdt -> stdt.getMail().contains(searchBar.getText().toLowerCase().trim()));
+                    break;
+                case "ecole":
+                    student.setPredicate(stdt -> stdt.getSchool().contains(searchBar.getText().toLowerCase().trim()));
+                    break;
+                case "date d'inscription":
+                    student.setPredicate(stdt -> stdt.getRegisterDate().contains(searchBar.getText().toLowerCase().trim()));
+                    break;
+                case "role":
+                    student.setPredicate(stdt -> stdt.getRole().contains(searchBar.getText().toLowerCase().trim()));
+                    break;
+            }
+        });
     }
 
     private void editColumn(TableColumn<Student, String> column, String key){
@@ -200,13 +246,6 @@ public class StudentOverviewController implements Initializable {
             });
         }
     }
-    private void clearForm() {
-        firstnameInput.clear();
-        lastnameInput.clear();
-        mailInput.clear();
-        schoolInput.clear();
-        passwordInput.clear();
-    }
 
     private boolean isEmptyTextfield(String role) {
         ObservableList<Node> observableList = anchorPaneInput.getChildren();
@@ -225,5 +264,22 @@ public class StudentOverviewController implements Initializable {
                 }
             }
         return false;
+    }
+
+    @FXML
+    private void getResult(ActionEvent event) {
+        if(studentTableView.getSelectionModel().getSelectedItem() != null) {
+            Student selectedStudent = studentTableView.getSelectionModel().getSelectedItem();
+
+            displayView.window("/fxml/ResultStudentController.fxml", "Résultats", event);
+        }
+    }
+
+    private void clearForm() {
+        firstnameInput.clear();
+        lastnameInput.clear();
+        mailInput.clear();
+        schoolInput.clear();
+        passwordInput.clear();
     }
 }

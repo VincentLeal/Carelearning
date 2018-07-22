@@ -6,13 +6,13 @@ export class Image {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column('text')
+    @Column('text', {nullable: false})
     title: string;
 
-    @Column('text')
+    @Column('text', {nullable: false})
     label: string;
 
-    @Column('text')
+    @Column('text', { nullable: false})
     url: string;
 
     @ManyToOne(type => Exercise, exercise => exercise.images)

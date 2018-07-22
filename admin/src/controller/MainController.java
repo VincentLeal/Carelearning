@@ -16,7 +16,7 @@ public class MainController implements Initializable{
 
     @FXML
     private void studentActionButton(ActionEvent event) {
-        displayView.window("/fxml/StudentOverviewController.fxml", "Gestion des élèves", event);
+        displayView.window("/fxml/StudentOverviewController.fxml", "Elèves", event);
     }
 
     @FXML

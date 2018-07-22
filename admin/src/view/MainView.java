@@ -16,11 +16,11 @@ public class MainView extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainController.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ConnectionOverviewController.fxml"));
 
         Scene scene = new Scene(root);
 
-        primaryStage.setTitle("Menu principal");
+        primaryStage.setTitle("Connexion");
 
         primaryStage.setScene(scene);
         primaryStage.show();
