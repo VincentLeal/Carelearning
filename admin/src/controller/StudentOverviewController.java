@@ -125,8 +125,8 @@ public class StudentOverviewController implements Initializable {
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
         roleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        choiceBox.getItems().addAll("nom", "prénom", "mail", "ecole", "date d'inscription", "role");
-        choiceBox.setValue("nom");
+        choiceBox.getItems().addAll("prénom", "nom", "mail", "école", "date d'inscription", "rôle");
+        choiceBox.setValue("prénom");
 
         studentTableView.setItems(studentData);
 
@@ -152,26 +152,15 @@ public class StudentOverviewController implements Initializable {
         studentTableView.setItems(student);
 
         searchButton.setOnAction(event -> {
-            switch (choiceBox.getValue().toString()) {
-                case "nom":
-                    student.setPredicate(stdt -> stdt.getFirstname().contains(searchBar.getText().toLowerCase().trim()));
-                    break;
-                case "prénom":
-                    student.setPredicate(stdt -> stdt.getLastname().contains(searchBar.getText().toLowerCase().trim()));
-                    break;
-                case "mail":
-                    student.setPredicate(stdt -> stdt.getMail().contains(searchBar.getText().toLowerCase().trim()));
-                    break;
-                case "ecole":
-                    student.setPredicate(stdt -> stdt.getSchool().contains(searchBar.getText().toLowerCase().trim()));
-                    break;
-                case "date d'inscription":
-                    student.setPredicate(stdt -> stdt.getRegisterDate().contains(searchBar.getText().toLowerCase().trim()));
-                    break;
-                case "role":
-                    student.setPredicate(stdt -> stdt.getRole().contains(searchBar.getText().toLowerCase().trim()));
-                    break;
-            }
+            String searchText = searchBar.getText().toLowerCase().trim();
+
+            student.setPredicate(stud ->
+                    stud.getFirstname().toLowerCase().contains(searchText) ||
+                    stud.getLastname().toLowerCase().contains(searchText) ||
+                    stud.getMail().toLowerCase().contains(searchText) ||
+                    stud.getSchool().toLowerCase().contains(searchText) ||
+                    stud.getRegisterDate().toLowerCase().contains(searchText) ||
+                    stud.getRole().toLowerCase().contains(searchText));
         });
     }
 
