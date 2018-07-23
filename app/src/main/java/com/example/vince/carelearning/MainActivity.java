@@ -1,5 +1,6 @@
 package com.example.vince.carelearning;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,9 +11,21 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.example.vince.carelearning.model.Session;
 import com.example.vince.carelearning.model.Student;
+import com.example.vince.carelearning.networking.Authentification;
 import com.example.vince.carelearning.networking.GetStudents;
+import com.example.vince.carelearning.networking.IApi;
 import com.example.vince.carelearning.networking.Networking;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private Button loginButton;
     private EditText usernameInput;
     private EditText passwordInput;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +49,13 @@ public class MainActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         usernameInput = findViewById(R.id.username_input);
         passwordInput = findViewById(R.id.password_input);
-
+        context = this;
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, MainMenuActivity.class);
 
-                if(login() == true)
-                    startActivity(intent);
+                    login();
             }
         });
 
@@ -103,33 +116,33 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    boolean login(){
+    void login(){
         if(areFieldsValid() == false)
-            return false;
+            return;
 
-        String username = usernameInput.getText().toString();
-        String password = passwordInput.getText().toString();
+        String userName = usernameInput.getText().toString();
+        String pwd = passwordInput.getText().toString();
+
+        AndroidNetworking.post(IApi.ENDPOINT + "auth")
+                .addBodyParameter("mail", userName)
+                .addBodyParameter("password", pwd)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("TOKEN =>", response.toString());
+                        Intent intent = new Intent(context, MainMenuActivity.class);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(context, anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
-        try{
-            List<Student> studentList = new GetStudents().execute("http://10.0.2.2:3000/student", "student", "all").get();
-
-            for(int i = 0; i < studentList.size(); i++ )
-                if(studentList.get(i).getMail().equals(username) && studentList.get(i).getPassword().equals(password)){
-                    Toast.makeText(getApplicationContext(),"Correct !",
-                            Toast.LENGTH_LONG).show();
-                    return true;
-                }
-            Toast.makeText(getApplicationContext(),"Votre identifiant ou votre mot de passe est incorrect.",
-                    Toast.LENGTH_LONG).show();
-        }
-        catch(InterruptedException e){
-            e.printStackTrace();
-        }
-        catch (ExecutionException e){
-            e.printStackTrace();
-        }
-        return false;
     }
 
     boolean isMailValid(String mail){

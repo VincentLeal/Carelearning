@@ -8,6 +8,7 @@
 
         import com.example.vince.carelearning.exercises.drag_and_drop.DragDropActivity;
         import com.example.vince.carelearning.exercises.label.LabelActivity;
+        import com.example.vince.carelearning.exercises.prefix_sufix.PrefixSufixActivity;
 
  public class MainMenuActivity extends AppCompatActivity {
 
@@ -26,7 +27,7 @@
         histButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainMenuActivity.this, HistoryActivity.class);
+                Intent i = new Intent(MainMenuActivity.this, PrefixSufixActivity.class);
                 startActivity(i);
             }
         });
@@ -36,7 +37,7 @@
         exButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainMenuActivity.this, DragDropActivity.class);
+                Intent i = new Intent(MainMenuActivity.this, ExercisesActivity.class);
                 startActivity(i);
             }
         });

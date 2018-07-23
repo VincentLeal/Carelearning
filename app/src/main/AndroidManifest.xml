@@ -24,7 +24,9 @@
         <activity android:name=".MainMenuActivity" />
         <activity android:name=".HistoryActivity" />
         <activity android:name=".exercises.drag_and_drop.DragDropActivity" />
-        <activity android:name=".exercises.label.LabelActivity"></activity>
+        <activity android:name=".exercises.label.LabelActivity" />
+        <activity android:name=".exercises.prefix_sufix.PrefixSufixActivity" />
+        <activity android:name=".ExercisesActivity"></activity>
     </application>
 
 </manifest>

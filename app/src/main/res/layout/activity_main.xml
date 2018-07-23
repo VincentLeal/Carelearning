@@ -49,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/logoLogin"
         app:layout_constraintTop_toBottomOf="@+id/slogan"
-        android:text="bm.mhoma@gmail.com"/>
+        android:text="a@a.fr"/>
 
     <EditText
         android:id="@+id/password_input"
@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/logoPwd"
         app:layout_constraintTop_toBottomOf="@+id/username_input"
-        android:text="ben"/>
+        android:text="root"/>
 
     <ImageView
         android:id="@+id/logoPwd"

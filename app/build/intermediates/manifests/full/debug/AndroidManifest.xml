@@ -33,6 +33,8 @@
         <activity android:name="com.example.vince.carelearning.HistoryActivity" />
         <activity android:name="com.example.vince.carelearning.exercises.drag_and_drop.DragDropActivity" />
         <activity android:name="com.example.vince.carelearning.exercises.label.LabelActivity" />
+        <activity android:name="com.example.vince.carelearning.exercises.prefix_sufix.PrefixSufixActivity" />
+        <activity android:name="com.example.vince.carelearning.ExercisesActivity" />
     </application>
 
 </manifest>
