@@ -49,9 +49,6 @@ public class StudentOverviewController implements Initializable {
     private TextField searchBar;
 
     @FXML
-    private ChoiceBox<String> choiceBox;
-
-    @FXML
     private Button searchButton;
 
     @FXML
@@ -77,9 +74,6 @@ public class StudentOverviewController implements Initializable {
 
     @FXML
     private TableColumn<Student, String> roleColumn;
-
-    @FXML
-    private TableColumn resultColumn;
 
     @FXML
     private TextField firstnameInput;
@@ -124,9 +118,6 @@ public class StudentOverviewController implements Initializable {
         registerDateColumn.setCellValueFactory(new PropertyValueFactory<>("registerDate"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
         roleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        choiceBox.getItems().addAll("prénom", "nom", "mail", "école", "date d'inscription", "rôle");
-        choiceBox.setValue("prénom");
 
         studentTableView.setItems(studentData);
 
