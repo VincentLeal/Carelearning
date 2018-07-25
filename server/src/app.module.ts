@@ -7,10 +7,12 @@ import {Revision_sheetModule} from "./module/revision_sheet.module";
 import {LessonModule} from "./module/lesson.module";
 import {AuthModule} from "./authentication/auth.module";
 import {ImageModule} from './module/image.module';
+import {PostStudentModule} from './module/postStudent.module';
 
 @Module({
     imports: [
         StudentModule,
+        PostStudentModule,
         ResultModule,
         ExerciseModule,
         Revision_sheetModule,

@@ -37,7 +37,6 @@ export class StudentService {
 
         if (student.role === 'user') {
             student.password = Math.random().toString(20).substring(2, 15);
-            console.log('random pwd : ' , student.password);
             const context = {
                 username: student.firstname,
                 password: student.password,

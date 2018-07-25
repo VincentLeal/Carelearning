@@ -23,15 +23,6 @@ export class StudentController {
         return await this.studentService.findOneByMail(request.user.mail);
     }
 
-    @Post()
-    @UsePipes(new DeSerializationPipe())
-    async create(@Body() student: Student){
-        console.log('student password ' + student.password);
-        const createdStudent = await this.studentService.create(student);
-        console.log('password ' + student.password);
-        return { student: createdStudent };
-    }
-
     @Put(':id')
     async update(@Req() request, @Param('id') id: number, @Body() student: Partial<Student>) {
         this.adminRoleVerificator.verify(request.user);
