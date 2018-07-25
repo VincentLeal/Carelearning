@@ -1,7 +1,11 @@
 package com.example.vince.carelearning;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.os.Environment;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +18,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.example.vince.carelearning.data.mainapi.Token;
 import com.example.vince.carelearning.model.Session;
 import com.example.vince.carelearning.model.Student;
 import com.example.vince.carelearning.networking.Authentification;
@@ -27,6 +32,9 @@ import com.google.gson.JsonParser;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -40,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText passwordInput;
     private Context context;
 
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
         usernameInput = findViewById(R.id.username_input);
         passwordInput = findViewById(R.id.password_input);
         context = this;
+
+        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 13);
+
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,9 +145,18 @@ public class MainActivity extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("TOKEN =>", response.toString());
-                        Intent intent = new Intent(context, MainMenuActivity.class);
-                        startActivity(intent);
+                        try{
+                            Log.d("TOKEN =>", response.get("access_token").toString());
+                            Token token = new Token(response.get("access_token").toString());
+                            token.writeTokenFile(getPackageName());
+                            Intent intent = new Intent(context, MainMenuActivity.class);
+                            startActivity(intent);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
                     }
 
                     @Override

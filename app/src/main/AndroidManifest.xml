@@ -3,6 +3,7 @@
     package="com.example.vince.carelearning">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApplication"
@@ -26,7 +27,8 @@
         <activity android:name=".exercises.drag_and_drop.DragDropActivity" />
         <activity android:name=".exercises.label.LabelActivity" />
         <activity android:name=".exercises.prefix_sufix.PrefixSufixActivity" />
-        <activity android:name=".ExercisesActivity"></activity>
+        <activity android:name=".ExercisesActivity" />
+        <activity android:name=".LessonsActivity"></activity>
     </application>
 
 </manifest>

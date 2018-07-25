@@ -17,6 +17,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.example.vince.carelearning.data.mainapi.Adapter;
+import com.example.vince.carelearning.data.mainapi.Token;
 import com.example.vince.carelearning.exercises.drag_and_drop.DragDropActivity;
 import com.example.vince.carelearning.exercises.prefix_sufix.PrefixSufixActivity;
 import com.example.vince.carelearning.model.Exercise;
@@ -47,8 +48,9 @@ public class ExercisesActivity extends AppCompatActivity implements Adapter.Item
         context = this;
 
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
+        Token token = new Token();
         AndroidNetworking.get(IApi.ENDPOINT + "exercise")
-                .addHeaders("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzd29yZCI6InJvb3QiLCJtYWlsIjoiYUBhLmZyIiwiaWF0IjoxNTMyMjAyMTczLCJleHAiOjE1MzIyNDU5NzN9.J8UBc68kOvUeJ7v-NBThOKy68Z-pk6SzKM4p63XCFSA")
+                .addHeaders("Authorization", "Bearer " + token.getTokenFile(getPackageName()))
                 .setTag("test")
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -69,6 +71,7 @@ public class ExercisesActivity extends AppCompatActivity implements Adapter.Item
                                 e.printStackTrace();
                             }
                         }
+
                         Log.d("NBR EXERCICE", exercises.size() + "");
                         setAdapter(context);
                         Toast.makeText(context, "exerciseList size " + exercises.size() , Toast.LENGTH_SHORT).show();

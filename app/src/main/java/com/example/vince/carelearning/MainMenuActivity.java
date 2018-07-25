@@ -3,9 +3,11 @@
         import android.content.Intent;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
+        import android.util.Log;
         import android.view.View;
         import android.widget.ImageButton;
 
+        import com.example.vince.carelearning.data.mainapi.Token;
         import com.example.vince.carelearning.exercises.drag_and_drop.DragDropActivity;
         import com.example.vince.carelearning.exercises.label.LabelActivity;
         import com.example.vince.carelearning.exercises.prefix_sufix.PrefixSufixActivity;
@@ -42,12 +44,11 @@
             }
         });
 
-        exButton.setOnLongClickListener(new View.OnLongClickListener() {
+        lsnButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
-                Intent i = new Intent(MainMenuActivity.this, LabelActivity.class);
+            public void onClick(View view) {
+                Intent i = new Intent(MainMenuActivity.this, LessonsActivity.class);
                 startActivity(i);
-                return true;
             }
         });
 

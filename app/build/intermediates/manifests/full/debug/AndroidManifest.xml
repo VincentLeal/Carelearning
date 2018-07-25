@@ -9,6 +9,7 @@
         android:targetSdkVersion="26" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name="com.example.vince.carelearning.MyApplication"
@@ -35,6 +36,7 @@
         <activity android:name="com.example.vince.carelearning.exercises.label.LabelActivity" />
         <activity android:name="com.example.vince.carelearning.exercises.prefix_sufix.PrefixSufixActivity" />
         <activity android:name="com.example.vince.carelearning.ExercisesActivity" />
+        <activity android:name="com.example.vince.carelearning.LessonsActivity" />
     </application>
 
 </manifest>
