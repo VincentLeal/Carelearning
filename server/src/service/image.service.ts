@@ -5,11 +5,7 @@ import {Image} from '../entity/image.entity';
 
 @Component()
 export class ImageService {
-
-    idCounter: number;
-
     constructor(@InjectRepository(Image) private readonly imageRepository: Repository<Image>) {
-        this.idCounter = 0;
     }
 
     async findAll(): Promise<Image[]> {
@@ -24,9 +20,12 @@ export class ImageService {
         return await this.imageRepository.save(image);
     }
 
+
+
     async saveImages(images: Image[]) {
-        for (let i = 0; i < images.length; i++) {
-            images[i].id = ++this.idCounter;
+        var i;
+        for (i = 0; i < images.length; i++) {
+            images[i].id;
         }
         return await this.imageRepository.save(images);
     }
