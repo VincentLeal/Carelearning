@@ -36,10 +36,9 @@ export class ExerciseController {
     }
 
     private saveImages(exercise: Exercise) {
-        const { images } = exercise;
-        for (const image of images) {
-            this.imageService.save(image);
-        }
+        //const { images } = exercise;
+
+        //this.imageService.saveImages(images);
     }
 
     @Put(':id')
